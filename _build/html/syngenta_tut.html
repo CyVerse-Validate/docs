@@ -24,6 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="next" title="Generating Simulation Data with Alphasim" href="alphasim.html" />
+    <link rel="prev" title="Getting Started with Validate" href="quickstart.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,7 +45,7 @@
 <h1>Running Validate on Syngenta_heldback data set<a class="headerlink" href="#running-validate-on-syngenta-heldback-data-set" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="install-cyverse-cli-tools">
 <h2>Install Cyverse CLI tools<a class="headerlink" href="#install-cyverse-cli-tools" title="Permalink to this headline">¶</a></h2>
-<p>Accessing Validate through the Agave API hugely streamlines the task of managing your data and accessing applications through the Cyverse Data Store with a variety of command-line tools. For a comprehensive overview please see the full documentation <cite>here &lt;https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk</cite></p>
+<p>Accessing Validate through the Agave API hugely streamlines the task of managing your data and accessing applications through the Cyverse Data Store with a variety of command-line tools. For a comprehensive overview please see the full documentation <a class="reference external" href="https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk">here</a>.</p>
 <p>Download Agave API:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">iPlantCollaborativeOpenSource</span><span class="o">/</span><span class="n">cyverse</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -78,6 +81,76 @@ source ~/.bashrc
 </div>
 <p>should return a list of all publicly-available apps.</p>
 </div>
+<div class="section" id="configure-job-submission">
+<h2>configure job submission<a class="headerlink" href="#configure-job-submission" title="Permalink to this headline">¶</a></h2>
+<p>download fastLMM job skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">dropbox</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="n">ij43c5qwsk6hakf</span><span class="o">/</span><span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>(you may need to install wget if using a mac)</p>
+<p>You can open fastlmm-job.json in your text editor of choice to go over your options:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;FLMMDongWangFull&quot;</span><span class="p">,</span>
+<span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;FaST-LMM-hpc-2.07u1&quot;</span><span class="p">,</span>
+<span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;02:00:00&quot;</span><span class="p">,</span>
+<span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;inputPED&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputPHENO&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt&quot;</span>
+         <span class="p">},</span>
+<span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;full_results&quot;</span>
+                <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These parameters should be fairly self-explanatory and are defined in detail <a class="reference external" href="https://agaveapi.co/documentation/tutorials/job-management-tutorial">on this page</a></p>
+<p>jobName is up to you</p>
+<p>softwareName must be a valid Agave app</p>
+<p>requestedTime is up to you</p>
+<p>inputs must be specified based on the app you&#8217;re running&#8211; ensure the file format is correct! Refer to individual app&#8217;s documentation for more information. In this tutorial we are accessing PED, MAP and phenotype files from the public syngenta_sim dataset.</p>
+<p>To access your own data from the Discovery Environment, change the url to replace &#8220;/shared/&#8221; with the path to your user account; ie:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;agave://data.iplantcollaborative.org/yourusername/results/yourdata.ped&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="submit-job">
+<h2>submit job<a class="headerlink" href="#submit-job" title="Permalink to this headline">¶</a></h2>
+<p>from the working directory where the .json file is located, type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">submit</span> <span class="o">-</span><span class="n">F</span> <span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>If successful you should soon see:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Job</span> <span class="p">[</span><span class="n">job_id</span><span class="p">]</span> <span class="n">successfully</span> <span class="n">submitted</span>
+</pre></div>
+</div>
+<p>Copy down the job_id. You&#8217;ll use it to check the status of your job with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">status</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>Once your job is complete, you can view the outputs with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>And download selected outputs with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">download</span> <span class="o">--</span><span class="n">path</span> <span class="o">*</span><span class="n">filename</span><span class="o">*</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="send-output-files-to-winnow">
+<h2>Send output files to Winnow<a class="headerlink" href="#send-output-files-to-winnow" title="Permalink to this headline">¶</a></h2>
+<p>The required files for winnow are the Known Truth file and the output from a GWAS tool (FastLMM in our case)</p>
+<p>Once you download the fastlmm output, upload it to a new location in your DE:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">-</span><span class="n">upload</span> <span class="o">-</span><span class="n">S</span> <span class="n">data</span><span class="o">.</span><span class="n">iplantcollaborative</span><span class="o">.</span><span class="n">org</span> <span class="o">-</span><span class="n">F</span> <span class="o">*</span><span class="n">fastlmm</span> <span class="n">output</span> <span class="n">which</span> <span class="n">should</span> <span class="n">now</span> <span class="n">be</span> <span class="n">local</span><span class="o">*</span> <span class="n">yourusername</span><span class="o">/</span><span class="n">yourdatafolder</span>
+</pre></div>
+</div>
+<p>Download the winnow example skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">dropbox</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="n">pnhebgvx18mh6f5</span><span class="o">/</span><span class="n">winnow</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>You can edit and submit this file using the same process described above.</p>
+</div>
 </div>
 
 
@@ -90,6 +163,9 @@ source ~/.bashrc
   <ul>
 <li><a class="reference internal" href="#">Running Validate on Syngenta_heldback data set</a><ul>
 <li><a class="reference internal" href="#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
+<li><a class="reference internal" href="#configure-job-submission">configure job submission</a></li>
+<li><a class="reference internal" href="#submit-job">submit job</a></li>
+<li><a class="reference internal" href="#send-output-files-to-winnow">Send output files to Winnow</a></li>
 </ul>
 </li>
 </ul>
@@ -97,6 +173,10 @@ source ~/.bashrc
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="quickstart.html">Getting Started with Validate</a><ul>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Getting Started with Validate</a></li>
+      <li>Next: <a href="alphasim.html" title="next chapter">Generating Simulation Data with Alphasim</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
