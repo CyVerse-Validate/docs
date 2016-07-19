@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
-    <link rel="next" title="Running Validate on Syngenta_heldback data set" href="syngenta_tut.html" />
-    <link rel="prev" title="Introduction to Validate" href="validate.html" />
+    <link rel="next" title="Setting up your Accounts" href="accounts.html" />
+    <link rel="prev" title="Validate 1.0" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -43,21 +43,33 @@
   <div class="section" id="getting-started-with-validate">
 <h1>Getting Started with Validate<a class="headerlink" href="#getting-started-with-validate" title="Permalink to this headline">¶</a></h1>
 <p>It&#8217;s helpful to think of Validate not as a single app (Winnow) but as a multi-stage workflow. A typical session will involve either generating a sample data set or importing your own from the CyVerse Data Store for analysis with your preferred GWAS or prediction tool. The corresponding outputs are then analyzed with Winnow, and rendered with Demonstrate.</p>
-<p>These quick start tutorials assume basic command-line knowledge. While the guides assume you have access to a Cyverse account and Stampede Allocation (<cite>see here [accounts.rst]</cite> for account setup information), these instructions should be easily adapted to run Validate on your own hardware.</p>
+<p>These quick start tutorials assume basic command-line knowledge (start with the Software Carpentry <a class="reference external" href="http://swcarpentry.github.io/shell-novice/">tutorial</a> if you&#8217;re new, or refer to this <a class="reference external" href="http://linoxide.com/guide/linux-cheat-sheet.png">cheat sheet</a> for a quick reference). While the guides assume you have access to a Cyverse account and Stampede Allocation, these instructions should be easily adapted to run Validate on your own hardware.</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Setting up your Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#for-windows">For Windows:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#for-mac">For Mac:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#for-unix-linux">For Unix/Linux:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#configure-job-submission">configure job submission</a></li>
-<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#submit-job">submit job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#send-output-files-to-winnow">Send output files to Winnow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#configure-job-submission">Configure Job Submission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#submit-job">Submit Job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="discover_guide.html">Accessing the Discovery Environment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discover_guide.html#running-bayesr-through-agave">Running BayesR through Agave</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gwas.html">GWAS Tools</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gwas.html#fastlmm">FastLMM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gwas.html#plink">Plink</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html#bayesr">BayesR</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="prediction.html">Prediction</a><ul>
@@ -67,16 +79,6 @@
 </li>
 </ul>
 </div>
-<div class="section" id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
-<p>Alphasim home page
-Cyverse Agave CLI Guide</p>
-</div>
-<div class="section" id="getting-help">
-<h2>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h2>
-<p>email <a class="reference external" href="mailto:stapletonlab&#37;&#52;&#48;gmail&#46;com">stapletonlab<span>&#64;</span>gmail<span>&#46;</span>com</a>
-post on the Slack</p>
-</div>
 </div>
 
 
@@ -84,21 +86,12 @@ post on the Slack</p>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Getting Started with Validate</a><ul>
-<li><a class="reference internal" href="#resources">Resources</a></li>
-<li><a class="reference internal" href="#getting-help">Getting Help</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
+        <div class="sphinxsidebarwrapper"><div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="validate.html" title="previous chapter">Introduction to Validate</a></li>
-      <li>Next: <a href="syngenta_tut.html" title="next chapter">Running Validate on Syngenta_heldback data set</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Validate 1.0</a></li>
+      <li>Next: <a href="accounts.html" title="next chapter">Setting up your Accounts</a></li>
   </ul></li>
 </ul>
 </div>

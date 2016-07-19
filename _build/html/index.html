@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to Validate’s documentation! &mdash; Validate 1.0 documentation</title>
+    <title>Validate 1.0 &mdash; Validate 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Validate 1.0 documentation" href="#" />
-    <link rel="next" title="Introduction to Validate" href="validate.html" />
+    <link rel="next" title="Getting Started with Validate" href="quickstart.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -39,23 +39,64 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-validate-s-documentation">
-<h1>Welcome to Validate&#8217;s documentation!<a class="headerlink" href="#welcome-to-validate-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="validate-1-0">
+<h1>Validate 1.0<a class="headerlink" href="#validate-1-0" title="Permalink to this headline">¶</a></h1>
+<p>Validation is the positive control for your experimental data analysis. You have control over how long data analysis takes. Completing your positive controls first allows you to be ready for your data when you get it. Why validate a particular data analysis?</p>
+<ul class="simple">
+<li>Trust but verify... check that a widely used method will work for your data.</li>
+<li>Have analysis pipeline optimized; the moment you&#8217;ve collected all your data you can start the analysis (saving weeks or months to complete afterwards)</li>
+<li>Fewer requests from reviewers for changes to your data analysis methods</li>
+<li>Be confident you are doing the best possible data analysis</li>
+</ul>
+<p>The CyVerse Validate workflow is versatile enough to handle you importing your GWAS tools, functions, or simulation methods to use in conjunction with the existing software. Speaking of imports, Validate is capable of handling a range of file formats, and each piece of software is very customizable. You have multiple options for adjusting your output each step of the way.</p>
+<p>Finally, since the analysis are run on the NSF-supported national XSEDE computer systems, scalability of simulations is a non-issue; the computational demand for your simulations will scale up as your needs increase. All of your necessary files may be uploaded and accessed from the CyVerse Data Store.</p>
+<div class="section" id="version-1-0-features">
+<h2>Version 1.0 Features<a class="headerlink" href="#version-1-0-features" title="Permalink to this headline">¶</a></h2>
+<p>Version 1.0 features include:</p>
+<ul class="simple">
+<li>The ability to test prediction</li>
+<li>Incorporate the following prediction applications:
+- GenSel
+- BayesR
+- BLR/BATools
+- Ridge regression</li>
+<li>Updated Demonstrate to handle prediction graphics</li>
+<li>Managing GWAS and prediction applications in parallel</li>
+<li>Incorporate D. Hand&#8217;s H-measure to the current performance metrics</li>
+<li>Additional documentation to onboard new developers and statisticians</li>
+</ul>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="validate.html"> Introduction to Validate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Setting up your Accounts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
 <li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discover_guide.html">Accessing the Discovery Environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#getting-help">Getting Help</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#organizations">Organizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#biology-terms">Biology Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#statistics-terms">Statistics Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#computer-science-terms">Computer Science Terms</a></li>
 </ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#user-manuals-project-websites">User Manuals &amp; Project Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -64,11 +105,20 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Validate 1.0</a><ul>
+<li><a class="reference internal" href="#version-1-0-features">Version 1.0 Features</a></li>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="validate.html" title="next chapter">Introduction to Validate</a></li>
+      <li>Next: <a href="quickstart.html" title="next chapter">Getting Started with Validate</a></li>
   </ul></li>
 </ul>
 </div>

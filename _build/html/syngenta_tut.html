@@ -26,7 +26,7 @@
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
     <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
     <link rel="next" title="Generating Simulation Data with Alphasim" href="alphasim.html" />
-    <link rel="prev" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="prev" title="Setting up your Accounts" href="accounts.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -45,7 +45,7 @@
 <h1>Running Validate on Syngenta_heldback data set<a class="headerlink" href="#running-validate-on-syngenta-heldback-data-set" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="install-cyverse-cli-tools">
 <h2>Install Cyverse CLI tools<a class="headerlink" href="#install-cyverse-cli-tools" title="Permalink to this headline">¶</a></h2>
-<p>Accessing Validate through the Agave API hugely streamlines the task of managing your data and accessing applications through the Cyverse Data Store with a variety of command-line tools. For a comprehensive overview please see the full documentation <a class="reference external" href="https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk">here</a>.</p>
+<p>Accessing Validate through the Agave API hugely streamlines the task of managing your data and accessing applications through the Cyverse Data Store with a variety of command-line tools. For a comprehensive overview please see the <a class="reference external" href="https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk">full documentation</a>.</p>
 <p>Download Agave API:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">iPlantCollaborativeOpenSource</span><span class="o">/</span><span class="n">cyverse</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -82,7 +82,7 @@ source ~/.bashrc
 <p>should return a list of all publicly-available apps.</p>
 </div>
 <div class="section" id="configure-job-submission">
-<h2>configure job submission<a class="headerlink" href="#configure-job-submission" title="Permalink to this headline">¶</a></h2>
+<h2>Configure Job Submission<a class="headerlink" href="#configure-job-submission" title="Permalink to this headline">¶</a></h2>
 <p>download fastLMM job skeleton:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">dropbox</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="n">ij43c5qwsk6hakf</span><span class="o">/</span><span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
@@ -105,18 +105,15 @@ source ~/.bashrc
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>These parameters should be fairly self-explanatory and are defined in detail <a class="reference external" href="https://agaveapi.co/documentation/tutorials/job-management-tutorial">on this page</a></p>
-<p>jobName is up to you</p>
-<p>softwareName must be a valid Agave app</p>
-<p>requestedTime is up to you</p>
-<p>inputs must be specified based on the app you&#8217;re running&#8211; ensure the file format is correct! Refer to individual app&#8217;s documentation for more information. In this tutorial we are accessing PED, MAP and phenotype files from the public syngenta_sim dataset.</p>
+<p>These parameters should be fairly self-explanatory but are defined in detail <a class="reference external" href="https://agaveapi.co/documentation/tutorials/job-management-tutorial">on this page</a></p>
+<p>Inputs must be specified based on the app you&#8217;re running&#8211; ensure the file format is correct! Refer to individual app&#8217;s documentation for more information. In this tutorial we are accessing PED, MAP and phenotype files from the public syngenta_sim dataset.</p>
 <p>To access your own data from the Discovery Environment, change the url to replace &#8220;/shared/&#8221; with the path to your user account; ie:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;agave://data.iplantcollaborative.org/yourusername/results/yourdata.ped&quot;</span><span class="p">,</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="submit-job">
-<h2>submit job<a class="headerlink" href="#submit-job" title="Permalink to this headline">¶</a></h2>
+<h2>Submit Job<a class="headerlink" href="#submit-job" title="Permalink to this headline">¶</a></h2>
 <p>from the working directory where the .json file is located, type:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">submit</span> <span class="o">-</span><span class="n">F</span> <span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
@@ -139,7 +136,8 @@ source ~/.bashrc
 </div>
 </div>
 <div class="section" id="send-output-files-to-winnow">
-<h2>Send output files to Winnow<a class="headerlink" href="#send-output-files-to-winnow" title="Permalink to this headline">¶</a></h2>
+<h2>Send Output Files to Winnow<a class="headerlink" href="#send-output-files-to-winnow" title="Permalink to this headline">¶</a></h2>
+<p>For full inputs &amp; outputs see <a class="reference external" href="https://github.com/gpcarpen/Quickstart-guide/blob/master/docs/Winnow.md">here</a></p>
 <p>The required files for winnow are the Known Truth file and the output from a GWAS tool (FastLMM in our case)</p>
 <p>Once you download the fastlmm output, upload it to a new location in your DE:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">-</span><span class="n">upload</span> <span class="o">-</span><span class="n">S</span> <span class="n">data</span><span class="o">.</span><span class="n">iplantcollaborative</span><span class="o">.</span><span class="n">org</span> <span class="o">-</span><span class="n">F</span> <span class="o">*</span><span class="n">fastlmm</span> <span class="n">output</span> <span class="n">which</span> <span class="n">should</span> <span class="n">now</span> <span class="n">be</span> <span class="n">local</span><span class="o">*</span> <span class="n">yourusername</span><span class="o">/</span><span class="n">yourdatafolder</span>
@@ -150,6 +148,36 @@ source ~/.bashrc
 </pre></div>
 </div>
 <p>You can edit and submit this file using the same process described above.</p>
+</div>
+<div class="section" id="visualize-results-with-demonstrate">
+<h2>Visualize Results with Demonstrate<a class="headerlink" href="#visualize-results-with-demonstrate" title="Permalink to this headline">¶</a></h2>
+<p>Demonstrate is the final step in the Validate known-truth pipeline for iPlant Collaborative. Using output from Winnow, it produces a set of graphics showing differences in a GWAS/QTL applications performance under varying heritability and population structure. Demonstrate also functions without the need for heritability or population structure, but different graphics will be produced in that case.</p>
+<p>The function you will want to use depends on what type of data you have:</p>
+<div class="section" id="data-with-heritability-and-population-structure-specified">
+<h3>Data with Heritability and Population Structure Specified<a class="headerlink" href="#data-with-heritability-and-population-structure-specified" title="Permalink to this headline">¶</a></h3>
+<p>If you want to visualize differences in your data based on heritability or population structure, you&#8217;ll want to use the original function Demonstrate. To run Demonstrate, type R on your terminal or command line to open the R console. From there use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">Demonstrate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If nothing happens, then you did it correctly! Now the Demonstrate package is loaded. Here are the options to run the function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean AUC By Population Structure and Heritability&quot;</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean MAE By Population Structure and Heritability&quot;</span><span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;_03_&quot;</span><span class="p">,</span><span class="s2">&quot;_04_&quot;</span><span class="p">,</span><span class="s2">&quot;_06_&quot;</span><span class="p">)</span> <span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;PheHasStruct&quot;</span><span class="p">,</span><span class="s2">&quot;PheNPStruct&quot;</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">TRUE</span><span class="p">,</span><span class="n">FALSE</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this function, dir represents the directory where all Winnow output is stored. These default values are based on the sample data found within this repository. Once run, the function will create two graphs on the mean absolute error (MAE) and area under the receiver operator curve (AUC) across varying levels of heritability and/or population structure. The graphs are in pdf format.</p>
+</div>
+<div class="section" id="other-data-from-winnow">
+<h3>Other data from Winnow<a class="headerlink" href="#other-data-from-winnow" title="Permalink to this headline">¶</a></h3>
+<p>For other types of data, or if you&#8217;re more interested in comparing GWAS tools than comparing data, you will want to use the Demonstrate2 function. Before running it though, you will need to include the function in your global environment:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span><span class="p">(</span><span class="s2">&quot;&lt;path to&gt;/Demonstrate2.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then run the function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate2</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;True Positives by False Positives&quot;</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of AUC by MAE&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">.</span><span class="n">plots</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assuming all outputs are kept, Demonstrate2 will output five files in total. First, two frequency histograms illustrating the distribution of both true and false positives (if multiple Winnow files were in the original directory, the pdf files will have multiple pages). Second, a .csv file detailing the average sensitivity, specificity, and precision of each
+file. Finally, two plots based on true vs. false positives and mean absolute error vs. area under the curve will be produced. Demonstrate2 will color the points based on the file they came from, so you can compare multiple GWAS analysis results on the same plot.</p>
+</div>
 </div>
 </div>
 
@@ -163,9 +191,14 @@ source ~/.bashrc
   <ul>
 <li><a class="reference internal" href="#">Running Validate on Syngenta_heldback data set</a><ul>
 <li><a class="reference internal" href="#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
-<li><a class="reference internal" href="#configure-job-submission">configure job submission</a></li>
-<li><a class="reference internal" href="#submit-job">submit job</a></li>
-<li><a class="reference internal" href="#send-output-files-to-winnow">Send output files to Winnow</a></li>
+<li><a class="reference internal" href="#configure-job-submission">Configure Job Submission</a></li>
+<li><a class="reference internal" href="#submit-job">Submit Job</a></li>
+<li><a class="reference internal" href="#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li><a class="reference internal" href="#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a><ul>
+<li><a class="reference internal" href="#data-with-heritability-and-population-structure-specified">Data with Heritability and Population Structure Specified</a></li>
+<li><a class="reference internal" href="#other-data-from-winnow">Other data from Winnow</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -174,7 +207,7 @@ source ~/.bashrc
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="quickstart.html">Getting Started with Validate</a><ul>
-      <li>Previous: <a href="quickstart.html" title="previous chapter">Getting Started with Validate</a></li>
+      <li>Previous: <a href="accounts.html" title="previous chapter">Setting up your Accounts</a></li>
       <li>Next: <a href="alphasim.html" title="next chapter">Generating Simulation Data with Alphasim</a></li>
   </ul></li>
   </ul></li>

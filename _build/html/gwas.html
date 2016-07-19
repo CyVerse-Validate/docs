@@ -24,6 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="next" title="Prediction Tools" href="prediction.html" />
+    <link rel="prev" title="Uploading data to the Discovery Environment" href="discover_guide.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,9 +45,33 @@
 <h1>GWAS Tools<a class="headerlink" href="#gwas-tools" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="fastlmm">
 <h2>FastLMM<a class="headerlink" href="#fastlmm" title="Permalink to this headline">¶</a></h2>
+<p>The main genome wide association studies tool that we have used, FaST-LMM stands for Factored Spectrally Transformed Linear Mixed Models. It is a tool from Microsoft Research designed for analyses of very large data sets, and has been tested on data sets with over 120,000 individuals.
+Running the Program</p>
+<p>Please note that the original FaST-LMM executable destination is: /usr/bin/fastlmmc; thus, the executable can be launched from any directory on the instance. Simply type in fastlmmc into the terminal and a help menu will appear.</p>
+<p>With that in mind, the program requires a minimum of three files to function: 1) A PEDMAP set of files, 2) a phenotype file corresponding to the PEDMAP set, and 3) a set of PLink formatted files to compute the genetic similarity matrix decomposition (does not need to be different from number 1).</p>
+<p>The input flags you would use are as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>-file : Denotes the file name for the PLINK .ped/.map files</li>
+<li>-bfile : Denotes the name for PLINK .bed/.bim/.fam files</li>
+<li>-tfile : Denotes the name for PLINK .tped/.tfam files</li>
+<li>-pheno : Denotes the name of the phenotype file (including extension)</li>
+<li>-covar : Denotes the name of the covariate file (including file extension)</li>
+<li>-out : The name of your final output file, which is placed into the same directory as your program and data unless otherwise specified</li>
+</ul>
+</div></blockquote>
+<p>These are the bare minimum options needed to run FaST-LMM; however, some other options for considerations are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>-verboseOutput : use this flag to show more complex and detailed output; does not require a file to be named</li>
+<li>-fileSim : The name of the PLINK set used for computing the genetic similarity matrix and its decomposition</li>
+<li>-pValuePrintThreshold : Restricts the output file to only include SNPs with a p-value less than or equal to the specified threshold</li>
+</ul>
+</div></blockquote>
+<p>An example of executing the FaST-LMM program might look like so: fastlmmc -verboseOutput -bfile toydata -pheno toydata.phe.txt -covar toydata.covar.txt -out MyResults.csv</p>
 </div>
-<div class="section" id="plink">
-<h2>Plink<a class="headerlink" href="#plink" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bayesr">
+<h2>BayesR<a class="headerlink" href="#bayesr" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -58,7 +85,7 @@
   <ul>
 <li><a class="reference internal" href="#">GWAS Tools</a><ul>
 <li><a class="reference internal" href="#fastlmm">FastLMM</a></li>
-<li><a class="reference internal" href="#plink">Plink</a></li>
+<li><a class="reference internal" href="#bayesr">BayesR</a></li>
 </ul>
 </li>
 </ul>
@@ -66,6 +93,10 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="quickstart.html">Getting Started with Validate</a><ul>
+      <li>Previous: <a href="discover_guide.html" title="previous chapter">Uploading data to the Discovery Environment</a></li>
+      <li>Next: <a href="prediction.html" title="next chapter">Prediction Tools</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>

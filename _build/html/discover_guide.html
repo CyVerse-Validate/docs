@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Uploading data to the Discovery Environment &mdash; Validate 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="next" title="GWAS Tools" href="gwas.html" />
+    <link rel="prev" title="Submitting jobs on Stampede" href="json.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="uploading-data-to-the-discovery-environment">
+<h1>Uploading data to the Discovery Environment<a class="headerlink" href="#uploading-data-to-the-discovery-environment" title="Permalink to this headline">¶</a></h1>
+<p>Add images?</p>
+<p>For a comprehensive guide please see <a class="reference external" href="https://pods.iplantcollaborative.org/wiki/display/DEmanual/Uploading+and+Importing+Data+Items+Within+the+DE">here</a></p>
+<p>For this tutorial we will use the publicly-available BayesR example data, which we can upload using the &#8220;importing from URL&#8221; method.</p>
+<ol class="arabic simple">
+<li>In the Discovery Environment, click the Data button on the left-hand side. Here we&#8217;ll create a new folder to import the data to.</li>
+<li>With the Data window open, click on your user name and then file -&gt; new folder. Any name works&#8211; here we&#8217;ll use &#8220;BayesRData&#8221;</li>
+<li>With &#8220;BayesRData&#8221; open, click upload -&gt; import from URL.</li>
+<li>In another tab, browse to <a class="reference external" href="https://github.com/syntheke/bayesR/tree/master/example/">https://github.com/syntheke/bayesR/tree/master/example/</a>. BayesR requires .BED, .BIM, and . FAM files to run, so you&#8217;ll need to upload simdata.bed, simdata.fam, and simdata.bim to your DE folder.</li>
+<li>To upload the data, open the file on github and then right-click on &#8220;Raw&#8221; to copy the link address.</li>
+</ol>
+<div class="section" id="running-bayesr-through-agave">
+<h2>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h2>
+<p>From your local machine, create a folder for the output and cd into it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">outputfolder</span>
+<span class="n">cd</span> <span class="n">outputfolder</span>
+</pre></div>
+</div>
+<p>Download the BayesR job skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">dropbox</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="mi">6</span><span class="n">t0ln19e6ihetoz</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>Open this with a text editor and edit the following parameters:</p>
+<ol class="loweralpha simple">
+<li>For jobName, anything will work. For this example, I used testBayesR</li>
+<li>For software name, enter “bayesR-0.75”</li>
+<li>For requested time, enter “02:00:00”</li>
+</ol>
+<p>d. For inputBED enter “agave://data.iplantcollaborative.org/username/folder/simdata.bed”, replacing
+username and folder with your own. For instance, mine would be: “agave://data.iplantcollaborative.org/swb5075/BayesRData/simdata.bed” and
+repeat this for the other two input files (BIM and FAM files)
+e. For output, anything will work. I will use “BayesRTesting”. Save and close this
+file.</p>
+<p>Note: You can copy and paste this into a website like <a class="reference external" href="http://jsonlint.com/">http://jsonlint.com/</a> to ensure that the JSON file is formatted correctly.</p>
+<p>Using your local terminal, make sure you are in the same directory as the job.json file.</p>
+<p>Enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>jobs-submit –F bayesR-job.json.
+</pre></div>
+</div>
+<p>You should get a response: “Successfully submitted job . The sample data takes about twenty minutes to run but you can check this by entering: jobs-status with the same job ID as above. Once the job is complete, the response to this command will be “FINISHED”</p>
+<p>We now want to download the output data. You can enter jobs-output-list to
+see all of the included files. For instance I may enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="nb">list</span> <span class="mi">3895995830152073701</span><span class="o">-</span><span class="n">ee4acae9fffff7a7</span><span class="o">-</span><span class="mi">0001</span><span class="o">-</span><span class="mi">007</span>
+</pre></div>
+</div>
+<p>BayesR has six output files (.frq, .gv, .hyp, .log, .model, .param files) which begin with
+the output parameter from the job json file. In my case, testresults.</p>
+<p>In order to download, for example, the frequency file enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">download</span> <span class="o">--</span> <span class="n">path</span> <span class="n">testresults</span><span class="o">.</span><span class="n">frq</span> <span class="mi">3895995830152073701</span><span class="o">-</span><span class="n">ee4acae9fffff7a7</span><span class="o">-</span><span class="mi">0001</span><span class="o">-</span><span class="mi">007</span>
+</pre></div>
+</div>
+<p>Here the &#8211;path parameter refers to which file you want to download and the long string
+at the end is your job ID.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Uploading data to the Discovery Environment</a><ul>
+<li><a class="reference internal" href="#running-bayesr-through-agave">Running BayesR through Agave</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="quickstart.html">Getting Started with Validate</a><ul>
+      <li>Previous: <a href="json.html" title="previous chapter">Submitting jobs on Stampede</a></li>
+      <li>Next: <a href="gwas.html" title="next chapter">GWAS Tools</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/discover_guide.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/discover_guide.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
