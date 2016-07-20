@@ -3,6 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+**Validation is an evolving process and the documentation should reflect the experiences of users as they discover new and useful bits of information.**
+:ref:`updating` is easy, and you can share comments and questions `at this forum <https://github.com/vyverse-validate/validate-doc/issues>`_.
+
+
 Validate 1.0
 ============
 
@@ -23,11 +27,7 @@ Version 1.0 Features
 Version 1.0 features include:
 
 - The ability to test prediction
-- Incorporate the following prediction applications:
-  - GenSel
-  - BayesR
-  - BLR/BATools
-  - Ridge regression
+- Incorporate the following prediction applications: GenSel, BayesR, BLR/BATools, Ridge regression (coming soon)
 - Updated Demonstrate to handle prediction graphics
 - Managing GWAS and prediction applications in parallel
 - Incorporate D. Hand's H-measure to the current performance metrics
@@ -43,3 +43,4 @@ Table of Contents
     Useful Terms <terms.rst>
     Citations & Resources <citations.rst>
     Further Development & Getting help <develop.rst>
+    Updating the Docs <updating.rst>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Updating the docs &mdash; Validate 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Getting Help" href="develop.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="updating-the-docs">
+<span id="updating"></span><h1>Updating the docs<a class="headerlink" href="#updating-the-docs" title="Permalink to this headline">¶</a></h1>
+<p>Updating the documentation is easy and should be done as users discover useful tips and tricks along their own workflows. All documentation is stored on github in plain-text at <a class="reference external" href="https://github.com/CyVerse-Validate/validate-doc">https://github.com/CyVerse-Validate/validate-doc</a>.</p>
+<div class="section" id="accessing-the-source">
+<h2>Accessing the source<a class="headerlink" href="#accessing-the-source" title="Permalink to this headline">¶</a></h2>
+<p><strong>from the terminal</strong></p>
+<p>from your working directory, download the project from github:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">url</span>
+</pre></div>
+</div>
+<p>cd into the new folder, ls to view files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="n">filename</span><span class="o">.</span><span class="n">rst</span>
+</pre></div>
+</div>
+<p>i to start writing, wq to save and close. For VIM resources, try <a class="reference external" href="https://danielmiessler.com/study/vim/">https://danielmiessler.com/study/vim/</a>, or type vimtutor at your terminal.</p>
+<p>Follow the standard git commit process to request changes. For a full introduction see</p>
+<ul class="simple">
+<li><a class="reference external" href="https://yangsu.github.io/pull-request-tutorial/">https://yangsu.github.io/pull-request-tutorial/</a></li>
+<li><a class="reference external" href="http://swcarpentry.github.io/git-novice/">http://swcarpentry.github.io/git-novice/</a></li>
+</ul>
+<p>After a change has been made to the master repository, <a class="reference external" href="https://readthedocs.org">readthedocs</a> automatically builds fresh html documentation hosted on their servers.</p>
+<p><strong>from the desktop</strong></p>
+<p>browse to <a class="reference external" href="https://github.com/CyVerse-Validate/validate-doc">https://github.com/CyVerse-Validate/validate-doc</a></p>
+<p>click &#8220;Clone or Download&#8221; at the right. You can use the github desktop app or work with the compressed folder using the text editor of your choice. For comprehensive edits you may wish to use <a class="reference external" href="https://atom.io">Atom</a> with the language-sphinx package enabled with the documentation directory selected as your project folder.</p>
+<p>For more on Sphinx / Read the Docs, see:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">http://www.sphinx-doc.org/en/stable/rest.html</a></li>
+<li><a class="reference external" href="http://docs.readthedocs.io/en/latest/">http://docs.readthedocs.io/en/latest/</a></li>
+</ul>
+</div>
+<div class="section" id="updating-table-of-contents">
+<h2>Updating table of contents<a class="headerlink" href="#updating-table-of-contents" title="Permalink to this headline">¶</a></h2>
+<p>One unique feature of Sphinx is its ability to cross reference between pages and maintain a hierarchy of separate documents, making it preferable to other markdown languages for documenting extensible projects. These features are handled using unique directives documented &lt;here&gt;. The most important of these will be “toctree” where you define your table of contents. To add an additional page, you’d update index.rst to include the new document, and create a new text document &#8220;filename.rst”. The formatting is fairly self-explanatory; see the existing index for an example.</p>
+</div>
+<div class="section" id="building-sphinx-html-on-your-own-machine">
+<h2>Building Sphinx html on your own machine<a class="headerlink" href="#building-sphinx-html-on-your-own-machine" title="Permalink to this headline">¶</a></h2>
+<p>To preview the documentation, you&#8217;ll need to compile html files using the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>from the project root. Fix any warnings or errors that appear (generally caused by the existence of unlinked files or absence of linked ones), and view the html output in your default browser with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>On a windows machine, run make.bat instead.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Updating the docs</a><ul>
+<li><a class="reference internal" href="#accessing-the-source">Accessing the source</a></li>
+<li><a class="reference internal" href="#updating-table-of-contents">Updating table of contents</a></li>
+<li><a class="reference internal" href="#building-sphinx-html-on-your-own-machine">Building Sphinx html on your own machine</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="develop.html" title="previous chapter">Getting Help</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/updating.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/updating.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
