@@ -1,8 +1,6 @@
-============================================
-Uploading data to the Discovery Environment
-============================================
-
-Add images?
+========================================================================================
+Uploading data to the Data Store and viewing in the Cyverse Discovery Environment
+========================================================================================
 
 For a comprehensive guide please see `here <https://pods.iplantcollaborative.org/wiki/display/DEmanual/Uploading+and+Importing+Data+Items+Within+the+DE>`_
 
@@ -16,9 +14,9 @@ For this tutorial we will use the publicly-available BayesR example data, which 
 
 4. In another tab, browse to https://github.com/syntheke/bayesR/tree/master/example/. BayesR requires .BED, .BIM, and . FAM files to run, so you'll need to upload simdata.bed, simdata.fam, and simdata.bim to your DE folder.
 
-5. To upload the data, open the file on github and then right-click on "Raw" to copy the link address.
+5. To upload the data, open the file on github and then right-click on "Raw" to copy the link address. You can then paste this into the "upload from URL option" in the Discovery Environment.
 
-
+=============================
 Running BayesR through Agave
 =============================
 
@@ -29,16 +27,20 @@ From your local machine, create a folder for the output and cd into it::
 
 Download the BayesR job skeleton::
 
-  wget https://www.dropbox.com/s/6t0ln19e6ihetoz/bayesR-job.json
+  wget https://github.com/CyVerse-Validate/Stampede-Files/json/bayesR-job.json
 
 Open this with a text editor and edit the following parameters:
 
 a. For jobName, anything will work. For this example, I used testBayesR
+
 b. For software name, enter “bayesR-0.75”
+
 c. For requested time, enter “02:00:00”
+
 d. For inputBED enter “agave://data.iplantcollaborative.org/username/folder/simdata.bed”, replacing
 username and folder with your own. For instance, mine would be: “agave://data.iplantcollaborative.org/swb5075/BayesRData/simdata.bed” and
 repeat this for the other two input files (BIM and FAM files)
+
 e. For output, anything will work. I will use “BayesRTesting”. Save and close this
 file.
 

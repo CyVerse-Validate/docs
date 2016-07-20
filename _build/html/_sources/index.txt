@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 **Validation is an evolving process and the documentation should reflect the experiences of users as they discover new and useful bits of information.**
-:ref:`updating` is easy, and you can share comments and questions `at this forum <https://github.com/vyverse-validate/validate-doc/issues>`_.
+:ref:`updating` is easy, and you can share comments and questions `at this forum <https://github.com/vyverse-validate/docs/issues>`_.
 
 
 Validate 1.0

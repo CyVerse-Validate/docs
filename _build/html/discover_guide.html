@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Uploading data to the Discovery Environment &mdash; Validate 1.0 documentation</title>
+    <title>Uploading data to the Data Store and viewing in the Cyverse Discovery Environment &mdash; Validate 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -41,9 +41,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="uploading-data-to-the-discovery-environment">
-<h1>Uploading data to the Discovery Environment<a class="headerlink" href="#uploading-data-to-the-discovery-environment" title="Permalink to this headline">¶</a></h1>
-<p>Add images?</p>
+  <div class="section" id="uploading-data-to-the-data-store-and-viewing-in-the-cyverse-discovery-environment">
+<h1>Uploading data to the Data Store and viewing in the Cyverse Discovery Environment<a class="headerlink" href="#uploading-data-to-the-data-store-and-viewing-in-the-cyverse-discovery-environment" title="Permalink to this headline">¶</a></h1>
 <p>For a comprehensive guide please see <a class="reference external" href="https://pods.iplantcollaborative.org/wiki/display/DEmanual/Uploading+and+Importing+Data+Items+Within+the+DE">here</a></p>
 <p>For this tutorial we will use the publicly-available BayesR example data, which we can upload using the &#8220;importing from URL&#8221; method.</p>
 <ol class="arabic simple">
@@ -51,17 +50,18 @@
 <li>With the Data window open, click on your user name and then file -&gt; new folder. Any name works&#8211; here we&#8217;ll use &#8220;BayesRData&#8221;</li>
 <li>With &#8220;BayesRData&#8221; open, click upload -&gt; import from URL.</li>
 <li>In another tab, browse to <a class="reference external" href="https://github.com/syntheke/bayesR/tree/master/example/">https://github.com/syntheke/bayesR/tree/master/example/</a>. BayesR requires .BED, .BIM, and . FAM files to run, so you&#8217;ll need to upload simdata.bed, simdata.fam, and simdata.bim to your DE folder.</li>
-<li>To upload the data, open the file on github and then right-click on &#8220;Raw&#8221; to copy the link address.</li>
+<li>To upload the data, open the file on github and then right-click on &#8220;Raw&#8221; to copy the link address. You can then paste this into the &#8220;upload from URL option&#8221; in the Discovery Environment.</li>
 </ol>
+</div>
 <div class="section" id="running-bayesr-through-agave">
-<h2>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h2>
+<h1>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h1>
 <p>From your local machine, create a folder for the output and cd into it:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">outputfolder</span>
 <span class="n">cd</span> <span class="n">outputfolder</span>
 </pre></div>
 </div>
 <p>Download the BayesR job skeleton:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">dropbox</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="mi">6</span><span class="n">t0ln19e6ihetoz</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
 <p>Open this with a text editor and edit the following parameters:</p>
@@ -72,8 +72,8 @@
 </ol>
 <p>d. For inputBED enter “agave://data.iplantcollaborative.org/username/folder/simdata.bed”, replacing
 username and folder with your own. For instance, mine would be: “agave://data.iplantcollaborative.org/swb5075/BayesRData/simdata.bed” and
-repeat this for the other two input files (BIM and FAM files)
-e. For output, anything will work. I will use “BayesRTesting”. Save and close this
+repeat this for the other two input files (BIM and FAM files)</p>
+<p>e. For output, anything will work. I will use “BayesRTesting”. Save and close this
 file.</p>
 <p>Note: You can copy and paste this into a website like <a class="reference external" href="http://jsonlint.com/">http://jsonlint.com/</a> to ensure that the JSON file is formatted correctly.</p>
 <p>Using your local terminal, make sure you are in the same directory as the job.json file.</p>
@@ -96,7 +96,6 @@ the output parameter from the job json file. In my case, testresults.</p>
 <p>Here the &#8211;path parameter refers to which file you want to download and the long string
 at the end is your job ID.</p>
 </div>
-</div>
 
 
           </div>
@@ -106,10 +105,8 @@ at the end is your job ID.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Uploading data to the Discovery Environment</a><ul>
+<li><a class="reference internal" href="#">Uploading data to the Data Store and viewing in the Cyverse Discovery Environment</a></li>
 <li><a class="reference internal" href="#running-bayesr-through-agave">Running BayesR through Agave</a></li>
-</ul>
-</li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

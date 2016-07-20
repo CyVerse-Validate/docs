@@ -1,0 +1,14 @@
+{
+"jobName": "testBayesR",
+"softwareName": "bayesR-0.75u1",
+"requestedTime": "02:00:00",
+"archive": true,
+    "inputs":{
+        "inputBED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H_06_GenotypeData_NoMissing.bed",
+        "inputBIM": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H_06_GenotypeData_NoMissing.bim",
+        "inputFAM": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H_06_GenotypeData_NoMissing.fam"
+    },
+    "parameters":{
+        "output": "results"
+    }
+}
