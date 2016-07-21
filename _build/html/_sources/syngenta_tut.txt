@@ -129,9 +129,11 @@ You can edit and submit this file using the same process described above.
 ----------------------------------
 Visualize Results with Demonstrate
 ----------------------------------
+ **Currently it is easier to work with R on your own system than on Stampede.**
+ The final step of Validation will be comparing the results using a visualization method of your choice.
+Refer to :ref:`datastore` to download results from Stampede to your own disk or the data store.
 
-
-Demonstrate is the final step in the Validate known-truth pipeline for iPlant Collaborative. Using output from Winnow, it produces a set of graphics showing differences in a GWAS/QTL applications performance under varying heritability and population structure. Demonstrate also functions without the need for heritability or population structure, but different graphics will be produced in that case.
+Demonstrate is the final step in the Validate known-truth pipeline. Using output from Winnow, it produces a set of graphics showing differences in a GWAS/QTL applications performance under varying heritability and population structure. Demonstrate also functions without the need for heritability or population structure, but different graphics will be produced in that case.
 
 The function you will want to use depends on what type of data you have:
 
@@ -160,4 +162,6 @@ Then run the function::
   Demonstrate2(dir, make.pos.plot=TRUE, pos.plot.title="True Positives by False Positives", make.error.plot=TRUE, error.plot.title="Plot of AUC by MAE", extra.plots=TRUE, AUC.axis.min=0, AUC.axis.max=1.0, MAE.axis.min=0, MAE.axis.max=2.0)
 
 Assuming all outputs are kept, Demonstrate2 will output five files in total. First, two frequency histograms illustrating the distribution of both true and false positives (if multiple Winnow files were in the original directory, the pdf files will have multiple pages). Second, a .csv file detailing the average sensitivity, specificity, and precision of each
-file. Finally, two plots based on true vs. false positives and mean absolute error vs. area under the curve will be produced. Demonstrate2 will color the points based on the file they came from, so you can compare multiple GWAS analysis results on the same plot.
+file.
+
+Finally, two plots based on true vs. false positives and mean absolute error vs. area under the curve will be produced. Demonstrate2 will color the points based on the file they came from, so you can compare multiple GWAS analysis results on the same plot.

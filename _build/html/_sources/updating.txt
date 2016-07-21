@@ -12,7 +12,7 @@ Accessing the source
 
 from your working directory, download the project from github::
 
-     git clone url
+     git clone https://github.com/cyverse-validate/docs.git
 
 cd into the new folder, ls to view files::
 
