@@ -1,6 +1,7 @@
-**********************************************
-Running Validate on Syngenta_heldback data set
-**********************************************
+*************************************
+Running Validate on Syngenta data set
+*************************************
+
 --------------------------
 Install Cyverse CLI tools
 --------------------------
@@ -52,7 +53,7 @@ Configure Job Submission
 
 download fastLMM job skeleton::
 
-  wget https://github.com/CyVerse-Validate/Stampede-Files/json/fastlmm-job.json
+  wget https://github.com/CyVerse-Validate/Stampede-Files/raw/master/json/bayesR-job.json
 
 (you may need to install wget if using a mac)
 
@@ -122,7 +123,7 @@ Once you download the fastlmm output, upload it to a new location in your DE::
 
 Download the winnow example skeleton::
 
-  wget https://github.com/CyVerse-Validate/Stampede-Files/json/winnow-job.json
+  wget https://github.com/CyVerse-Validate/Stampede-Files/raw/master/json/winnow-job.json
 
 You can edit and submit this file using the same process described above.
 
