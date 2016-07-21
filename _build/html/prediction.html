@@ -45,6 +45,49 @@
 <h1>Prediction Tools<a class="headerlink" href="#prediction-tools" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="beyesr">
 <h2>BeyesR<a class="headerlink" href="#beyesr" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-bayesr-through-agave">
+<h3>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h3>
+<p>From your local machine, create a folder for the output and cd into it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">outputfolder</span>
+<span class="n">cd</span> <span class="n">outputfolder</span>
+</pre></div>
+</div>
+<p>Download the BayesR job skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>Open this with a text editor and edit the following parameters:</p>
+<ol class="loweralpha simple">
+<li>For jobName, anything will work. For this example, I used testBayesR</li>
+<li>For software name, enter “bayesR-0.75”</li>
+<li>For requested time, enter “02:00:00”</li>
+</ol>
+<p>d. For inputBED enter “agave://data.iplantcollaborative.org/username/folder/simdata.bed”, replacing
+username and folder with your own. For instance, mine would be: “agave://data.iplantcollaborative.org/swb5075/BayesRData/simdata.bed” and
+repeat this for the other two input files (BIM and FAM files)</p>
+<p>e. For output, anything will work. I will use “BayesRTesting”. Save and close this
+file.</p>
+<p>Note: You can copy and paste this into a website like <a class="reference external" href="http://jsonlint.com/">http://jsonlint.com/</a> to ensure that the JSON file is formatted correctly.</p>
+<p>Using your local terminal, make sure you are in the same directory as the job.json file.</p>
+<p>Enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>jobs-submit –F bayesR-job.json.
+</pre></div>
+</div>
+<p>You should get a response: “Successfully submitted job . The sample data takes about twenty minutes to run but you can check this by entering: jobs-status with the same job ID as above. Once the job is complete, the response to this command will be “FINISHED”</p>
+<p>We now want to download the output data. You can enter jobs-output-list to
+see all of the included files. For instance I may enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="nb">list</span> <span class="mi">3895995830152073701</span><span class="o">-</span><span class="n">ee4acae9fffff7a7</span><span class="o">-</span><span class="mi">0001</span><span class="o">-</span><span class="mi">007</span>
+</pre></div>
+</div>
+<p>BayesR has six output files (.frq, .gv, .hyp, .log, .model, .param files) which begin with
+the output parameter from the job json file. In my case, testresults.</p>
+<p>In order to download, for example, the frequency file enter:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">download</span> <span class="o">--</span> <span class="n">path</span> <span class="n">testresults</span><span class="o">.</span><span class="n">frq</span> <span class="mi">3895995830152073701</span><span class="o">-</span><span class="n">ee4acae9fffff7a7</span><span class="o">-</span><span class="mi">0001</span><span class="o">-</span><span class="mi">007</span>
+</pre></div>
+</div>
+<p>Here the &#8211;path parameter refers to which file you want to download and the long string
+at the end is your job ID.</p>
+</div>
 </div>
 <div class="section" id="gensel">
 <h2>GenSel<a class="headerlink" href="#gensel" title="Permalink to this headline">¶</a></h2>
@@ -60,7 +103,10 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Prediction Tools</a><ul>
-<li><a class="reference internal" href="#beyesr">BeyesR</a></li>
+<li><a class="reference internal" href="#beyesr">BeyesR</a><ul>
+<li><a class="reference internal" href="#running-bayesr-through-agave">Running BayesR through Agave</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#gensel">GenSel</a></li>
 </ul>
 </li>

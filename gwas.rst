@@ -28,8 +28,6 @@ These are the bare minimum options needed to run FaST-LMM; however, some other o
     * -fileSim : The name of the PLINK set used for computing the genetic similarity matrix and its decomposition
     * -pValuePrintThreshold : Restricts the output file to only include SNPs with a p-value less than or equal to the specified threshold
 
-An example of executing the FaST-LMM program might look like so: fastlmmc -verboseOutput -bfile toydata -pheno toydata.phe.txt -covar toydata.covar.txt -out MyResults.csv
+An example of executing the FaST-LMM program might look like::
 
-
-BayesR
-======
+  fastlmmc -verboseOutput -bfile toydata -pheno toydata.phe.txt -covar toydata.covar.txt -out MyResults.csv
