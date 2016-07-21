@@ -15,7 +15,7 @@ From your local machine, create a folder for the output and cd into it::
 
 Download the BayesR job skeleton::
 
-  wget https://github.com/CyVerse-Validate/Stampede-Files/json/bayesR-job.json
+  wget https://github.com/CyVerse-Validate/Stampede-Files/raw/master/json/bayesR-job.json
 
 Open this with a text editor and edit the following parameters:
 
