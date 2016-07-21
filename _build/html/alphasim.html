@@ -26,7 +26,7 @@
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
     <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
     <link rel="next" title="Submitting jobs on Stampede" href="json.html" />
-    <link rel="prev" title="Running Validate on Syngenta_heldback data set" href="syngenta_tut.html" />
+    <link rel="prev" title="Running Validate on Syngenta data set" href="syngenta_tut.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -43,9 +43,66 @@
             
   <div class="section" id="generating-simulation-data-with-alphasim">
 <h1>Generating Simulation Data with Alphasim<a class="headerlink" href="#generating-simulation-data-with-alphasim" title="Permalink to this headline">¶</a></h1>
-<p>Link to annotated config file
-Link to project website &amp; PDF manual</p>
-<p>Step-by-step</p>
+<div class="section" id="running-alphasim-through-agave">
+<h2>Running Alphasim through Agave<a class="headerlink" href="#running-alphasim-through-agave" title="Permalink to this headline">¶</a></h2>
+<p>** Estimated Time ~30min **</p>
+<p><strong>Prerequisites:</strong> Agave CLI, general knowledge of executing using Agave, Access to Cyverse data store, and Stampede allocation (if you want).</p>
+<p><strong>Helpful Documentation</strong></p>
+<ul class="simple">
+<li>Alphasim: <a class="reference external" href="http://www.alphagenes.roslin.ed.ac.uk/wp-content/uploads/AlphaSimManual/AlphaSim.html">http://www.alphagenes.roslin.ed.ac.uk/wp-content/uploads/AlphaSimManual/AlphaSim.html</a></li>
+<li>Alphasim parameter file: <a class="reference external" href="https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/AlphaSimInputInformation.txt">https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/AlphaSimInputInformation.txt</a></li>
+</ul>
+<p><strong>Locate / Open parameter file</strong></p>
+<ul class="simple">
+<li>You can download a sample parameter files from <a class="reference external" href="https://raw.githubusercontent.com/CyVerse-Validate/Stampede-Files/master/AlphaSim-1.04/AlphaSimSpec.txt">our repository</a>. The parameter file allows you to pass commands into the AlphaSim software.</li>
+<li>Once you have access the parameter file upload it to your Discovery Environment. The default parameter file has specifications for running multiple generations for corn genetics.</li>
+<li>Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Discovery Environment.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;testAlphaSim&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;AlphaSim-1.04&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;05:00:00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;specificationFile&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/USERNAME/ALPHASIM_SPEC_PATH&quot;</span>
+          <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">With the following command you can run AlphaSim (publicly available on Agave). This is assuming that you don&#8217;t want to change any of the parameters:</p>
+<p>jobs-submit -F (path to json file)</p>
+</li>
+<li><p class="first">After submiting your job there will be a returned message which will list your job-id - This is helpful for looking up status and downloading output later</p>
+</li>
+<li><p class="first">The command:</p>
+<p>job-status [withyourjobid]</p>
+</li>
+</ul>
+<p>will allow you to see when your job will be done</p>
+<ul>
+<li><p class="first">Once this finishes this will save onto your Discovery Environment, if Archive is set to true, under Archive/Jobs in your personal DE folder.</p>
+</li>
+<li><p class="first">If you are okay with these outputs they are now useable, you can also option to convert to pedmap (which is a more standard format) using the merger application found in <a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
+</li>
+<li><p class="first">You can download your outputs from jobs with the general command:</p>
+<p>jobs-output &#8211;download &#8211;path [FilePath in the Data Store] [JOBID]</p>
+</li>
+<li><p class="first">You will download your outputs to your local computer from the discovery environment with the following commands:</p>
+<p>jobs-output &#8211;download &#8211;path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt [yourjobid]
+jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/Gender.txt [yourjobid]
+jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/PedigreeTbvTdvTpv.txt [yourjobid]
+jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/AllIndividualSnpChips/Chip1Genotype.txt [yourjobid]
+jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1SnpInformation.txt [yourjobid]</p>
+</li>
+<li><p class="first">Download the merger.py from the github repository here <a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
+</li>
+<li><p class="first">Then you can run the merger with the AlphaSim outputs with the following commands (this will convert your outputs to PED/MAP:</p>
+<p>python Merge.py &#8211;output ASimExampleOutputPrefix alphasim &#8211;snp Chip1SnpInformation.txt &#8211;pedigree PedigreeTbvTdvTpv.txt &#8211;gender Gender.txt &#8211;geno Chip1Genotype.txt &#8211;sol SnpSolutions.txt</p>
+</li>
+</ul>
+<p>This will yield ASimExampleOutputPrefix.ped and ASimExampleOutputPrefix.map in the directory specified in your above output flag.</p>
+</div>
 </div>
 
 
@@ -53,12 +110,20 @@ Link to project website &amp; PDF manual</p>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generating Simulation Data with Alphasim</a><ul>
+<li><a class="reference internal" href="#running-alphasim-through-agave">Running Alphasim through Agave</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="quickstart.html">Getting Started with Validate</a><ul>
-      <li>Previous: <a href="syngenta_tut.html" title="previous chapter">Running Validate on Syngenta_heldback data set</a></li>
+      <li>Previous: <a href="syngenta_tut.html" title="previous chapter">Running Validate on Syngenta data set</a></li>
       <li>Next: <a href="json.html" title="next chapter">Submitting jobs on Stampede</a></li>
   </ul></li>
   </ul></li>

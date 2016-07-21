@@ -53,7 +53,7 @@
 </pre></div>
 </div>
 <p>Download the BayesR job skeleton:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
 <p>Open this with a text editor and edit the following parameters:</p>
@@ -91,6 +91,51 @@ at the end is your job ID.</p>
 </div>
 <div class="section" id="gensel">
 <h2>GenSel<a class="headerlink" href="#gensel" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-gensel-through-agave">
+<h3>Running GenSel through Agave<a class="headerlink" href="#running-gensel-through-agave" title="Permalink to this headline">¶</a></h3>
+<p><strong>Estimated Time ~30min</strong></p>
+<p><strong>Prerequisities:</strong> Agave CLI, general knowledge of executing using Agave, Access to the Cyverse data store, and Stampede allocation (if you want)</p>
+<p><strong>Helpful Documentation</strong></p>
+<ul class="simple">
+<li>Gensel (User Manual) <a class="reference external" href="http://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf">http://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf</a></li>
+<li>Gensel (Cyverse page) <a class="reference external" href="https://pods.iplantcollaborative.org/wiki/display/DEapps/GenSel">https://pods.iplantcollaborative.org/wiki/display/DEapps/GenSel</a></li>
+</ul>
+<p><strong>Locating the parameter/input files and running Gensel:</strong></p>
+<p>To run the software you need one parameter file (.inp) and three input files (.gs, .newbin, .192).</p>
+<ul class="simple">
+<li>All of these files can be found in the Data Store following the path iplant/home/shared/iplantcollaborative/example_data/gensel/</li>
+<li>For more information on these inputs read the documentation listed above</li>
+</ul>
+<ol class="arabic simple">
+<li>Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed)</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;testGenSel&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;GenSel-2.14&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;nodeCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;batchQueue&quot;</span><span class="p">:</span> <span class="s2">&quot;serial&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;02:00:00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;processorsPerNode&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s2">&quot;archivePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
+  <span class="s2">&quot;phenotypeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMI.gs&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;markerFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/gpegeno.newbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;includeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMIg.192&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+  <span class="s2">&quot;Parameter_File&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/run.inp&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>With the following command you can run Gensel (publicly available on Agave) This is assuming that you don&#8217;t want to change any of the parameters/inputs listed in the sample json file.</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">submit</span> <span class="o">-</span><span class="n">F</span> <span class="p">(</span><span class="n">your</span> <span class="n">path</span> <span class="n">the</span> <span class="n">JSON</span> <span class="n">file</span> <span class="n">you</span> <span class="n">just</span> <span class="n">saved</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -107,7 +152,10 @@ at the end is your job ID.</p>
 <li><a class="reference internal" href="#running-bayesr-through-agave">Running BayesR through Agave</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#gensel">GenSel</a></li>
+<li><a class="reference internal" href="#gensel">GenSel</a><ul>
+<li><a class="reference internal" href="#running-gensel-through-agave">Running GenSel through Agave</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -4,6 +4,6 @@ Submitting jobs on Stampede
 
 Link to Stampede Documentation for SLURM
 
-Sample JSON files:
+Sample JSON files
 
-https://github.com/CyVerse-Validate/Stampede-Files/json/
+
