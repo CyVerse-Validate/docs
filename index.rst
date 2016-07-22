@@ -33,8 +33,8 @@ Version 1.0 features include:
 - Incorporate D. Hand's H-measure to the current performance metrics
 - Additional documentation to onboard new developers and statisticians
 
-Table of Contents
------------------
+Documentation
+-------------
 
 .. toctree::
    :maxdepth: 2
