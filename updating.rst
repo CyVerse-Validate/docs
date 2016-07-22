@@ -57,3 +57,8 @@ from the project root. Fix any warnings or errors that appear (generally caused 
   open _build/html/index.html
 
 On a windows machine, run make.bat instead.
+
+Further support
+---------------
+
+Contact ama6965@uncw.edu

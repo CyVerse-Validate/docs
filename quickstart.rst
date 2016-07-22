@@ -13,6 +13,6 @@ These quick start tutorials assume basic command-line knowledge (start with the 
     Tutorial for running Validate with sample data set <syngenta_tut.rst>
     Generating a sample data set with Alphasim <alphasim.rst>
     SLURM/JSON job submission guide <json.rst>
-    Accessing the Discovery Environment <discover_guide.rst>
+    Using the Data Store <datastore.rst>
     GWAS Tools <gwas.rst>
     Prediction <prediction.rst>

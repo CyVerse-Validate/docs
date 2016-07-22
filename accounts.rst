@@ -1,7 +1,7 @@
 Setting up your Accounts
 ========================
 
-Before you can get started analyzing your `GWAS tools <https://en.wikipedia.org/wiki/Genome-wide_association_study>`_`, you will need to set up a few accounts to get access to all the necessary platforms. These accounts, tools, and functions will be explained in more detail later on. For now it is important that the accounts be setup that way you can access the features we talk about later on.
+Before you can get started analyzing your `GWAS tools <https://en.wikipedia.org/wiki/Genome-wide_association_study>`_, you will need to set up a few accounts to get access to all the necessary platforms. These accounts, tools, and functions will be explained in more detail later on. For now it is important that the accounts be setup that way you can access the features we talk about later on.
 
 First, and most importantly, you will need an iPlant Collaborative account which can be obtained `at their website <https://user.iplantcollaborative.org/register/>`_ Please note that iPlant account creation requires some kind of affiliation with a university or company to be completed.
 

@@ -45,6 +45,7 @@ At this point::
 
 should return a list of all publicly-available apps.
 
+.. _jobs:
 
 ------------------------
 Configure Job Submission
@@ -130,8 +131,10 @@ You can edit and submit this file using the same process described above.
 ----------------------------------
 Visualize Results with Demonstrate
 ----------------------------------
- **Currently it is easier to work with R on your own system than on Stampede.**
- The final step of Validation will be comparing the results using a visualization method of your choice.
+**Currently it is easier to work with R on your own system than on Stampede.**
+
+The final step of Validation will be comparing the results using a visualization method of your choice.
+
 Refer to :ref:`datastore` to download results from Stampede to your own disk or the data store.
 
 Demonstrate is the final step in the Validate known-truth pipeline. Using output from Winnow, it produces a set of graphics showing differences in a GWAS/QTL applications performance under varying heritability and population structure. Demonstrate also functions without the need for heritability or population structure, but different graphics will be produced in that case.

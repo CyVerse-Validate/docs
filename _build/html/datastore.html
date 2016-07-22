@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Help &mdash; Validate 1.0 documentation</title>
+    <title>Uploading data to the Data Store and viewing in the Discovery Environment &mdash; Validate 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,8 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
-    <link rel="next" title="Updating the docs" href="updating.html" />
-    <link rel="prev" title="Links &amp; Citations" href="citations.html" />
+    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="next" title="GWAS Tools" href="gwas.html" />
+    <link rel="prev" title="Submitting jobs on Stampede" href="json.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -40,13 +41,17 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="getting-help">
-<h1>Getting Help<a class="headerlink" href="#getting-help" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li>Since Validate analyzes the outputs of other developers&#8217; association and prediction tools, you may need to refer to the documentation for the individual apps you are using to ensure that you&#8217;re using the proper input &amp; output files</li>
-<li>Post on the <a class="reference external" href="https://github.com/cyverse-validate/validate/issues">github issues page</a> for the Validate project for a personal response.</li>
-<li>Email <a class="reference external" href="mailto:stapletonlab&#37;&#52;&#48;gmail&#46;com">stapletonlab<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
-</ul>
+  <div class="section" id="uploading-data-to-the-data-store-and-viewing-in-the-discovery-environment">
+<span id="datastore"></span><h1>Uploading data to the Data Store and viewing in the  Discovery Environment<a class="headerlink" href="#uploading-data-to-the-data-store-and-viewing-in-the-discovery-environment" title="Permalink to this headline">¶</a></h1>
+<p>For a comprehensive guide please see <a class="reference external" href="https://pods.iplantcollaborative.org/wiki/display/DEmanual/Uploading+and+Importing+Data+Items+Within+the+DE">here</a></p>
+<p>For this tutorial we will use the publicly-available BayesR example data, which we can upload using the &#8220;importing from URL&#8221; method.</p>
+<ol class="arabic simple">
+<li>In the Discovery Environment, click the Data button on the left-hand side. Here we&#8217;ll create a new folder to import the data to.</li>
+<li>With the Data window open, click on your user name and then file -&gt; new folder. Any name works&#8211; here we&#8217;ll use &#8220;BayesRData&#8221;</li>
+<li>With &#8220;BayesRData&#8221; open, click upload -&gt; import from URL.</li>
+<li>In another tab, browse to <a class="reference external" href="https://github.com/syntheke/bayesR/tree/master/example/">https://github.com/syntheke/bayesR/tree/master/example/</a>. BayesR requires .BED, .BIM, and . FAM files to run, so you&#8217;ll need to upload simdata.bed, simdata.fam, and simdata.bim to your DE folder.</li>
+<li>To upload the data, open the file on github and then right-click on &#8220;Raw&#8221; to copy the link address. You can then paste this into the &#8220;upload from URL option&#8221; in the Discovery Environment.</li>
+</ol>
 </div>
 
 
@@ -58,15 +63,17 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="citations.html" title="previous chapter">Links &amp; Citations</a></li>
-      <li>Next: <a href="updating.html" title="next chapter">Updating the docs</a></li>
+  <li><a href="quickstart.html">Getting Started with Validate</a><ul>
+      <li>Previous: <a href="json.html" title="previous chapter">Submitting jobs on Stampede</a></li>
+      <li>Next: <a href="gwas.html" title="next chapter">GWAS Tools</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/develop.txt"
+      <li><a href="_sources/datastore.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -92,7 +99,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
-      <a href="_sources/develop.txt"
+      <a href="_sources/datastore.txt"
           rel="nofollow">Page source</a>
     </div>
 

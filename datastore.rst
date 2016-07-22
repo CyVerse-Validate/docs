@@ -1,8 +1,8 @@
 .. _datastore:
 
-========================================================================================
-Uploading data to the Data Store and viewing in the Cyverse Discovery Environment
-========================================================================================
+==========================================================================
+Uploading data to the Data Store and viewing in the  Discovery Environment
+==========================================================================
 
 For a comprehensive guide please see `here <https://pods.iplantcollaborative.org/wiki/display/DEmanual/Uploading+and+Importing+Data+Items+Within+the+DE>`_
 
