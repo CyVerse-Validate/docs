@@ -3,7 +3,7 @@
 Updating the docs
 =================
 
-Updating the documentation is easy and should be done as users discover useful tips and tricks along their own workflows. All documentation is stored on github in plain-text at https://github.com/CyVerse-Validate/validate-doc.
+Updating the documentation is easy and should be done as users discover useful tips and tricks along their own workflows. All documentation is stored on github in plain-text at https://github.com/CyVerse-Validate/docs.
 
 Accessing the source
 --------------------
