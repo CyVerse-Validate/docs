@@ -41,53 +41,78 @@
             
   <div class="section" id="updating-the-docs">
 <span id="updating"></span><h1>Updating the docs<a class="headerlink" href="#updating-the-docs" title="Permalink to this headline">¶</a></h1>
-<p>Updating the documentation is easy and should be done as users discover useful tips and tricks along their own workflows. All documentation is stored on github in plain-text at <a class="reference external" href="https://github.com/CyVerse-Validate/docs">https://github.com/CyVerse-Validate/docs</a>.</p>
+<p>Updating the documentation is easy and should be done as users
+discover useful tips and tricks along their own workflows. All
+documentation is stored on github in plain-text at
+<a class="reference external" href="https://github.com/CyVerse-Validate/docs">https://github.com/CyVerse-Validate/docs</a>.</p>
 <div class="section" id="accessing-the-source">
 <h2>Accessing the source<a class="headerlink" href="#accessing-the-source" title="Permalink to this headline">¶</a></h2>
+<p>Make a working copy of the documentation from
+<a class="reference external" href="https://github.com/CyVerse-Validate/docs/">https://github.com/CyVerse-Validate/docs/</a></p>
 <p><strong>from the terminal</strong></p>
 <p>from your working directory, download the project from github:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cyverse</span><span class="o">-</span><span class="n">validate</span><span class="o">/</span><span class="n">docs</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>cd into the new folder, ls to view files:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="n">filename</span><span class="o">.</span><span class="n">rst</span>
-</pre></div>
-</div>
-<p>i to start writing, wq to save and close. For VIM resources, try <a class="reference external" href="https://danielmiessler.com/study/vim/">https://danielmiessler.com/study/vim/</a>, or type vimtutor at your terminal.</p>
-<p>Follow the standard git commit process to request changes. For a full introduction see</p>
-<ul class="simple">
-<li><a class="reference external" href="https://yangsu.github.io/pull-request-tutorial/">https://yangsu.github.io/pull-request-tutorial/</a></li>
-<li><a class="reference external" href="http://swcarpentry.github.io/git-novice/">http://swcarpentry.github.io/git-novice/</a></li>
-</ul>
-<p>After a change has been made to the master repository, <a class="reference external" href="https://readthedocs.org">readthedocs</a> automatically builds fresh html documentation hosted on their servers.</p>
+<p>After a change has been made to the master repository, <a class="reference external" href="https://readthedocs.org">readthedocs</a> automatically builds fresh html
+documentation hosted on their servers.</p>
 <p><strong>from the desktop</strong></p>
 <p>browse to <a class="reference external" href="https://github.com/CyVerse-Validate/validate-doc">https://github.com/CyVerse-Validate/validate-doc</a></p>
-<p>click &#8220;Clone or Download&#8221; at the right. You can use the github desktop app or work with the compressed folder using the text editor of your choice. For comprehensive edits you may wish to use <a class="reference external" href="https://atom.io">Atom</a> with the language-sphinx package enabled with the documentation directory selected as your project folder.</p>
+<p>click &#8220;Clone or Download&#8221; at the right. You can use the github desktop
+app or work with the compressed folder using the text editor of your
+choice. For comprehensive edits you may wish to use <a class="reference external" href="https://atom.io">Atom</a> with the language-sphinx package enabled with the
+documentation directory selected as your project folder.</p>
 <p>For more on Sphinx / Read the Docs, see:</p>
 <ul class="simple">
 <li><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">http://www.sphinx-doc.org/en/stable/rest.html</a></li>
 <li><a class="reference external" href="http://docs.readthedocs.io/en/latest/">http://docs.readthedocs.io/en/latest/</a></li>
 </ul>
 </div>
+<div class="section" id="forking-committing-changes">
+<h2>Forking &amp; Committing Changes<a class="headerlink" href="#forking-committing-changes" title="Permalink to this headline">¶</a></h2>
+<p>Follow the standard git commit process to request changes. For a full
+introduction see:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://help.github.com/articles/fork-a-repo/">https://help.github.com/articles/fork-a-repo/</a></li>
+<li><a class="reference external" href="https://yangsu.github.io/pull-request-tutorial/">https://yangsu.github.io/pull-request-tutorial/</a></li>
+<li><a class="reference external" href="http://swcarpentry.github.io/git-novice/">http://swcarpentry.github.io/git-novice/</a></li>
+</ul>
+<p>In short, you&#8217;ll want to create a fork of the repository from the
+terminal or the github project&#8217;s website. The repository includes
+restructured text source files, html, and a make command for
+previewing the html on your own machine. Once you&#8217;ve finished with
+your proposed changes, add &amp; commit the changes to your fork &amp; open a
+pull request to the master branch at cyverse-validate/docs.</p>
 <div class="section" id="updating-table-of-contents">
-<h2>Updating table of contents<a class="headerlink" href="#updating-table-of-contents" title="Permalink to this headline">¶</a></h2>
-<p>One unique feature of Sphinx is its ability to cross reference between pages and maintain a hierarchy of separate documents, making it preferable to other markdown languages for documenting extensible projects. These features are handled using unique directives documented &lt;here&gt;. The most important of these will be “toctree” where you define your table of contents. To add an additional page, you’d update index.rst to include the new document, and create a new text document &#8220;filename.rst”. The formatting is fairly self-explanatory; see the existing index for an example.</p>
+<h3>Updating table of contents<a class="headerlink" href="#updating-table-of-contents" title="Permalink to this headline">¶</a></h3>
+<p>One unique feature of Sphinx is its ability to cross reference between
+pages and maintain a hierarchy of separate documents, making it
+preferable to other markdown languages for documenting extensible
+projects. These features are handled using unique directives
+documented &lt;here&gt;. The most important of these will be “toctree” where
+you define your table of contents. To add an additional page, you’d
+update index.rst to include the new document, and create a new text
+document &#8220;filename.rst”. The formatting is fairly self-explanatory;
+see the existing index for an example.</p>
 </div>
 <div class="section" id="building-sphinx-html-on-your-own-machine">
-<h2>Building Sphinx html on your own machine<a class="headerlink" href="#building-sphinx-html-on-your-own-machine" title="Permalink to this headline">¶</a></h2>
+<h3>Building Sphinx html on your own machine<a class="headerlink" href="#building-sphinx-html-on-your-own-machine" title="Permalink to this headline">¶</a></h3>
 <p>To preview the documentation, you&#8217;ll need to compile html files using the command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
-<p>from the project root. Fix any warnings or errors that appear (generally caused by the existence of unlinked files or absence of linked ones), and view the html output in your default browser with:</p>
+<p>from the project root. Fix any warnings or errors that appear
+(generally caused by the existence of unlinked files or absence of
+linked ones), and view the html output in your default browser with:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="n">_build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
 <p>On a windows machine, run make.bat instead.</p>
 </div>
 <div class="section" id="further-support">
-<h2>Further support<a class="headerlink" href="#further-support" title="Permalink to this headline">¶</a></h2>
+<h3>Further support<a class="headerlink" href="#further-support" title="Permalink to this headline">¶</a></h3>
 <p>Contact <a class="reference external" href="mailto:ama6965&#37;&#52;&#48;uncw&#46;edu">ama6965<span>&#64;</span>uncw<span>&#46;</span>edu</a></p>
+</div>
 </div>
 </div>
 
@@ -105,9 +130,12 @@
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#"> Updating the Docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#accessing-the-source">Accessing the source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#updating-table-of-contents">Updating table of contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-sphinx-html-on-your-own-machine">Building Sphinx html on your own machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#further-support">Further support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forking-committing-changes">Forking &amp; Committing Changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#updating-table-of-contents">Updating table of contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-sphinx-html-on-your-own-machine">Building Sphinx html on your own machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#further-support">Further support</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
