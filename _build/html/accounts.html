@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Setting up your Accounts &mdash; Validate 1.0 documentation</title>
+    <title>Account Setup Guide &mdash; Validate 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -41,36 +41,100 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="setting-up-your-accounts">
-<h1>Setting up your Accounts<a class="headerlink" href="#setting-up-your-accounts" title="Permalink to this headline">¶</a></h1>
-<p>Before you can get started analyzing your <a class="reference external" href="https://en.wikipedia.org/wiki/Genome-wide_association_study">GWAS tools</a>, you will need to set up a few accounts to get access to all the necessary platforms. These accounts, tools, and functions will be explained in more detail later on. For now it is important that the accounts be setup that way you can access the features we talk about later on.</p>
-<p>First, and most importantly, you will need an iPlant Collaborative account which can be obtained <a class="reference external" href="https://user.iplantcollaborative.org/register/">at their website</a> Please note that iPlant account creation requires some kind of affiliation with a university or company to be completed.</p>
-<p>Now that you have created an iPlant account, you have access to both the Data Store and the Discovery Environment! As the name implies, the Data Store is the recommended place to hold most of your data, as each personal folder can hold up to 100 GB by default. If you need more space, you may fill out <a class="reference external" href="http://www.iplantcollaborative.org/content/request-data-store-allocation-increase">this form</a> to get a personal folder increase of up to 1 TB. From here, you will want to request access to the Atmosphere cloud computing services. To do so, simply email <a class="reference external" href="mailto:support&#37;&#52;&#48;iplantcollaborative&#46;org">support<span>&#64;</span>iplantcollaborative<span>&#46;</span>org</a>.</p>
-<p>To use the Validate Workflow on Stampede, you will need a few more accounts. First, set up an account with the Texas Advanced Computing Center (TACC) <a class="reference external" href="https://portal.tacc.utexas.edu/account-request">through this page</a> Like the iPlant account, TACC requires an institution to be named that you are affiliated with. Beyond that, the registration requires the usual information along with an email address. Also, unless you are a professor or in charge of a collaborative project at your company/institution, simply list the PI option near the end of the application as <em>Ineligible.</em></p>
-<p>Next, set up an account with the <a class="reference external" href="https://portal.xsede.org/?p_p_id=58&amp;p_p_lifecycle=0&amp;p_p_state=maximized&amp;p_p_mode=view&amp;saveLastPath=0&amp;_58_struts_action=%2Flogin%2Fcreate_account">Extreme Science and Engineering Discovery Environment (XSEDE)</a>. The only difference among XSEDE account creation and the previous two accounts is that XSEDE does require a .edu address for proper registration.</p>
-<p>Finally, to get access to the Agave API, you must request an allocation from XSEDE. This allocation will give you access to the actual compute resources on Stampede and give the Stampede system to &#8220;bill&#8221; you, so to speak, for any jobs run on said system. For example, staff at iPlant have access to the &#8220;iPlant-Collabs&#8221; project. To request a standard XSEDE allocation, follow <a class="reference external" href="https://portal.xsede.org/allocation-request-steps">the step-by-step instructions found here</a> If you are a staff member at the iPlant Collaborative, send a message to <a class="reference external" href="mailto:support&#37;&#52;&#48;iplantcollaborative&#46;org">support<span>&#64;</span>iplantcollaborative<span>&#46;</span>org</a> to request access to the &#8220;iPlant-Collabs&#8221; allocation. Getting access may take a day or two, but you will know for sure upon trying out Stampede for yourself. <strong>Note that you will not immediately receive a notification upon getting access. The only way to know for sure is to try it out!</strong></p>
+  <div class="section" id="account-setup-guide">
+<h1>Account Setup Guide<a class="headerlink" href="#account-setup-guide" title="Permalink to this headline">¶</a></h1>
+<p>While it is possible to Validate using your own hardware, you&#8217;ll
+benefit from greatly enhanced speed and reliability using high-speed
+compute resources freely-available from the open-source science
+community. You&#8217;ll need to set up accounts with <a class="reference external" href="http://www.cyverse.org/">Cyverse</a>, the Texas
+Advanced Computing Center (<a class="reference external" href="https://www.tacc.utexas.edu/">TACC</a>), and Extreme Science &amp; Engineering
+Discovery Environment (<a class="reference external" href="https://www.xsede.org/">XSEDE</a>) to gain the most benefit from these
+tutorials. If you&#8217;re working in an academic laboratory, you should
+have little trouble registering for accounts and allocations available
+to users with a .edu email address. Bear in mind that large
+allocations may require approval for a specific research need.</p>
+<div class="section" id="id1">
+<h2>Cyverse<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Register at <a class="reference external" href="https://user.cyverse.org/">https://user.cyverse.org/</a>. This portal will be your
+central access point for Atmosphere and the Discovery Environment, and
+provides some forums for community and support.</p>
+<ul class="simple">
+<li>Your default Data Store allocation is 100GB, which can be upgraded
+upon request to up to 1TB. For more information see
+<a class="reference external" href="http://www.cyverse.org/data-store">http://www.cyverse.org/data-store</a>.</li>
+<li>To gain access to Atmosphere images, which can be a convenient way
+to quickly get started in a linux environment pre-configured for
+GWAS analysis, you&#8217;ll need to request <a class="reference external" href="http://www.cyverse.org/learning-center/manage-account#AddAppsServices">access</a> through your cyverse
+dashboard.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>TACC<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>These guides refer to running the Validate workflow on the Stampede
+supercomputer at the TACC. You&#8217;ll need to make an account at
+<a class="reference external" href="https://portal.tacc.utexas.edu/">https://portal.tacc.utexas.edu/</a> to get started. Unless you are a
+professor or in charge of a collaborative project at your
+company/institution, simply list the PI option near the end of the
+application as <em>Ineligible.</em></p>
+</div>
+<div class="section" id="id3">
+<h2>XSEDE<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Extreme Science &amp; Engineering Discover Environment represents a
+collection of advanced digital services for scientific
+collaboration. Your account with them grants you access to the Agave
+API for job submission and data management, and allows you to run jobs
+on Stampede using &#8220;iPlant-collabs&#8221; project allocation.</p>
+<ul class="simple">
+<li>Register for an account following the steps at
+<a class="reference external" href="https://www.xsede.org/using-xsede">https://www.xsede.org/using-xsede</a></li>
+<li>To use Agave, request an allocation following the instructions at
+<a class="reference external" href="https://portal.xsede.org/allocation-request-steps">https://portal.xsede.org/allocation-request-steps</a></li>
+</ul>
+<p>If you are a staff member at the iPlant Collaborative, send a message
+to <a class="reference external" href="mailto:support&#37;&#52;&#48;iplantcollaborative&#46;org">support<span>&#64;</span>iplantcollaborative<span>&#46;</span>org</a> to request access to the
+&#8220;iPlant-Collabs&#8221; allocation. Getting access may take a day or two, but
+you will know for sure upon trying out Stampede for yourself. <strong>Note
+that you will not immediately receive a notification upon getting
+access. The only way to know for sure is to try it out!</strong></p>
+</div>
 </div>
 <div class="section" id="accessing-stampede">
 <h1>Accessing Stampede<a class="headerlink" href="#accessing-stampede" title="Permalink to this headline">¶</a></h1>
-<p>To access Stampede, you may use a number of different SSH clients, depending on your operating system:</p>
+<p>To access Stampede, you may use a number of different SSH clients,
+depending on your operating system:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>localhost$ ssh taccuserid@stampede.tacc.utexas.edu
+</pre></div>
+</div>
 <div class="section" id="for-windows">
 <h2>For Windows:<a class="headerlink" href="#for-windows" title="Permalink to this headline">¶</a></h2>
+<p>SSH support is built into PowerShell for Windows 10.</p>
+<p>For the technically curious or advanced, <a class="reference external" href="https://www.cygwin.com/">Cygwin</a> is an open-source project to bring a
+Unix-like environment to windows. While the initial installation
+options may be overwhelming, all you need are the ssh tools to use the
+shell to access Stampede. You may also quickly get an Ubuntu image up
+and running through Atmosphere once you&#8217;ve set up your Cyverse
+account.</p>
 <ul class="simple">
 <li><a class="reference external" href="http://www.putty.org/">PuTTY</a>: a no-frills Unix-esque SSH client</li>
-<li><a class="reference external" href="http://winscp.net/eng/index.php">WinSCP</a>: A more user-friendly interface similar to Windows Explorer. Allows integration with PuTTY and drag-and-drop transfer of files from local drive to remote computer.</li>
+<li><a class="reference external" href="http://winscp.net/eng/index.php">WinSCP</a>: A more user-friendly
+interface similar to Windows Explorer. Allows integration with PuTTY
+and drag-and-drop transfer of files from local drive to remote
+computer.</li>
 </ul>
 </div>
 <div class="section" id="for-mac">
 <h2>For Mac:<a class="headerlink" href="#for-mac" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Terminal: Pre-installed command line interface that can be used to access Stampede and other remote computers.</li>
+<li>Terminal: ssh is built into Mac OS. For extensive use many prefer
+<a class="reference external" href="https://www.iterm2.com/">iTerm2</a>.</li>
 <li><a class="reference external" href="https://cyberduck.io/">Cyberduck</a></li>
 </ul>
 </div>
 <div class="section" id="for-unix-linux">
 <h2>For Unix/Linux:<a class="headerlink" href="#for-unix-linux" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Terminal: The standard Unix terminal may be used to access Stampede through the <em>ssh</em> command.</li>
+<li>Terminal: The standard Unix terminal may be used to access Stampede
+through the <em>ssh</em> command.</li>
 </ul>
 </div>
 </div>
@@ -84,7 +148,7 @@
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up your Accounts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Account Setup Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#accessing-stampede">Accessing Stampede</a></li>
 <li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>

@@ -43,21 +43,38 @@
 <a class="reference internal" href="updating.html#updating"><span class="std std-ref">Updating the docs</span></a> is easy, and you can share comments and questions <a class="reference external" href="https://github.com/cyverse-validate/docs/issues">at this forum</a>.</p>
 <div class="section" id="validate-1-0">
 <h1>Validate 1.0<a class="headerlink" href="#validate-1-0" title="Permalink to this headline">¶</a></h1>
-<p>Validation is the positive control for your experimental data analysis. You have control over how long data analysis takes. Completing your positive controls first allows you to be ready for your data when you get it. Why validate a particular data analysis?</p>
+<p>Validation is the positive control for your experimental data
+analysis. You have control over how long data analysis
+takes. Completing your positive controls first allows you to be ready
+for your data when you get it. Why validate a particular data
+analysis?</p>
 <ul class="simple">
-<li>Trust but verify... check that a widely used method will work for your data.</li>
-<li>Have analysis pipeline optimized; the moment you&#8217;ve collected all your data you can start the analysis (saving weeks or months to complete afterwards)</li>
-<li>Fewer requests from reviewers for changes to your data analysis methods</li>
+<li>Trust but verify: check that a widely used method will work for your data.</li>
+<li>Have analysis pipeline optimized; the moment you&#8217;ve collected all
+your data you can start the analysis (saving weeks or months to
+complete afterwards)</li>
+<li>Fewer requests from reviewers for changes to your data analysis
+methods</li>
 <li>Be confident you are doing the best possible data analysis</li>
 </ul>
-<p>The CyVerse Validate workflow is versatile enough to handle you importing your GWAS tools, functions, or simulation methods to use in conjunction with the existing software. Speaking of imports, Validate is capable of handling a range of file formats, and each piece of software is very customizable. You have multiple options for adjusting your output each step of the way.</p>
-<p>Finally, since the analysis are run on the NSF-supported national XSEDE computer systems, scalability of simulations is a non-issue; the computational demand for your simulations will scale up as your needs increase. All of your necessary files may be uploaded and accessed from the CyVerse Data Store.</p>
+<p>The CyVerse Validate workflow is versatile enough to handle you
+importing your GWAS tools, functions, or simulation methods to use in
+conjunction with the existing software. Speaking of imports, Validate
+is capable of handling a range of file formats, and each piece of
+software is very customizable. You have multiple options for adjusting
+your output each step of the way.</p>
+<p>Finally, since the analysis are run on the NSF-supported national
+XSEDE computer systems, scalability of simulations is a non-issue; the
+computational demand for your simulations will scale up as your needs
+increase. All of your necessary files may be uploaded and accessed
+from the CyVerse Data Store.</p>
 <div class="section" id="version-1-0-features">
 <h2>Version 1.0 Features<a class="headerlink" href="#version-1-0-features" title="Permalink to this headline">¶</a></h2>
 <p>Version 1.0 features include:</p>
 <ul class="simple">
 <li>The ability to test prediction</li>
-<li>Incorporate the following prediction applications: GenSel, BayesR, BLR/BATools, Ridge regression (coming soon)</li>
+<li>Incorporate the following prediction applications: GenSel, BayesR,
+BLR/BATools, ridge regression</li>
 <li>Updated Demonstrate to handle prediction graphics</li>
 <li>Managing GWAS and prediction applications in parallel</li>
 <li>Incorporate D. Hand&#8217;s H-measure to the current performance metrics</li>
@@ -69,14 +86,42 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html">Setting up your Accounts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
-<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id1">Cyverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id2">TACC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id3">XSEDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-windows">For Windows:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-mac">For Mac:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-unix-linux">For Unix/Linux:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#configure-job-submission">Configure Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#submit-job">Submit Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#run-more-gwas-prediction-apps-for-comparision">Run more GWAS / Prediction Apps for comparision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alphasim.html#running-alphasim-through-agave">Running Alphasim through Agave</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gwas.html#fastlmm">FastLMM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prediction.html#beyesr">BeyesR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prediction.html#gensel">GenSel</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a><ul>
@@ -95,9 +140,12 @@
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating.html"> Updating the Docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="updating.html#accessing-the-source">Accessing the source</a></li>
-<li class="toctree-l2"><a class="reference internal" href="updating.html#updating-table-of-contents">Updating table of contents</a></li>
-<li class="toctree-l2"><a class="reference internal" href="updating.html#building-sphinx-html-on-your-own-machine">Building Sphinx html on your own machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="updating.html#further-support">Further support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="updating.html#forking-committing-changes">Forking &amp; Committing Changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="updating.html#updating-table-of-contents">Updating table of contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="updating.html#building-sphinx-html-on-your-own-machine">Building Sphinx html on your own machine</a></li>
+<li class="toctree-l3"><a class="reference internal" href="updating.html#further-support">Further support</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

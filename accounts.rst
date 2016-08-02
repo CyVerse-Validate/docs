@@ -18,7 +18,7 @@ allocations may require approval for a specific research need.
 .. _XSEDE: https://www.xsede.org/
 
 Cyverse
-=======
+~~~~~~~
 
 Register at https://user.cyverse.org/. This portal will be your
 central access point for Atmosphere and the Discovery Environment, and
@@ -36,7 +36,7 @@ provides some forums for community and support.
 .. _access: http://www.cyverse.org/learning-center/manage-account#AddAppsServices
 
 TACC
-====
+~~~~
 
 These guides refer to running the Validate workflow on the Stampede
 supercomputer at the TACC. You'll need to make an account at
@@ -47,7 +47,7 @@ application as *Ineligible.*
 
 
 XSEDE
-=====
+~~~~~
 
 Extreme Science & Engineering Discover Environment represents a
 collection of advanced digital services for scientific
@@ -79,7 +79,7 @@ depending on your operating system::
 
 
 For Windows:
-------------
+~~~~~~~~~~~~
 
 SSH support is built into PowerShell for Windows 10.
 
@@ -99,14 +99,14 @@ account.
  
   
 For Mac:
---------
+~~~~~~~~
 
 * Terminal: ssh is built into Mac OS. For extensive use many prefer
   `iTerm2 <https://www.iterm2.com/>`_.
 * `Cyberduck <https://cyberduck.io/>`_
 
 For Unix/Linux:
-----------------
+~~~~~~~~~~~~~~~
 
 * Terminal: The standard Unix terminal may be used to access Stampede
   through the *ssh* command.

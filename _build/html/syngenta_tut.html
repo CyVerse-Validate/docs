@@ -26,7 +26,7 @@
     <link rel="top" title="Validate 1.0 documentation" href="index.html" />
     <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
     <link rel="next" title="Generating Simulation Data with Alphasim" href="alphasim.html" />
-    <link rel="prev" title="Setting up your Accounts" href="accounts.html" />
+    <link rel="prev" title="Account Setup Guide" href="accounts.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -84,7 +84,7 @@ source ~/.bashrc
 <div class="section" id="configure-job-submission">
 <span id="jobs"></span><h2>Configure Job Submission<a class="headerlink" href="#configure-job-submission" title="Permalink to this headline">¶</a></h2>
 <p>download fastLMM job skeleton:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
 </pre></div>
 </div>
 <p>(you may need to install wget if using a mac)</p>
@@ -135,12 +135,31 @@ source ~/.bashrc
 </pre></div>
 </div>
 </div>
+<div class="section" id="run-more-gwas-prediction-apps-for-comparision">
+<h2>Run more GWAS / Prediction Apps for comparision<a class="headerlink" href="#run-more-gwas-prediction-apps-for-comparision" title="Permalink to this headline">¶</a></h2>
+<p>Validate helps you find the tools best-suited for working with your
+data sets. Depending on your experience &amp; the nature of your project,
+you may wish to process the syngenta data set with a variety of GWAS /
+Prediction tools, including:</p>
+<ul class="simple">
+<li>Ridge Regression</li>
+<li>Plink</li>
+<li>Gemma</li>
+<li>GenSel</li>
+</ul>
+<p>The job submission process for any app on Stampede is fairly similar&#8211;
+configure a JSON wrapper containing your input / output parameters,
+submit the task with jobs-submit, and move the output files into your
+data store.</p>
+</div>
 <div class="section" id="send-output-files-to-winnow">
 <h2>Send Output Files to Winnow<a class="headerlink" href="#send-output-files-to-winnow" title="Permalink to this headline">¶</a></h2>
 <p>For full inputs &amp; outputs see <a class="reference external" href="https://github.com/gpcarpen/Quickstart-guide/blob/master/docs/Winnow.md">here</a></p>
-<p>The required files for winnow are the Known Truth file and the output from a GWAS tool (FastLMM in our case)</p>
+<p>The required files for winnow are the Known Truth file and the output
+from a GWAS tool (FastLMM in our case)</p>
 <p>Once you download the fastlmm output, upload it to a new location in your DE:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">-</span><span class="n">upload</span> <span class="o">-</span><span class="n">S</span> <span class="n">data</span><span class="o">.</span><span class="n">iplantcollaborative</span><span class="o">.</span><span class="n">org</span> <span class="o">-</span><span class="n">F</span> <span class="o">*</span><span class="n">fastlmm</span> <span class="n">output</span> <span class="n">which</span> <span class="n">should</span> <span class="n">now</span> <span class="n">be</span> <span class="n">local</span><span class="o">*</span> <span class="n">yourusername</span><span class="o">/</span><span class="n">yourdatafolder</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">-</span><span class="n">upload</span> <span class="o">-</span><span class="n">S</span> <span class="n">data</span><span class="o">.</span><span class="n">iplantcollaborative</span><span class="o">.</span><span class="n">org</span> <span class="o">-</span><span class="n">F</span> <span class="o">*</span><span class="n">fastlmm</span> <span class="n">output</span>
+<span class="n">which</span> <span class="n">should</span> <span class="n">now</span> <span class="n">be</span> <span class="n">local</span><span class="o">*</span> <span class="n">yourusername</span><span class="o">/</span><span class="n">yourdatafolder</span>
 </pre></div>
 </div>
 <p>Download the winnow example skeleton:</p>
@@ -152,25 +171,47 @@ source ~/.bashrc
 <div class="section" id="visualize-results-with-demonstrate">
 <h2>Visualize Results with Demonstrate<a class="headerlink" href="#visualize-results-with-demonstrate" title="Permalink to this headline">¶</a></h2>
 <p><strong>Currently it is easier to work with R on your own system than on Stampede.</strong></p>
-<p>The final step of Validation will be comparing the results using a visualization method of your choice.</p>
+<p>The final step of Validation will be comparing the results using a
+visualization method of your choice.</p>
 <p>Refer to <a class="reference internal" href="datastore.html#datastore"><span class="std std-ref">Uploading data to the Data Store and viewing in the  Discovery Environment</span></a> to download results from Stampede to your own disk or the data store.</p>
-<p>Demonstrate is the final step in the Validate known-truth pipeline. Using output from Winnow, it produces a set of graphics showing differences in a GWAS/QTL applications performance under varying heritability and population structure. Demonstrate also functions without the need for heritability or population structure, but different graphics will be produced in that case.</p>
+<p>Demonstrate is the final step in the Validate known-truth
+pipeline. Using output from Winnow, it produces a set of graphics
+showing differences in a GWAS/QTL applications performance under
+varying heritability and population structure. Demonstrate also
+functions without the need for heritability or population structure,
+but different graphics will be produced in that case.</p>
 <p>The function you will want to use depends on what type of data you have:</p>
 <div class="section" id="data-with-heritability-and-population-structure-specified">
 <h3>Data with Heritability and Population Structure Specified<a class="headerlink" href="#data-with-heritability-and-population-structure-specified" title="Permalink to this headline">¶</a></h3>
-<p>If you want to visualize differences in your data based on heritability or population structure, you&#8217;ll want to use the original function Demonstrate. To run Demonstrate, type R on your terminal or command line to open the R console. From there use:</p>
+<p>If you want to visualize differences in your data based on
+heritability or population structure, you&#8217;ll want to use the original
+function Demonstrate. To run Demonstrate, type R on your terminal or
+command line to open the R console. From there use:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">Demonstrate</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If nothing happens, then you did it correctly! Now the Demonstrate package is loaded. Here are the options to run the function:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean AUC By Population Structure and Heritability&quot;</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean MAE By Population Structure and Heritability&quot;</span><span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;_03_&quot;</span><span class="p">,</span><span class="s2">&quot;_04_&quot;</span><span class="p">,</span><span class="s2">&quot;_06_&quot;</span><span class="p">)</span> <span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;PheHasStruct&quot;</span><span class="p">,</span><span class="s2">&quot;PheNPStruct&quot;</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">TRUE</span><span class="p">,</span><span class="n">FALSE</span><span class="p">))</span>
+<p>If nothing happens, then you did it correctly! Now the Demonstrate
+package is loaded. Here are the options to run the function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean AUC By</span>
+<span class="n">Population</span> <span class="n">Structure</span> <span class="ow">and</span> <span class="n">Heritability</span><span class="s2">&quot;, make.MAE.plot=TRUE,</span>
+<span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean MAE By Population Structure and</span>
+<span class="n">Heritability</span><span class="s2">&quot;,herit.strings=list(&quot;</span><span class="n">_03_</span><span class="s2">&quot;,&quot;</span><span class="n">_04_</span><span class="s2">&quot;,&quot;</span><span class="n">_06_</span><span class="s2">&quot;)</span>
+<span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;PheHasStruct&quot;</span><span class="p">,</span><span class="s2">&quot;PheNPStruct&quot;</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">TRUE</span><span class="p">,</span><span class="n">FALSE</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>In this function, dir represents the directory where all Winnow output is stored. These default values are based on the sample data found within this repository. Once run, the function will create two graphs on the mean absolute error (MAE) and area under the receiver operator curve (AUC) across varying levels of heritability and/or population structure. The graphs are in pdf format.</p>
+<p>In this function, dir represents the directory where all Winnow output
+is stored. These default values are based on the sample data found
+within this repository. Once run, the function will create two graphs
+on the mean absolute error (MAE) and area under the receiver operator
+curve (AUC) across varying levels of heritability and/or population
+structure. The graphs are in pdf format.</p>
 </div>
 <div class="section" id="other-data-from-winnow">
 <h3>Other data from Winnow<a class="headerlink" href="#other-data-from-winnow" title="Permalink to this headline">¶</a></h3>
-<p>For other types of data, or if you&#8217;re more interested in comparing GWAS tools than comparing data, you will want to use the Demonstrate2 function. Before running it though, you will need to include the function in your global environment:</p>
+<p>For other types of data, or if you&#8217;re more interested in comparing
+GWAS tools than comparing data, you will want to use the Demonstrate2
+function. Before running it though, you will need to include the
+function in your global environment:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span><span class="p">(</span><span class="s2">&quot;&lt;path to&gt;/Demonstrate2.R&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -178,9 +219,16 @@ source ~/.bashrc
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate2</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;True Positives by False Positives&quot;</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of AUC by MAE&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">.</span><span class="n">plots</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Assuming all outputs are kept, Demonstrate2 will output five files in total. First, two frequency histograms illustrating the distribution of both true and false positives (if multiple Winnow files were in the original directory, the pdf files will have multiple pages). Second, a .csv file detailing the average sensitivity, specificity, and precision of each
-file.</p>
-<p>Finally, two plots based on true vs. false positives and mean absolute error vs. area under the curve will be produced. Demonstrate2 will color the points based on the file they came from, so you can compare multiple GWAS analysis results on the same plot.</p>
+<p>Assuming all outputs are kept, Demonstrate2 will output five files in
+total. First, two frequency histograms illustrating the distribution
+of both true and false positives (if multiple Winnow files were in the
+original directory, the pdf files will have multiple pages). Second, a
+.csv file detailing the average sensitivity, specificity, and
+precision of each file.</p>
+<p>Finally, two plots based on true vs. false positives and mean absolute
+error vs. area under the curve will be produced. Demonstrate2 will
+color the points based on the file they came from, so you can compare
+multiple GWAS analysis results on the same plot.</p>
 </div>
 </div>
 </div>
@@ -194,9 +242,17 @@ file.</p>
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="accounts.html">Setting up your Accounts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial for running Validate with sample data set</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial for running Validate with sample data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-job-submission">Configure Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-job">Submit Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-more-gwas-prediction-apps-for-comparision">Run more GWAS / Prediction Apps for comparision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
