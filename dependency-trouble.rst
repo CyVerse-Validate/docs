@@ -14,7 +14,7 @@ As you see from the above picture, the white boxes were the original instruction
 
 .. _PFunc: https://projects.coin-or.org/PFunc
 
-To get the other 6 libraries loaded into your cuurent environment enter the following code:
+To get the other 6 libraries loaded into your cuurent environment enter the following lines:
 
 ::
    module load gcc/4.7.1
@@ -60,11 +60,13 @@ Here is the installation guide written in the PFunc folder which has last been u
 	     -DCMAKE_INSTALL_PREFIX=/home/anon/pfunc-install
 
 	     
-Step above says to specify in the make command a folder called "pfunc-install" but the above instructions only mentioned created a folder "pfunc-build", so after trying multiple times with the install, I used the second folder in the make command:::
+Step above says to specify in the make command a folder called "pfunc-install" but the above instructions only mentioned creating a folder "pfunc-build", so after trying multiple times with the install, I used the second folder "pfunc-build" in the make command:
 ::
   
   cmake /work/03813/ddc/iPlant/src/PFunc-0.1.1/pfunc -DCMAKE_INSTALL_PREFIX=/work/03813/ddc/iPlant/PFunc-0.1.1/pfunc-build
-
+The above command has an output that describes that the configuration and build is done and says:
+::
+   -- Build files have been written to: /work/03813/ddc/iPlant/src/PFunc-0.1.1/pfunc-build
 Going back to the installation guide:
 
 
@@ -80,10 +82,20 @@ Going back to the installation guide:
 				vi) "install" -> installs the targets to the selected prefix.
 				    vii) "uninstall" -> does the obvious.
 					 viii) "examples" -> builds examples if BUILD_EXAMPLES was ON.
-
-					       e) #make <target-name>
-						  
-						  At this stage, we can build any of the targets mentioned in (e).
+		e) #make <target-name>
+		At this stage, we can build any of the targets mentioned in (e).
 
 
-First off, the directions cut off after this sentence into a new section. Secondly, there are no targets mentioned in this text, so I'm not sure what I'm tryinig to do with this step.						  
+The "pfunc-build" directory now has the following sources:
+::
+
+Moving on to directions e), the sentence is most likely talking about directions (d) when it says the targets mentioned in (e). So I type the command:
+::
+   make pfunc
+And now the "pfunc-build" directory has the following sources:
+::
+
+We see that the static library "libpfunc.a" is built. So we are done! Now we need to connect the library to our environment in order to get Sphinx to run.
+
+In the Stampede TACC user guide_, 
+.. _guide: https://portal.tacc.utexas.edu/user-guides/stampede
