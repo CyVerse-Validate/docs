@@ -5,6 +5,11 @@ Prediction Tools
 BeyesR
 ======
 
+**Speed Test Results**
+
+Our BayesR speed test on the full syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.
+
+
 Running BayesR through Agave
 -----------------------------
 
