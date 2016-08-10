@@ -163,4 +163,8 @@ This is when I decide that I've thoroughly created to many directories in each d
 
 So now from the beginning I change into the main "pfunc" directory. I note all the sources are in the sub "pfunc" folder. I tried multiple variations and combinations of getting the "cmake" command to build the static library libpfunc.a and am unable to.
 
+After looking up how to build a static library I found a 'cmake page <https://github.com/beniz/libcmaes/issues/99>'_ that addressed similar issues.
+
+
+
 
