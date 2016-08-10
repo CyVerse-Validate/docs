@@ -1,5 +1,6 @@
-Dependency Trouble for Sphinx (GWAS tool)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================================
+ Dependency Trouble for Sphinx (GWAS tool)
+===========================================
 
 The below diagram details the problem I encountered while downloading Sphinx on my Stampede allocation.
 
