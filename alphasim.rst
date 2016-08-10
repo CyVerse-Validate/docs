@@ -19,9 +19,9 @@ Running Alphasim through Agave
 
 * You can download a sample parameter files from `our repository <https://raw.githubusercontent.com/CyVerse-Validate/Stampede-Files/master/AlphaSim-1.04/AlphaSimSpec.txt>`_. The parameter file allows you to pass commands into the AlphaSim software.
 
-*  Once you have access the parameter file upload it to your Discovery Environment. The default parameter file has specifications for running multiple generations for corn genetics.
+*  Once you have access the parameter file upload it to your Data Store. The default parameter file has specifications for running multiple generations for corn genetics.
 
-* Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Discovery Environment.
+* Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Data Store.
 
 ::
 
@@ -47,7 +47,7 @@ Running Alphasim through Agave
 
 will allow you to see when your job will be done
 
-* Once this finishes this will save onto your Discovery Environment, if Archive is set to true, under Archive/Jobs in your personal DE folder.
+* Once this finishes this will save onto your Data Store, if Archive is set to true, under Archive/Jobs in your personal DE folder.
 
 * If you are okay with these outputs they are now useable, you can also option to convert to pedmap (which is a more standard format) using the merger application found in https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger
 
@@ -55,7 +55,7 @@ will allow you to see when your job will be done
 
   jobs-output --download --path [FilePath in the Data Store] [JOBID]
 
-* You will download your outputs to your local computer from the discovery environment with the following commands::
+* You will download your outputs to your local computer from the Data Store with the following commands::
 
   jobs-output --download --path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt [yourjobid]
   jobs-output --download --path AlphaSim/SimulatedData/Gender.txt [yourjobid]
