@@ -90,7 +90,7 @@ file format is correct! Refer to individual app's documentation for
 more information. In this tutorial we are accessing PED, MAP and
 phenotype files from the public syngenta_sim dataset.
 
-To access your own data from the Discovery Environment, change the url
+To access your own data from the Data Store, change the url
 to replace "/shared/" with the path to your user account; ie::
 
     "agave://data.iplantcollaborative.org/yourusername/results/yourdata.ped",
