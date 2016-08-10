@@ -1,3 +1,5 @@
+.. _sphinx:
+
 ===========================================
  Dependency Trouble for Sphinx (GWAS tool)
 ===========================================
@@ -5,8 +7,6 @@
 The below diagram details the problem I encountered while downloading Sphinx on my Stampede allocation.
 
 .. image:: depend.png
-   :height: 100px
-   :width: 200 px
    :scale: 50 %
 
 As you see from the above picture, the white boxes were the original instructions in the README text for SPHINX. The dependency I could not get downloaded and installed was the PFunc_ library.
@@ -162,5 +162,9 @@ This did nothing.
 This is when I decide that I've thoroughly created to many directories in each directory and decide it's best to start from scratch. So I rename my old PFunc directory and unzip the tar.
 
 So now from the beginning I change into the main "pfunc" directory. I note all the sources are in the sub "pfunc" folder. I tried multiple variations and combinations of getting the "cmake" command to build the static library libpfunc.a and am unable to.
+
+After looking up how to build a static library I found a 'cmake page <https://github.com/beniz/libcmaes/issues/99>'_ that addressed similar issues.
+
+
 
 
