@@ -55,8 +55,8 @@
 <p><strong>Locate / Open parameter file</strong></p>
 <ul class="simple">
 <li>You can download a sample parameter files from <a class="reference external" href="https://raw.githubusercontent.com/CyVerse-Validate/Stampede-Files/master/AlphaSim-1.04/AlphaSimSpec.txt">our repository</a>. The parameter file allows you to pass commands into the AlphaSim software.</li>
-<li>Once you have access the parameter file upload it to your Discovery Environment. The default parameter file has specifications for running multiple generations for corn genetics.</li>
-<li>Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Discovery Environment.</li>
+<li>Once you have access the parameter file upload it to your Data Store. The default parameter file has specifications for running multiple generations for corn genetics.</li>
+<li>Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Data Store.</li>
 </ul>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;testAlphaSim&quot;</span><span class="p">,</span>
@@ -81,14 +81,14 @@
 </ul>
 <p>will allow you to see when your job will be done</p>
 <ul>
-<li><p class="first">Once this finishes this will save onto your Discovery Environment, if Archive is set to true, under Archive/Jobs in your personal DE folder.</p>
+<li><p class="first">Once this finishes this will save onto your Data Store, if Archive is set to true, under Archive/Jobs in your personal DE folder.</p>
 </li>
 <li><p class="first">If you are okay with these outputs they are now useable, you can also option to convert to pedmap (which is a more standard format) using the merger application found in <a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
 </li>
 <li><p class="first">You can download your outputs from jobs with the general command:</p>
 <p>jobs-output &#8211;download &#8211;path [FilePath in the Data Store] [JOBID]</p>
 </li>
-<li><p class="first">You will download your outputs to your local computer from the discovery environment with the following commands:</p>
+<li><p class="first">You will download your outputs to your local computer from your Data Store with the following commands:</p>
 <p>jobs-output &#8211;download &#8211;path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt [yourjobid]
 jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/Gender.txt [yourjobid]
 jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/PedigreeTbvTdvTpv.txt [yourjobid]
