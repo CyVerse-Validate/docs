@@ -168,3 +168,32 @@ After looking up how to build a static library I found a 'cmake page <https://gi
 
 
 
+==============
+ The Solution
+==============
+
+The solution is to go in the unzipped folder then into the "lib" folder and execute:
+
+1. cmake
+2. make
+
+This creates the static library named libpfunc.a and had the following :ref:'cmake' errors.
+Looking back I should've known better to go into the lib folder because it's the only folder containing Makefile.
+
+Now I can move the folder sub "pfunc" and "lib" in the main "pfunc" folder to my PFuncENTERVERSIONNUMBER********/stampede/bin.
+
+==================================================================
+ The Next Steps: Connecting Last Needed Dependency back to SPHINX
+==================================================================
+
+I need to connect the static library located in /work/03813/ddc/iPlant/src/PFunc-0.1.1/lib to my dependencies in the SPHINX (GWAS tool).
+
+I go back to /work/03813/ddc/iPlant/sphinx/stampede/bin/SPHINX/SPHINX_SCREENING_C++
+
+
+==================
+ Compiling SPHINX
+==================
+
+In order to compile SPHINX:
+
