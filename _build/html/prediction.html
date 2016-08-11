@@ -30,6 +30,7 @@
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
+  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
@@ -45,6 +46,8 @@
 <h1>Prediction Tools<a class="headerlink" href="#prediction-tools" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="beyesr">
 <h2>BeyesR<a class="headerlink" href="#beyesr" title="Permalink to this headline">¶</a></h2>
+<p><strong>Speed Test Results</strong></p>
+<p>Our BayesR speed test on the full syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.</p>
 <div class="section" id="running-bayesr-through-agave">
 <h3>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h3>
 <p>From your local machine, create a folder for the output and cd into it:</p>
@@ -155,7 +158,11 @@ at the end is your job ID.</p>
 <li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Prediction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#beyesr">BeyesR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gensel">GenSel</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
@@ -174,8 +181,8 @@ at the end is your job ID.</p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
@@ -189,8 +196,8 @@ at the end is your job ID.</p>
       &copy;2016, UNCW Cyverse.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
       <a href="_sources/prediction.txt"
