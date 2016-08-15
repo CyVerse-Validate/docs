@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dependency Trouble for Sphinx (GWAS tool) &mdash; Validate 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dependency-trouble-for-sphinx-gwas-tool">
+<span id="sphinx"></span><h1>Dependency Trouble for Sphinx (GWAS tool)<a class="headerlink" href="#dependency-trouble-for-sphinx-gwas-tool" title="Permalink to this headline">¶</a></h1>
+<p>The below diagram details the problem I encountered while downloading Sphinx on my Stampede allocation.</p>
+<a class="reference internal image-reference" href="_images/depend.png"><img alt="_images/depend.png" src="_images/depend.png" style="width: 800.0px; height: 575.0px;" /></a>
+<p>As you see from the above picture, the white boxes were the original instructions in the README text for SPHINX. The dependency I could not get downloaded and installed was the <a class="reference external" href="https://projects.coin-or.org/PFunc">PFunc</a> library.</p>
+<p>To get the other 6 libraries loaded into your cuurent environment enter the following lines:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>module load gcc/4.7.1
+module load gcc/4.9.1
+module load gcc/4.9.3
+module load intel/13.0.2.146
+module load referencelapack/3.5.0
+module load boost/1.55.0</dd>
+</dl>
+<div class="section" id="problems-running-pfunc">
+<h2>Problems Running PFunc<a class="headerlink" href="#problems-running-pfunc" title="Permalink to this headline">¶</a></h2>
+<p>To follow along with the guide, enter the following in your src directory to get the PFunc download:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>wget &#8211;no-check-certificate <a class="reference external" href="http://www.coin-or.org/download/source/PFunc/PFunc-0.1.1.tgz">http://www.coin-or.org/download/source/PFunc/PFunc-0.1.1.tgz</a>
+tar -xzf PFunc-0.1.1.tgz</dd>
+</dl>
+<p>The PFunc README says to create a folder called &#8220;pfunc-install&#8221; and after running through the directions, and the cmake command (which I think is the command that will be compiling the files into a binary) the folder is still empty.</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>/work/03813/ddc/iPlant/src/PFunc-0.1.1
+/work/03813/ddc/iPlant/pfunc-install</dd>
+</dl>
+<p>Here is the installation guide written in the PFunc folder which has last been updated 7 years ago as of today.</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">For a clean installation process, we recommend an out-of-source build. However,
+the in-source build works just as well. Given below are the basic installation
+instructions for PFunc on Linux/OS X/AIX:</p>
+<ol class="loweralpha">
+<li><p class="first">Get a copy of PFunc. For the sake of this installation guide, let us
+assume that PFunc&#8217;s sources have been checked out in the directory
+&#8220;pfunc&#8221;. Furthermore, let us assume that the absolute path is
+&#8220;/home/anon/pfunc&#8221;.</p>
+<ol class="loweralpha" start="2">
+<li><p class="first">#cd /home/anon/ &amp;&amp; mkdir pfunc-build</p>
+<p>At the end of this step, we have the following directories:</p>
+</li>
+</ol>
+</li>
+</ol>
+<ol class="last lowerroman simple">
+<li>&#8220;/home/anon/pfunc&#8221;</li>
+<li>&#8220;/home/anon/pfunc-build&#8221;<ol class="loweralpha" start="3">
+<li>#cd /home/anon/pfunc-build<ol class="loweralpha" start="4">
+<li>#cmake /home/anon/pfunc -DCMAKE_INSTALL_PREFIX=/home/anon/pfunc-install</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</dd>
+</dl>
+<p>Step above says to specify in the make command a folder called &#8220;pfunc-install&#8221; but the above instructions only mentioned creating a folder &#8220;pfunc-build&#8221;, so after trying multiple times with the install, I used the second folder &#8220;pfunc-build&#8221; in the make command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">03813</span><span class="o">/</span><span class="n">ddc</span><span class="o">/</span><span class="n">iPlant</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">PFunc</span><span class="o">-</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">pfunc</span> <span class="o">-</span><span class="n">DCMAKE_INSTALL_PREFIX</span><span class="o">=/</span><span class="n">work</span><span class="o">/</span><span class="mi">03813</span><span class="o">/</span><span class="n">ddc</span><span class="o">/</span><span class="n">iPlant</span><span class="o">/</span><span class="n">PFunc</span><span class="o">-</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">pfunc</span><span class="o">-</span><span class="n">build</span>
+</pre></div>
+</div>
+<p>The above command has an output that describes that the configuration and build is done and says:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="n">Build</span> <span class="n">files</span> <span class="n">have</span> <span class="n">been</span> <span class="n">written</span> <span class="n">to</span><span class="p">:</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">03813</span><span class="o">/</span><span class="n">ddc</span><span class="o">/</span><span class="n">iPlant</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">PFunc</span><span class="o">-</span><span class="mf">0.1</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">pfunc</span><span class="o">-</span><span class="n">build</span>
+</pre></div>
+</div>
+<p>Going back to the installation guide:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">At this step, we are configuring PFunc and have choosen to install the
+files in the local directory. Once configuration is done, the following
+targets are available to be built by the native build-system.
+i) &#8220;pfunc&#8221; -&gt; builds the static library &#8220;libpfunc.a&#8221;</p>
+<blockquote class="last">
+<div><ol class="lowerroman" start="2">
+<li><p class="first">&#8220;tutorial&#8221; -&gt; builds the tutorial if BUILD_TUTORIAL was ON.
+iii) &#8220;doc&#8221; -&gt; build documentation if BUILD_DOCS was ON.</p>
+<blockquote>
+<div><ol class="lowerroman" start="4">
+<li><p class="first">&#8220;all&#8221; -&gt; builds all the selected targets.
+v) &#8220;clean&#8221; -&gt; removes all the object files.</p>
+<blockquote>
+<div><ol class="lowerroman" start="6">
+<li><p class="first">&#8220;install&#8221; -&gt; installs the targets to the selected prefix.
+vii) &#8220;uninstall&#8221; -&gt; does the obvious.</p>
+<blockquote>
+<div><ol class="lowerroman simple" start="8">
+<li>&#8220;examples&#8221; -&gt; builds examples if BUILD_EXAMPLES was ON.</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>e) #make &lt;target-name&gt;
+At this stage, we can build any of the targets mentioned in (e).</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>The &#8220;pfunc-build&#8221; directory now has the following sources:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">CMakeCache</span><span class="o">.</span><span class="n">txt</span>  <span class="n">CMakeFiles</span>  <span class="n">cmake_install</span><span class="o">.</span><span class="n">cmake</span>  <span class="n">config</span><span class="o">.</span><span class="n">h</span>  <span class="n">Makefile</span>
+</pre></div>
+</div>
+<p>Moving on to directions e), the sentence is most likely talking about directions (d) when it says the targets mentioned in (e). So I type the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">pfunc</span>
+</pre></div>
+</div>
+<p>PFunc should create a static library in this directory but the make command does not work and gives me the following error:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>login1.stampede(7)$ make pfunc
+make: *** No rule to make target `pfunc&#39;.  Stop.
+</pre></div>
+</div>
+<p>So in my frustration I go up one directory to /work/03813/ddc/iPlant/src/PFunc-0.1.1/pfunc and type &#8220;make pfunc&#8221; which gives me the error &#8220;Nothing to be done for &#8216;pfunc&#8217;&#8221; and &#8220;make&#8221; which gives me the error  &#8220;No targets specified and no makefile found&#8221;. So then I type &#8220;cmake&#8221; but since I have already done this the current directory changes from:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">AUTHORS</span>
+<span class="n">ChangeLog</span>
+<span class="n">CMake</span>
+<span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">doc</span>
+<span class="n">examples</span>
+<span class="n">INSTALL</span>
+<span class="n">lib</span>
+<span class="n">LICENSE</span>
+<span class="n">NEWS</span>
+<span class="n">peef</span>
+<span class="n">perf_tests</span>
+<span class="n">pfunc</span>
+<span class="n">pfunc</span><span class="o">-</span><span class="n">build</span>
+<span class="n">README</span>
+<span class="n">tutorial</span>
+</pre></div>
+</div>
+<p>to this</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">AUTHORS</span>
+<span class="n">CMakeCache</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">CMakeLists</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">examples</span>
+<span class="n">LICENSE</span>
+<span class="n">peef</span>
+<span class="n">pfunc</span><span class="o">-</span><span class="n">build</span>
+<span class="n">ChangeLog</span>
+<span class="n">CMakeFiles</span>
+<span class="n">config</span><span class="o">.</span><span class="n">h</span>
+<span class="n">INSTALL</span>
+<span class="n">Makefile</span>
+<span class="n">perf_tests</span>
+<span class="n">README</span>
+<span class="n">CMake</span>
+<span class="n">cmake_install</span><span class="o">.</span><span class="n">cmake</span>
+<span class="n">doc</span>
+<span class="n">lib</span>
+<span class="n">NEWS</span>
+<span class="n">pfunc</span>
+<span class="n">tutorial</span>
+</pre></div>
+</div>
+<p>which means the new files are:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">h</span>
+<span class="n">Makefile</span>
+<span class="n">CMakeFiles</span>
+<span class="n">cmake_install</span><span class="o">.</span><span class="n">cmake</span>
+<span class="n">CMakeCache</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>which are the exact files made by the cmake command of ii) d). And since the &#8220;make&#8221; and &#8220;make pfunc&#8221; command did not work in that directory, it is highly doubted it will work in this directory but I will try it anyways. As expected that did not work. I google &#8220;make target not found&#8221;, the error I&#8217;ve been getting since entering &#8220;make&#8221; into &#8220;pfunc-build&#8221; and the main &#8220;pfunc&#8221; directory. (There are two directories called &#8220;pfunc&#8221; so I will differentiate them by calling them: main &#8220;pfunc&#8221; and sub &#8220;pfunc&#8221;.) Stack Overflow tells me that the error is caused when it cannot find an hpp file in that person&#8217;s specific case. Since neither &#8220;pfunc-build&#8221; and the main &#8220;pfunc&#8221; had any hpp files, I decide to try the cmake command in the sub &#8220;pfunc&#8221; by calling&#8221;:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>cmake /work/03813/ddc/iPlant/src/PFunc-0.1.1/pfunc</dd>
+</dl>
+<p>This did nothing.</p>
+<p>This is when I decide that I&#8217;ve thoroughly created to many directories in each directory and decide it&#8217;s best to start from scratch. So I rename my old PFunc directory and unzip the tar.</p>
+<p>So now from the beginning I change into the main &#8220;pfunc&#8221; directory. I note all the sources are in the sub &#8220;pfunc&#8221; folder. I tried multiple variations and combinations of getting the &#8220;cmake&#8221; command to build the static library libpfunc.a and am unable to.</p>
+<p>After looking up how to build a static library I found a &#8216;cmake page &lt;<a class="reference external" href="https://github.com/beniz/libcmaes/issues/99">https://github.com/beniz/libcmaes/issues/99</a>&gt;&#8217;_ that addressed similar issues.</p>
+</div>
+</div>
+<div class="section" id="the-solution">
+<h1>The Solution<a class="headerlink" href="#the-solution" title="Permalink to this headline">¶</a></h1>
+<p>The solution is to go in the unzipped folder then into the &#8220;lib&#8221; folder and execute:</p>
+<ol class="arabic simple">
+<li>cmake</li>
+<li>make</li>
+</ol>
+<p>This creates the static library named libpfunc.a and had the following :ref:&#8217;cmake&#8217; errors.
+Looking back I should&#8217;ve known better to go into the lib folder because it&#8217;s the only folder containing Makefile.</p>
+<p>Now I can move the folder sub &#8220;pfunc&#8221; and &#8220;lib&#8221; in the main &#8220;pfunc&#8221; folder to my PFuncENTERVERSIONNUMBER********/stampede/bin.</p>
+</div>
+<div class="section" id="the-next-steps-connecting-last-needed-dependency-back-to-sphinx">
+<h1>The Next Steps: Connecting Last Needed Dependency back to SPHINX<a class="headerlink" href="#the-next-steps-connecting-last-needed-dependency-back-to-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>I need to connect the static library located in /work/03813/ddc/iPlant/src/PFunc-0.1.1/lib to my dependencies in the SPHINX (GWAS tool).</p>
+<p>I go back to /work/03813/ddc/iPlant/sphinx/stampede/bin/SPHINX/SPHINX_SCREENING_C++</p>
+</div>
+<div class="section" id="compiling-sphinx">
+<h1>Compiling SPHINX<a class="headerlink" href="#compiling-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>In order to compile SPHINX:</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="updating.html"> Updating the Docs</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dependencytrouble.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/dependencytrouble.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -6,7 +6,11 @@ Running Validate on Syngenta data set
 Install Cyverse CLI tools
 --------------------------
 
-Accessing Validate through the Agave API hugely streamlines the task of managing your data and accessing applications through the Cyverse Data Store with a variety of command-line tools. For a comprehensive overview please see the `full documentation  <https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk>`_.
+Accessing Validate through the Agave API hugely streamlines the task
+of managing your data and accessing applications through the Cyverse
+Data Store with a variety of command-line tools. For a comprehensive
+overview please see the `full documentation
+<https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk>`_.
 
 Download Agave API::
 
@@ -33,7 +37,8 @@ Create an OAAuth client application with API keys::
 
     clients-create -S -v -N my_client -D "Client used for app development"
 
-Where -S saves the keys for future use, -D provides a brief description, and -N is your application name.
+Where -S saves the keys for future use, -D provides a brief
+description, and -N is your application name.
 
 You will be asked to enter your CyVerse account information::
 
@@ -76,11 +81,17 @@ You can open fastlmm-job.json in your text editor of choice to go over your opti
     }
 
 
-These parameters should be fairly self-explanatory but are defined in detail `on this page <https://agaveapi.co/documentation/tutorials/job-management-tutorial>`_
+These parameters should be fairly self-explanatory but are defined in
+detail `on this page
+<https://agaveapi.co/documentation/tutorials/job-management-tutorial>`_
 
-Inputs must be specified based on the app you're running-- ensure the file format is correct! Refer to individual app's documentation for more information. In this tutorial we are accessing PED, MAP and phenotype files from the public syngenta_sim dataset.
+Inputs must be specified based on the app you're running-- ensure the
+file format is correct! Refer to individual app's documentation for
+more information. In this tutorial we are accessing PED, MAP and
+phenotype files from the public syngenta_sim dataset.
 
-To access your own data from the Discovery Environment, change the url to replace "/shared/" with the path to your user account; ie::
+To access your own data from the Data Store, change the url
+to replace "/shared/" with the path to your user account; ie::
 
     "agave://data.iplantcollaborative.org/yourusername/results/yourdata.ped",
 
