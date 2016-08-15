@@ -208,7 +208,20 @@ I go back to /work/03813/ddc/iPlant/sphinx/stampede/bin/SPHINX/SPHINX_SCREENING_
  Compiling SPHINX
 ==================
 
-In order to compile SPHINX we need to make sure all the dependencies are set in place. Now the PFunc dependency must be linked to SPHINX. H
+In order to compile SPHINX we need to make sure all the dependencies are set in place. Now the PFunc dependency must be linked to SPHINX. I ran "make" in the main directory of SPHINX to see what else I'd need.
+
+The error I got was that the Boost directory files could not be found. Since Boost was already loaded into my environment by calling "module load boost" as previously described, I knew that the files then were not calling Boost properly, which made me question: How do I link the dependency? The following diagram explains possible solutions:
 
 .. image:: link.png
-   :scale: 50 %
+   :scale: 20 %
+
+
+Since Boost was already in my environment variable I chose not to go with solution 3 but to go with solution 1.
+
+Solution 1: replace the word "boost" in every C and C++ file in the main directory of SPHINX with the exact path of boost which is "opt/apps/intel14/boost/1.55.0/x86_64/include/boost". The command to do that is:
+
+::
+
+   sed -i 's#boost/#/opt/apps/intel14/boost/1.55.0/x86_64/include/boost/#g' *.hpp
+
+After running "make" the error changed from not finding the Boost file to not being able to find a PFunc file, which means that the Boost file is correctly linked to SHPINX now.   
