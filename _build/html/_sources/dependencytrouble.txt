@@ -208,5 +208,7 @@ I go back to /work/03813/ddc/iPlant/sphinx/stampede/bin/SPHINX/SPHINX_SCREENING_
  Compiling SPHINX
 ==================
 
-In order to compile SPHINX:
+In order to compile SPHINX we need to make sure all the dependencies are set in place. Now the PFunc dependency must be linked to SPHINX. H
 
+.. image:: link.png
+   :scale: 50 %
