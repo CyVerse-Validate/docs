@@ -197,7 +197,7 @@ make: *** No rule to make target `pfunc&#39;.  Stop.
 </ol>
 <p>This creates the static library named libpfunc.a and had the following :ref:&#8217;cmake&#8217; errors.
 Looking back I should&#8217;ve known better to go into the lib folder because it&#8217;s the only folder containing Makefile.</p>
-<p>Now I can move the folder sub &#8220;pfunc&#8221; and &#8220;lib&#8221; in the main &#8220;pfunc&#8221; folder to my PFuncENTERVERSIONNUMBER********/stampede/bin.</p>
+<p>Now I can move the folder sub &#8220;pfunc&#8221; and &#8220;lib&#8221; in the main &#8220;pfunc&#8221; folder to my pfunc0.0.1/stampede/bin.</p>
 </div>
 <div class="section" id="the-next-steps-connecting-last-needed-dependency-back-to-sphinx">
 <h1>The Next Steps: Connecting Last Needed Dependency back to SPHINX<a class="headerlink" href="#the-next-steps-connecting-last-needed-dependency-back-to-sphinx" title="Permalink to this headline">¶</a></h1>
@@ -206,8 +206,15 @@ Looking back I should&#8217;ve known better to go into the lib folder because it
 </div>
 <div class="section" id="compiling-sphinx">
 <h1>Compiling SPHINX<a class="headerlink" href="#compiling-sphinx" title="Permalink to this headline">¶</a></h1>
-<p>In order to compile SPHINX we need to make sure all the dependencies are set in place. Now the PFunc dependency must be linked to SPHINX. H</p>
-<a class="reference internal image-reference" href="_images/link.png"><img alt="_images/link.png" src="_images/link.png" style="width: 545.0px; height: 380.0px;" /></a>
+<p>In order to compile SPHINX we need to make sure all the dependencies are set in place. Now the PFunc dependency must be linked to SPHINX. I ran &#8220;make&#8221; in the main directory of SPHINX to see what else I&#8217;d need.</p>
+<p>The error I got was that the Boost directory files could not be found. Since Boost was already loaded into my environment by calling &#8220;module load boost&#8221; as previously described, I knew that the files then were not calling Boost properly, which made me question: How do I link the dependency? The following diagram explains possible solutions:</p>
+<a class="reference internal image-reference" href="_images/link.png"><img alt="_images/link.png" src="_images/link.png" style="width: 218.0px; height: 152.0px;" /></a>
+<p>Since Boost was already in my environment variable I chose not to go with solution 3 but to go with solution 1.</p>
+<p>Solution 1: replace the word &#8220;boost&#8221; in every C and C++ file in the main directory of SPHINX with the exact path of boost which is &#8220;opt/apps/intel14/boost/1.55.0/x86_64/include/boost&#8221;. The command to do that is:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s#boost/#/opt/apps/intel14/boost/1.55.0/x86_64/include/boost/#g&#39;</span> <span class="o">*.</span><span class="n">hpp</span>
+</pre></div>
+</div>
+<p>After running &#8220;make&#8221; the error changed from not finding the Boost file to not being able to find a PFunc file, which means that the Boost file is correctly linked to SHPINX now.</p>
 </div>
 
 

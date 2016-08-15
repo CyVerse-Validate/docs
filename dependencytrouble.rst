@@ -193,7 +193,7 @@ The solution is to go in the unzipped folder then into the "lib" folder and exec
 This creates the static library named libpfunc.a and had the following :ref:'cmake' errors.
 Looking back I should've known better to go into the lib folder because it's the only folder containing Makefile.
 
-Now I can move the folder sub "pfunc" and "lib" in the main "pfunc" folder to my PFuncENTERVERSIONNUMBER********/stampede/bin.
+Now I can move the folder sub "pfunc" and "lib" in the main "pfunc" folder to my pfunc0.0.1/stampede/bin.
 
 ==================================================================
  The Next Steps: Connecting Last Needed Dependency back to SPHINX
