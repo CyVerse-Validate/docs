@@ -1,6 +1,6 @@
 {
 "jobName": "testBayesR",
-"softwareName": "bayesR-0.75u1",
+"softwareName": "bayesR-2.00u1",
 "requestedTime": "02:00:00",
 "archive": true,
     "inputs":{

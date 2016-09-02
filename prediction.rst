@@ -2,12 +2,12 @@
 Prediction Tools
 *****************
 
-BeyesR
+BayesR
 ======
 
 **Speed Test Results**
 
-Our BayesR speed test on the full syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.
+Our BayesR speed test on a third of the syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.
 
 
 Running BayesR through Agave
@@ -26,7 +26,7 @@ Open this with a text editor and edit the following parameters:
 
 a. For jobName, anything will work. For this example, I used testBayesR
 
-b. For software name, enter “bayesR-0.75”
+b. For software name, enter “bayesR-2.00u1”
 
 c. For requested time, enter “02:00:00”
 
@@ -114,3 +114,43 @@ To run the software you need one parameter file (.inp) and three input files (.g
 ::
 
   jobs-submit -F (your path the JSON file you just saved)
+
+RidgePredict
+======
+
+Running RidgePredict through Agave
+-----------------------------
+
+**Estimated Time ~15min**
+
+**Prerequisities:** Agave CLI, general knowledge of executing using Agave, Access to the Cyverse data store, and Stampede allocation (if you want)
+
+**Helpful Documentation**
+
+* The RidgePredict app uses Ridge Regression based on the SciKitLearn Ridge package: http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html
+
+**Locating the parameter/input files and running RidgePredict:**
+
+To run the software you need one .ped parameter file, for example I would use: agave://data.iplantcollaborative.org/ksierrac/applications/test-ridge.ped
+You only need one parameter, which will be the name you wish to have for your output.
+
+1. Save the following as a JSON file and modify to your needs:
+
+::
+{
+    "jobName": "ridge-test-1",
+    "softwareName": "RidgePredict-1.1",
+    "processorsPerNode": 16,
+    "requestedTime": "01:00:00",
+    "memoryPerNode": 32,
+    "nodeCount": 1,
+    "batchQueue": "serial",
+    "archive": false,
+    "archivePath": "",
+    "inputs": {
+        "inputPed": "agave://data.iplantcollaborative.org/ksierrac/applications/test-ridge.ped"
+    },
+    "parameters":{
+        "outputPed": "ridge-test-output.ped"
+    }
+}
