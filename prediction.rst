@@ -137,6 +137,7 @@ You only need one parameter, which will be the name you wish to have for your ou
 1. Save the following as a JSON file and modify to your needs:
 
 ::
+
 {
     "jobName": "ridge-test-1",
     "softwareName": "RidgePredict-1.1",
