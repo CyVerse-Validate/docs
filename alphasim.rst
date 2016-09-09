@@ -62,14 +62,15 @@ will allow you to see when your job will be done
   jobs-output --download --path AlphaSim/SimulatedData/AllIndividualSnpChips/Chip1Genotype.txt [yourjobid]
   jobs-output --download --path AlphaSim/Chromosomes/Chromosome1/Chip1SnpInformation.txt [yourjobid]
   
-* Alternatively, feel free to modify this bash script to your needs to automate pulling in all of the output files::
+* Alternatively, feel free to modify this bash script to your needs to automate pulling in all of the output files:
 https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/getFilesExample.sh
   
 * If you are okay with these outputs they are now useable. You also have the option to convert to pedmap (which is a more standard format) using this merger application::
 
-* 1. Download the merger.py from the github repository here (or if you have already installed Validate, it is included)::https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger
+1. Download the merger.py from the github repository here (or if you have already installed Validate, it is included):
+https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger
 
-* 2. Run the merger with the AlphaSim outputs with the following commands from the directory where your AlphaSim output is located, where ALPHASIMPREFIX is the prefix of your job output::
+2. Run the merger with the AlphaSim outputs with the following commands from the directory where your AlphaSim output is located, where ALPHASIMPREFIX is the prefix of your job output::
 
   python PATHTOMERGE/merge.py --output ALPHASIMPREFIX alphasim --snp SimulatedData/Chip1SnpInformation.txt --pedigree SimulatedData/PedigreeTbvTdvTpv.txt --gender SimulatedData/Gender.txt --geno SimulatedData/AllIndividualsSnpChips/Chip1Genotype.txt --sol Selection/SelectionFolder1/SnpSolutions.txt
 
@@ -77,10 +78,10 @@ This will yield ALPHASIMPREFIX.ped and ALPHASIMPREFIX.map in the directory speci
 
 * To convert your ped/map files to bed/bim/fam format, required by many applications such as fastlmm, follow these steps::
 
-* 1. Download plink from the github repository here (or if you have already installed Validate, it is included):
+1. Download plink from the github repository here (or if you have already installed Validate, it is included):
 https://github.com/CyVerse-Validate/Validate/blob/master/CurrentReleaseStable/GWAS_1/plink
 
-* 2. Run Plink with the following command from the directory where your ped/map files are located::
+2. Run Plink with the following command from the directory where your ped/map files are located::
 
   PATHTOPLINK/plink --file ALPHASIMPREFIX --out ALPHASIMPREFIX --make-bed
   
