@@ -65,7 +65,9 @@ will allow you to see when your job will be done
 * Alternatively, feel free to modify this bash script to your needs to automate pulling in all of the output files:
 https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/getFilesExample.sh
   
-* If you are okay with these outputs they are now useable. You also have the option to convert to pedmap (which is a more standard format) using this merger application::
+* If you are okay with these outputs they are now useable. You also have the option to convert to pedmap (which is a more standard format) using our merger application::
+
+**Convert to ped/map**
 
 1. Download the merger.py from the github repository here (or if you have already installed Validate, it is included):
 https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger
@@ -77,6 +79,8 @@ https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Ut
 This will yield ALPHASIMPREFIX.ped and ALPHASIMPREFIX.map in the directory specified in your above output flag.
 
 * To convert your ped/map files to bed/bim/fam format, required by many applications such as fastlmm, follow these steps::
+
+**Convert to bed/bim/fam**
 
 1. Download plink from the github repository here (or if you have already installed Validate, it is included):
 https://github.com/CyVerse-Validate/Validate/blob/master/CurrentReleaseStable/GWAS_1/plink
