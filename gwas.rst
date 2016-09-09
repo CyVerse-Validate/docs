@@ -21,14 +21,17 @@ Here are all of the possible inputs that may be used in your job submission:
 	* inputCOVAR : (optional) covariate file
 * Choose one group of data inputs:	
 	Transposed PLINK:
+	
 	* inputTPED : TPED file for transposed PLINK set
 	* inputTFAM : TFAM file for transposed PLINK set
 	
 	Main PLINK:
+	
 	* inputPED : PED file for main PLINK set
 	* inputMAP : MAP file for main PLINK set
 	
 	Binary PLINK:
+	
 	* inputBED : BED file for PLINK binary set
 	* inputBIM : BIM file for PLINK binary set
 	* inputFAM : FAM file for PLINK binary set
