@@ -23,8 +23,10 @@ Here are all of the possible inputs that may be used in your job submission:
 	* inputTPED : TPED file for transposed PLINK set
 	* inputTFAM : TFAM file for transposed PLINK set
 	
+	
 	* inputPED : PED file for main PLINK set
 	* inputMAP : MAP file for main PLINK set
+	
 	
 	* inputBED : BED file for PLINK binary set
 	* inputBIM : BIM file for PLINK binary set
@@ -45,18 +47,18 @@ You can save this example json and modify it for your needs:
 ::
 
   {
-	"jobName": "FLMMDongWangFull",
-	"softwareName": "FaST-LMM-hpc-2.07u1",
-	"requestedTime": "02:00:00",
-	"archive": true,
-		"inputs":{
-			"inputPED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped",
-			"inputMAP": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map",
-			"inputPHENO": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt"
-		},
-		"parameters":{
-			"output": "full_results"
-		}
+"jobName": "FLMMDongWangFull",
+"softwareName": "FaST-LMM-hpc-2.07u1",
+"requestedTime": "02:00:00",
+"archive": true,
+	"inputs":{
+		"inputPED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped",
+		"inputMAP": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map",
+		"inputPHENO": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt"
+	},
+	"parameters":{
+		"output": "full_results"
+	}
   }
 
   
