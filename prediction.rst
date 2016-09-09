@@ -138,7 +138,7 @@ You only need one parameter, which will be the name you wish to have for your ou
 
 ::
 
-{
+  {
     "jobName": "ridge-test-1",
     "softwareName": "RidgePredict-1.1",
     "processorsPerNode": 16,
@@ -154,5 +154,5 @@ You only need one parameter, which will be the name you wish to have for your ou
     "parameters":{
         "outputPed": "ridge-test-output.ped"
     }
-}
+  }
 
