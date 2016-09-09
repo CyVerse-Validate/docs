@@ -131,7 +131,7 @@ Running RidgePredict through Agave
 
 **Locating the parameter/input files and running RidgePredict:**
 
-To run the software you need one .ped parameter file, for example I would use: agave://data.iplantcollaborative.org/ksierrac/applications/test-ridge.ped
+To run the software you need one .ped parameter file, for example: agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped
 You only need one parameter, which will be the name you wish to have for your output.
 
 1. Save the following as a JSON file and modify to your needs:
@@ -149,9 +149,10 @@ You only need one parameter, which will be the name you wish to have for your ou
     "archive": false,
     "archivePath": "",
     "inputs": {
-        "inputPed": "agave://data.iplantcollaborative.org/ksierrac/applications/test-ridge.ped"
+        "inputPed": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped"
     },
     "parameters":{
         "outputPed": "ridge-test-output.ped"
     }
 }
+
