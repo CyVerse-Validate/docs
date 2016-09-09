@@ -7,11 +7,62 @@ FastLMM
 =======
 
 The main genome wide association studies tool that we have used, FaST-LMM stands for Factored Spectrally Transformed Linear Mixed Models. It is a tool from Microsoft Research designed for analyses of very large data sets, and has been tested on data sets with over 120,000 individuals.
-Running the Program
 
-Please note that the original FaST-LMM executable destination is: /usr/bin/fastlmmc; thus, the executable can be launched from any directory on the instance. Simply type in fastlmmc into the terminal and a help menu will appear.
+**Running the Program**
 
-With that in mind, the program requires a minimum of three files to function: 1) A PEDMAP set of files, 2) a phenotype file corresponding to the PEDMAP set, and 3) a set of PLink formatted files to compute the genetic similarity matrix decomposition (does not need to be different from number 1).
+The easiest way to run fastlmm is through Agave, as it will interpret your json job file and compile the command for you. However, if you are interested in running fastlmm directly through SLURM, we provide documentation for that as well.
+
+**Run through Agave**
+
+To run fastlmm, you will need a phenotype file as well as a set of EITHER ped/map or bed/bim/fam data files. The example json below includes ped/map files from the syngenta data, and can be run as-is if you would like to test it before using your own data.
+
+Here are all of the possible inputs that may be used in your job submission:
+	* inputPHENO : (required) phenotype file corresponding to PLINK fileset
+	* inputCOVAR : (optional) covariate file
+* Choose one group of data inputs:	
+	* inputTPED : TPED file for transposed PLINK set
+	* inputTFAM : TFAM file for transposed PLINK set
+	
+	* inputPED : PED file for main PLINK set
+	* inputMAP : MAP file for main PLINK set
+	
+	* inputBED : BED file for PLINK binary set
+	* inputBIM : BIM file for PLINK binary set
+	* inputFAM : FAM file for PLINK binary set
+* Parameters:
+	* output : (required) The name of the output file (without extension)
+	* verboseOutput : (optional) Trigger for verbose mode, 1 if true, 0 if false
+* Optional advanced parameters:
+	* C : Trigger for whether covariate file is included (1 if true, 0 if false)
+	* B : Set the binary PLINK fileset as the primary input (1 if true, 0 if false)
+	* SimFileset : Specify the PLINK grouop used to calculate the genetic similarity matrix (PEDMAP, BEDBIMFAM, or TPEDTFAM)
+	* mpheno : Proper column number for phenotype file (if multiple phenotypes are used)
+	* T : Transposed PLINK fileset is the primary input (1 if true, 0 if false)
+	
+	
+You can save this example json and modify it for your needs:
+
+::
+
+  {
+	"jobName": "FLMMDongWangFull",
+	"softwareName": "FaST-LMM-hpc-2.07u1",
+	"requestedTime": "02:00:00",
+	"archive": true,
+		"inputs":{
+			"inputPED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped",
+			"inputMAP": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map",
+			"inputPHENO": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt"
+		},
+		"parameters":{
+			"output": "full_results"
+		}
+  }
+
+  
+**Run directly through SLURM**
+
+The program requires a minimum of three files to function: 1) A PEDMAP set of files, 2) a phenotype file corresponding to the PEDMAP set, and 3) a set of PLink formatted files to compute the genetic similarity matrix decomposition (does not need to be different from number 1).
 
 The input flags you would use are as follows:
 
@@ -31,6 +82,7 @@ These are the bare minimum options needed to run FaST-LMM; however, some other o
 An example of executing the FaST-LMM program might look like::
 
   fastlmmc -verboseOutput -bfile toydata -pheno toydata.phe.txt -covar toydata.covar.txt -out MyResults.csv
+  
 
 Puma
 ====
@@ -93,7 +145,8 @@ Advanced inputs:
 When you run the job, it will return a file of pvalues as well as an R results file. The best way to read this data is to use an R extraction program which will summarize the results for you:
 
 * Download extract_puma_results.R and place a copy in the directory with your results file: https://github.com/CyVerse-Validate/Stampede-Files/blob/master/Puma/extract_puma_results.R)
-* Modify the file with your results file name (example: "results_testjob_LASSO.R") in line 9: result = dget("FILENAME.R")
+* Modify the file with your results file name (example: "results_testjob_LASSO.R") in line 9: 
+result = dget("FILENAME.R")
 * Save extract_puma_results.R
 * Start R and run these lines (where OUTPUTFILENAME is what you want your summarized results file to be called):
 
