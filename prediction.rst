@@ -100,12 +100,12 @@ To run the software you need one parameter file (.inp) and three input files (.g
     "archive": false,
     "archivePath": "",
     "inputs":{
-    "phenotypeFileName":"agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMI.gs",
-    "markerFileName":"agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/gpegeno.newbin",
-    "includeFileName":"agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMIg.192"
+    "phenotypeFileName":"agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/DMI.gs",
+    "markerFileName":"agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/gpegeno.newbin",
+    "includeFileName":"agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/DMIg.192"
     },
     "parameters":{
-    "Parameter_File":"agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/run.inp"
+    "Parameter_File":"agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/run.inp"
     }
   }
 
@@ -131,7 +131,7 @@ Running RidgePredict through Agave
 
 **Locating the parameter/input files and running RidgePredict:**
 
-To run the software you need one .ped parameter file, for example: agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped
+To run the software you need one .ped parameter file, for example: agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped
 You only need one parameter, which will be the name you wish to have for your output.
 
 1. Save the following as a JSON file and modify to your needs:
@@ -149,7 +149,7 @@ You only need one parameter, which will be the name you wish to have for your ou
     "archive": false,
     "archivePath": "",
     "inputs": {
-        "inputPed": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped"
+        "inputPed": "agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped"
     },
     "parameters":{
         "outputPed": "ridge-test-output.ped"

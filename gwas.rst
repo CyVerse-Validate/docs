@@ -56,9 +56,9 @@ You can save this example json and modify it for your needs:
 	"requestedTime": "02:00:00",
 	"archive": true,
 		"inputs":{
-			"inputPED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped",
-			"inputMAP": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map",
-			"inputPHENO": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt"
+			"inputPED": "agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped",
+			"inputMAP": "agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map",
+			"inputPHENO": "agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt"
 		},
 		"parameters":{
 			"output": "full_results"
