@@ -53,8 +53,8 @@ Documentation
 .. toctree::
    :maxdepth: 3
 
-    Quickstart Guide <quickstart.rst>
     Useful Terms <terms.rst>
+    Quickstart Guide <quickstart.rst>
     Citations & Resources <citations.rst>
     Further Development & Getting help <develop.rst>
     Updating the Docs <updating.rst>
