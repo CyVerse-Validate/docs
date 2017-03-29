@@ -43,7 +43,7 @@ description, and -N is your application name.
 You will be asked to enter your CyVerse account information::
 
     auth-tokens-create -S
-
+The above code is a token. Tokens are a form of short-lived (4 hours), temporary authenticiation and authorization used in place of your username and password. To continue interacting with Agave and other Cyverse APIs after the token has expired, you will simply type in the command 'auth-tokens-create' to refresh your token.
 At this point::
 
     apps-list
