@@ -28,7 +28,7 @@ Upload with command (where USERNAME is your Cyverse username and FOLDERNAME is w
 
   {
     "jobName": "testAlphaSim",
-    "softwareName": "AlphaSim-1.04",
+    "softwareName": "AlphaSim-1.04u1",
     "requestedTime": "05:00:00",
     "archive": true,
     "inputs":{
