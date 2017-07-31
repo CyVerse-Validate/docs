@@ -1,30 +1,28 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Generating Simulation Data with Alphasim &mdash; Validate 1.0 documentation</title>
-    
+    <title>Generating Simulation Data with Alphasim &#8212; Validate 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
-    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Submitting jobs on Stampede" href="json.html" />
     <link rel="prev" title="Running Validate on Syngenta data set" href="syngenta_tut.html" />
    
@@ -34,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -56,12 +54,15 @@
 <p><strong>Locate / Open parameter file</strong></p>
 <ul class="simple">
 <li>You can download a sample parameter files from <a class="reference external" href="https://raw.githubusercontent.com/CyVerse-Validate/Stampede-Files/master/AlphaSim-1.04/AlphaSimSpec.txt">our repository</a>. The parameter file allows you to pass commands into the AlphaSim software.</li>
-<li>Once you have access the parameter file upload it to your Data Store. The default parameter file has specifications for running multiple generations for corn genetics.</li>
-<li>Save the following as a JSON file (This can be save locally as long as you have the Agave CLI installed) with usename replaced with your CyVerse username And the path to the file to the parameter file within your Data Store.</li>
+<li>Once you have access the parameter file, upload it to your Data Store. The default parameter file has specifications for running multiple generations for corn genetics.</li>
+</ul>
+<p>Upload with command (where USERNAME is your Cyverse username and FOLDERNAME is where you would like it to be located on the data store): files-upload -S data.iplantcollaborative.org -F AlphaSimSpec.txt USERNAME/FOLDERNAME</p>
+<ul class="simple">
+<li>Save the following as a JSON file (This can be saved locally if you have the Agave CLI installed) with username replaced with your CyVerse username and the path to the file to the parameter file within your Data Store.</li>
 </ul>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;testAlphaSim&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;AlphaSim-1.04&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;AlphaSim-1.04u1&quot;</span><span class="p">,</span>
   <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;05:00:00&quot;</span><span class="p">,</span>
   <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
   <span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
@@ -71,38 +72,59 @@
 </pre></div>
 </div>
 <ul>
-<li><p class="first">With the following command you can run AlphaSim (publicly available on Agave). This is assuming that you don&#8217;t want to change any of the parameters:</p>
-<p>jobs-submit -F (path to json file)</p>
+<li><p class="first">With the following command you can run AlphaSim (publicly available on Agave). This is assuming that you don’t want to change any of the parameters:</p>
+<p>jobs-submit -F [path to json file]</p>
 </li>
-<li><p class="first">After submiting your job there will be a returned message which will list your job-id - This is helpful for looking up status and downloading output later</p>
+<li><p class="first">After submitting your job there will be a returned message which will list your job-id - This is helpful for looking up the job status and downloading output later.</p>
 </li>
 <li><p class="first">The command:</p>
-<p>job-status [withyourjobid]</p>
+<p>job-status [yourjobid]</p>
 </li>
 </ul>
 <p>will allow you to see when your job will be done</p>
 <ul>
-<li><p class="first">Once this finishes this will save onto your Data Store, if Archive is set to true, under Archive/Jobs in your personal DE folder.</p>
-</li>
-<li><p class="first">If you are okay with these outputs they are now useable, you can also option to convert to pedmap (which is a more standard format) using the merger application found in <a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
+<li><p class="first">Once this finishes it will save onto your Data Store, if Archive is set to true, under Archive/Jobs in your personal DE folder.</p>
 </li>
 <li><p class="first">You can download your outputs from jobs with the general command:</p>
-<p>jobs-output &#8211;download &#8211;path [FilePath in the Data Store] [JOBID]</p>
+<p>jobs-output –download –path [path to the desired file relative to the job output folder on the data store] [JOBID]</p>
 </li>
 <li><p class="first">You will download your outputs to your local computer from the Data Store with the following commands:</p>
-<p>jobs-output &#8211;download &#8211;path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt [yourjobid]
-jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/Gender.txt [yourjobid]
-jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/PedigreeTbvTdvTpv.txt [yourjobid]
-jobs-output &#8211;download &#8211;path AlphaSim/SimulatedData/AllIndividualSnpChips/Chip1Genotype.txt [yourjobid]
-jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1SnpInformation.txt [yourjobid]</p>
+<p>jobs-output –download –path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt [yourjobid]
+jobs-output –download –path AlphaSim/SimulatedData/Gender.txt [yourjobid]
+jobs-output –download –path AlphaSim/SimulatedData/PedigreeTbvTdvTpv.txt [yourjobid]
+jobs-output –download –path AlphaSim/SimulatedData/AllIndividualSnpChips/Chip1Genotype.txt [yourjobid]
+jobs-output –download –path AlphaSim/Chromosomes/Chromosome1/Chip1SnpInformation.txt [yourjobid]</p>
 </li>
-<li><p class="first">Download the merger.py from the github repository here <a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
-</li>
-<li><p class="first">Then you can run the merger with the AlphaSim outputs with the following commands (this will convert your outputs to PED/MAP:</p>
-<p>python Merge.py &#8211;output ASimExampleOutputPrefix alphasim &#8211;snp Chip1SnpInformation.txt &#8211;pedigree PedigreeTbvTdvTpv.txt &#8211;gender Gender.txt &#8211;geno Chip1Genotype.txt &#8211;sol SnpSolutions.txt</p>
+<li><p class="first">Alternatively, feel free to modify this bash script to your needs to automate pulling in all of the output files:</p>
 </li>
 </ul>
-<p>This will yield ASimExampleOutputPrefix.ped and ASimExampleOutputPrefix.map in the directory specified in your above output flag.</p>
+<p><a class="reference external" href="https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/getFilesExample.sh">https://github.com/CyVerse-Validate/Stampede-Files/blob/master/AlphaSim-1.04/getFilesExample.sh</a></p>
+<ul class="simple">
+<li>If you are okay with these outputs they are now useable. You also have the option to convert to pedmap (which is a more standard format) using our merger application.</li>
+</ul>
+<p><strong>Convert to ped/map</strong></p>
+<p>1. Download the merger.py from the github repository here (or if you have already installed Validate, it is included):
+<a class="reference external" href="https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger">https://github.com/CyVerse-Validate/Validate/tree/master/CurrentReleaseStable/Util_1/Merger</a></p>
+<ol class="arabic simple" start="2">
+<li>Run the merger with the AlphaSim outputs with the following commands from the directory where your AlphaSim output is located, where ALPHASIMPREFIX is the prefix of your job output:</li>
+</ol>
+<blockquote>
+<div>python PATHTOMERGE/merge.py –output ALPHASIMPREFIX alphasim –snp SimulatedData/Chip1SnpInformation.txt –pedigree SimulatedData/PedigreeTbvTdvTpv.txt –gender SimulatedData/Gender.txt –geno SimulatedData/AllIndividualsSnpChips/Chip1Genotype.txt –sol Selection/SelectionFolder1/SnpSolutions.txt</div></blockquote>
+<p>This will yield ALPHASIMPREFIX.ped and ALPHASIMPREFIX.map in the directory specified in your above output flag.</p>
+<ul class="simple">
+<li>To convert your ped/map files to bed/bim/fam format, required by many applications such as fastlmm, follow these steps:</li>
+</ul>
+<p><strong>Convert to bed/bim/fam</strong></p>
+<p>1. Download plink from the github repository here (or if you have already installed Validate, it is included):
+<a class="reference external" href="https://github.com/CyVerse-Validate/Validate/blob/master/CurrentReleaseStable/GWAS_1/plink">https://github.com/CyVerse-Validate/Validate/blob/master/CurrentReleaseStable/GWAS_1/plink</a></p>
+<ol class="arabic simple" start="2">
+<li>Run Plink with the following command from the directory where your ped/map files are located:</li>
+</ol>
+<blockquote>
+<div>PATHTOPLINK/plink –file ALPHASIMPREFIX –out ALPHASIMPREFIX –make-bed</div></blockquote>
+<ul class="simple">
+<li>At this point, you should have all the original output available to you as well as ped/map files and bed/bim/fam files and can use the appropriate files for your job.</li>
+</ul>
 </div>
 </div>
 
@@ -114,6 +136,7 @@ jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1Sn
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
@@ -128,7 +151,6 @@ jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1Sn
 <li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating.html"> Updating the Docs</a></li>
@@ -137,7 +159,7 @@ jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1Sn
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/alphasim.txt"
+      <li><a href="_sources/alphasim.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -159,11 +181,11 @@ jobs-output &#8211;download &#8211;path AlphaSim/Chromosomes/Chromosome1/Chip1Sn
       &copy;2016, UNCW Cyverse.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/alphasim.txt"
+      <a href="_sources/alphasim.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

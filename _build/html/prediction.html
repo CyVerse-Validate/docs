@@ -1,31 +1,29 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Prediction Tools &mdash; Validate 1.0 documentation</title>
-    
+    <title>Prediction Tools &#8212; Validate 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
-    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
-    <link rel="next" title="Useful Terms" href="terms.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Links &amp; Citations" href="citations.html" />
     <link rel="prev" title="GWAS Tools" href="gwas.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -34,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -44,10 +42,10 @@
             
   <div class="section" id="prediction-tools">
 <h1>Prediction Tools<a class="headerlink" href="#prediction-tools" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="beyesr">
-<h2>BeyesR<a class="headerlink" href="#beyesr" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bayesr">
+<h2>BayesR<a class="headerlink" href="#bayesr" title="Permalink to this headline">¶</a></h2>
 <p><strong>Speed Test Results</strong></p>
-<p>Our BayesR speed test on the full syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.</p>
+<p>Our BayesR speed test on a third of the syngenta data set on the Cyverse Data store completed successfully in 22 hours and 25 minutes, running 333 jobs on 64 nodes, two processes per node.</p>
 <div class="section" id="running-bayesr-through-agave">
 <h3>Running BayesR through Agave<a class="headerlink" href="#running-bayesr-through-agave" title="Permalink to this headline">¶</a></h3>
 <p>From your local machine, create a folder for the output and cd into it:</p>
@@ -62,7 +60,7 @@
 <p>Open this with a text editor and edit the following parameters:</p>
 <ol class="loweralpha simple">
 <li>For jobName, anything will work. For this example, I used testBayesR</li>
-<li>For software name, enter “bayesR-0.75”</li>
+<li>For software name, enter “bayesR-2.00u1”</li>
 <li>For requested time, enter “02:00:00”</li>
 </ol>
 <p>d. For inputBED enter “agave://data.iplantcollaborative.org/username/folder/simdata.bed”, replacing
@@ -88,7 +86,7 @@ the output parameter from the job json file. In my case, testresults.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">download</span> <span class="o">--</span> <span class="n">path</span> <span class="n">testresults</span><span class="o">.</span><span class="n">frq</span> <span class="mi">3895995830152073701</span><span class="o">-</span><span class="n">ee4acae9fffff7a7</span><span class="o">-</span><span class="mi">0001</span><span class="o">-</span><span class="mi">007</span>
 </pre></div>
 </div>
-<p>Here the &#8211;path parameter refers to which file you want to download and the long string
+<p>Here the –path parameter refers to which file you want to download and the long string
 at the end is your job ID.</p>
 </div>
 </div>
@@ -122,20 +120,57 @@ at the end is your job ID.</p>
   <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
   <span class="s2">&quot;archivePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
   <span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
-  <span class="s2">&quot;phenotypeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMI.gs&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;markerFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/gpegeno.newbin&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;includeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/DMIg.192&quot;</span>
+  <span class="s2">&quot;phenotypeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/DMI.gs&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;markerFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/gpegeno.newbin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;includeFileName&quot;</span><span class="p">:</span><span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/DMIg.192&quot;</span>
   <span class="p">},</span>
   <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
-  <span class="s2">&quot;Parameter_File&quot;</span><span class="p">:</span><span class="s2">&quot;agave://data.iplantcollaborative.org/shared/iplantcollaborative/example_data/gensel/run.inp&quot;</span>
+  <span class="s2">&quot;Parameter_File&quot;</span><span class="p">:</span><span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/iplantcollaborative/example_data/gensel/run.inp&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>With the following command you can run Gensel (publicly available on Agave) This is assuming that you don&#8217;t want to change any of the parameters/inputs listed in the sample json file.</li>
+<li>With the following command you can run Gensel (publicly available on Agave) This is assuming that you don’t want to change any of the parameters/inputs listed in the sample json file.</li>
 </ol>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">submit</span> <span class="o">-</span><span class="n">F</span> <span class="p">(</span><span class="n">your</span> <span class="n">path</span> <span class="n">the</span> <span class="n">JSON</span> <span class="n">file</span> <span class="n">you</span> <span class="n">just</span> <span class="n">saved</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ridgepredict">
+<h2>RidgePredict<a class="headerlink" href="#ridgepredict" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-ridgepredict-through-agave">
+<h3>Running RidgePredict through Agave<a class="headerlink" href="#running-ridgepredict-through-agave" title="Permalink to this headline">¶</a></h3>
+<p><strong>Estimated Time ~15min</strong></p>
+<p><strong>Prerequisities:</strong> Agave CLI, general knowledge of executing using Agave, Access to the Cyverse data store, and Stampede allocation (if you want)</p>
+<p><strong>Helpful Documentation</strong></p>
+<ul class="simple">
+<li>The RidgePredict app uses Ridge Regression based on the SciKitLearn Ridge package: <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html</a></li>
+</ul>
+<p><strong>Locating the parameter/input files and running RidgePredict:</strong></p>
+<p>To run the software you need one .ped parameter file, for example: agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped
+You only need one parameter, which will be the name you wish to have for your output.</p>
+<ol class="arabic simple">
+<li>Save the following as a JSON file and modify to your needs:</li>
+</ol>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;ridge-test-1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;RidgePredict-1.1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;processorsPerNode&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;01:00:00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;memoryPerNode&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+  <span class="s2">&quot;nodeCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;batchQueue&quot;</span><span class="p">:</span> <span class="s2">&quot;serial&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+  <span class="s2">&quot;archivePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;inputPed&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+      <span class="s2">&quot;outputPed&quot;</span><span class="p">:</span> <span class="s2">&quot;ridge-test-output.ped&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -150,6 +185,7 @@ at the end is your job ID.</p>
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
@@ -159,13 +195,13 @@ at the end is your job ID.</p>
 <li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Prediction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#beyesr">BeyesR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bayesr">BayesR</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gensel">GenSel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ridgepredict">RidgePredict</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating.html"> Updating the Docs</a></li>
@@ -174,7 +210,7 @@ at the end is your job ID.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/prediction.txt"
+      <li><a href="_sources/prediction.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -196,11 +232,11 @@ at the end is your job ID.</p>
       &copy;2016, UNCW Cyverse.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/prediction.txt"
+      <a href="_sources/prediction.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -1,29 +1,28 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Updating the docs &mdash; Validate 1.0 documentation</title>
-    
+    <title>Updating the docs &#8212; Validate 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Getting Help" href="develop.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -32,7 +31,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -59,7 +58,7 @@ documentation is stored on github in plain-text at
 documentation hosted on their servers.</p>
 <p><strong>from the desktop</strong></p>
 <p>browse to <a class="reference external" href="https://github.com/CyVerse-Validate/validate-doc">https://github.com/CyVerse-Validate/validate-doc</a></p>
-<p>click &#8220;Clone or Download&#8221; at the right. You can use the github desktop
+<p>click “Clone or Download” at the right. You can use the github desktop
 app or work with the compressed folder using the text editor of your
 choice. For comprehensive edits you may wish to use <a class="reference external" href="https://atom.io">Atom</a> with the language-sphinx package enabled with the
 documentation directory selected as your project folder.</p>
@@ -78,10 +77,10 @@ introduction see:</p>
 <li><a class="reference external" href="https://yangsu.github.io/pull-request-tutorial/">https://yangsu.github.io/pull-request-tutorial/</a></li>
 <li><a class="reference external" href="http://swcarpentry.github.io/git-novice/">http://swcarpentry.github.io/git-novice/</a></li>
 </ul>
-<p>In short, you&#8217;ll want to create a fork of the repository from the
-terminal or the github project&#8217;s website. The repository includes
+<p>In short, you’ll want to create a fork of the repository from the
+terminal or the github project’s website. The repository includes
 restructured text source files, html, and a make command for
-previewing the html on your own machine. Once you&#8217;ve finished with
+previewing the html on your own machine. Once you’ve finished with
 your proposed changes, add &amp; commit the changes to your fork &amp; open a
 pull request to the master branch at cyverse-validate/docs.</p>
 <div class="section" id="updating-table-of-contents">
@@ -93,12 +92,12 @@ projects. These features are handled using unique directives
 documented &lt;here&gt;. The most important of these will be “toctree” where
 you define your table of contents. To add an additional page, you’d
 update index.rst to include the new document, and create a new text
-document &#8220;filename.rst”. The formatting is fairly self-explanatory;
+document “filename.rst”. The formatting is fairly self-explanatory;
 see the existing index for an example.</p>
 </div>
 <div class="section" id="building-sphinx-html-on-your-own-machine">
 <h3>Building Sphinx html on your own machine<a class="headerlink" href="#building-sphinx-html-on-your-own-machine" title="Permalink to this headline">¶</a></h3>
-<p>To preview the documentation, you&#8217;ll need to compile html files using the command:</p>
+<p>To preview the documentation, you’ll need to compile html files using the command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
@@ -125,8 +124,8 @@ linked ones), and view the html output in your default browser with:</p>
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#"> Updating the Docs</a><ul>
@@ -144,7 +143,7 @@ linked ones), and view the html output in your default browser with:</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/updating.txt"
+      <li><a href="_sources/updating.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -166,11 +165,11 @@ linked ones), and view the html output in your default browser with:</p>
       &copy;2016, UNCW Cyverse.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/updating.txt"
+      <a href="_sources/updating.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

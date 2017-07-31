@@ -1,30 +1,28 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Account Setup Guide &mdash; Validate 1.0 documentation</title>
-    
+    <title>Account Setup Guide &#8212; Validate 1.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Validate 1.0 documentation" href="index.html" />
-    <link rel="up" title="Getting Started with Validate" href="quickstart.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Running Validate on Syngenta data set" href="syngenta_tut.html" />
     <link rel="prev" title="Getting Started with Validate" href="quickstart.html" />
    
@@ -34,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   
 
     <div class="document">
@@ -44,13 +42,13 @@
             
   <div class="section" id="account-setup-guide">
 <h1>Account Setup Guide<a class="headerlink" href="#account-setup-guide" title="Permalink to this headline">¶</a></h1>
-<p>While it is possible to Validate using your own hardware, you&#8217;ll
+<p>While it is possible to Validate using your own hardware, you’ll
 benefit from greatly enhanced speed and reliability using high-speed
 compute resources freely-available from the open-source science
-community. You&#8217;ll need to set up accounts with <a class="reference external" href="http://www.cyverse.org/">Cyverse</a>, the Texas
+community. You’ll need to set up accounts with <a class="reference external" href="http://www.cyverse.org/">Cyverse</a>, the Texas
 Advanced Computing Center (<a class="reference external" href="https://www.tacc.utexas.edu/">TACC</a>), and Extreme Science &amp; Engineering
 Discovery Environment (<a class="reference external" href="https://www.xsede.org/">XSEDE</a>) to gain the most benefit from these
-tutorials. If you&#8217;re working in an academic laboratory, you should
+tutorials. If you’re working in an academic laboratory, you should
 have little trouble registering for accounts and allocations available
 to users with a .edu email address. Bear in mind that large
 allocations may require approval for a specific research need.</p>
@@ -65,18 +63,18 @@ upon request to up to 1TB. For more information see
 <a class="reference external" href="http://www.cyverse.org/data-store">http://www.cyverse.org/data-store</a>.</li>
 <li>To gain access to Atmosphere images, which can be a convenient way
 to quickly get started in a linux environment pre-configured for
-GWAS analysis, you&#8217;ll need to request <a class="reference external" href="http://www.cyverse.org/learning-center/manage-account#AddAppsServices">access</a> through your cyverse
+GWAS analysis, you’ll need to request <a class="reference external" href="http://www.cyverse.org/learning-center/manage-account#AddAppsServices">access</a> through your cyverse
 dashboard.</li>
 </ul>
 </div>
 <div class="section" id="id2">
 <h2>TACC<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>These guides refer to running the Validate workflow on the Stampede
-supercomputer at the TACC. You&#8217;ll need to make an account at
+supercomputer at the TACC. You’ll need to make an account at
 <a class="reference external" href="https://portal.tacc.utexas.edu/">https://portal.tacc.utexas.edu/</a> to get started. Unless you are a
 professor or in charge of a collaborative project at your
 company/institution, simply list the PI option near the end of the
-application as <em>Ineligible.</em></p>
+application as <em>Ineligible</em>. After you’ve created your account, you’ll need to configure two-factor authentication back at the user portal before you can log on to TACC machines.</p>
 </div>
 <div class="section" id="id3">
 <h2>XSEDE<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
@@ -84,7 +82,7 @@ application as <em>Ineligible.</em></p>
 collection of advanced digital services for scientific
 collaboration. Your account with them grants you access to the Agave
 API for job submission and data management, and allows you to run jobs
-on Stampede using &#8220;iPlant-collabs&#8221; project allocation.</p>
+on Stampede using “iPlant-collabs” project allocation.</p>
 <ul class="simple">
 <li>Register for an account following the steps at
 <a class="reference external" href="https://www.xsede.org/using-xsede">https://www.xsede.org/using-xsede</a></li>
@@ -93,7 +91,7 @@ on Stampede using &#8220;iPlant-collabs&#8221; project allocation.</p>
 </ul>
 <p>If you are a staff member at the iPlant Collaborative, send a message
 to <a class="reference external" href="mailto:support&#37;&#52;&#48;iplantcollaborative&#46;org">support<span>&#64;</span>iplantcollaborative<span>&#46;</span>org</a> to request access to the
-&#8220;iPlant-Collabs&#8221; allocation. Getting access may take a day or two, but
+“iPlant-Collabs” allocation. Getting access may take a day or two, but
 you will know for sure upon trying out Stampede for yourself. <strong>Note
 that you will not immediately receive a notification upon getting
 access. The only way to know for sure is to try it out!</strong></p>
@@ -113,7 +111,7 @@ depending on your operating system:</p>
 Unix-like environment to windows. While the initial installation
 options may be overwhelming, all you need are the ssh tools to use the
 shell to access Stampede. You may also quickly get an Ubuntu image up
-and running through Atmosphere once you&#8217;ve set up your Cyverse
+and running through Atmosphere once you’ve set up your Cyverse
 account.</p>
 <ul class="simple">
 <li><a class="reference external" href="http://www.putty.org/">PuTTY</a>: a no-frills Unix-esque SSH client</li>
@@ -148,6 +146,7 @@ through the <em>ssh</em> command.</li>
         <div class="sphinxsidebarwrapper">
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Account Setup Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Cyverse</a></li>
@@ -169,7 +168,6 @@ through the <em>ssh</em> command.</li>
 <li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="updating.html"> Updating the Docs</a></li>
@@ -178,7 +176,7 @@ through the <em>ssh</em> command.</li>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/accounts.txt"
+      <li><a href="_sources/accounts.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -200,11 +198,11 @@ through the <em>ssh</em> command.</li>
       &copy;2016, UNCW Cyverse.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="_sources/accounts.txt"
+      <a href="_sources/accounts.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
