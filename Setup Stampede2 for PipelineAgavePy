@@ -1,0 +1,17 @@
+1. Assume user has a Cyverse and Stampede2 account setup
+2. Change to work directory if you need more space.  Home directory allows for up to 10GB and Work directory allows for up to 1TB.  
+  - command to change to work directory >$ cdw
+3. You need to create a virtual environment to install the agavepy package with pip.  
+  - >$ virtualenv Name_of_Env >>> I named mine Validate1.2
+4. Change to new environment directory.
+  - >$ cd Validate1.2
+5. We need to use our new environment.
+  - >$source bin/activate
+6. Next we need to install the packages required to run the Pipeline.
+  - >$ pip install agavepy numpy pandas statsmodels scipy
+7. Finally we need to clone the repo from Github that contains the Pipeline.
+  - >$ git clone https://github.com/CyVerse-Validate/Validate.git
+8. You now should be setup to run the pipeline.
+9. Move to PipeDevel directory.
+  - >$ cd PipeDevel
+10. There are a lot of options in the command to run the Pipeline.  You can choose if you want to run a simulation, what type of GWAS or GenSel tools to use, whether you need Winnow for further analysis, the type of data being used (PED, BED, TFAM), and where the data is located on the Discovery Environment.
