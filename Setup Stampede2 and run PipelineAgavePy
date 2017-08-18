@@ -15,3 +15,23 @@
 9. Move to PipeDevel directory.
   - >$ cd PipeDevel
 10. There are a lot of options in the command to run the Pipeline.  You can choose if you want to run a simulation, what type of GWAS or GenSel tools to use, whether you need Winnow for further analysis, the type of data being used (PED, BED, TFAM), and where the data is located on the Discovery Environment.
+11. A sample command line looks like this:
+  - >$ -u ______ --password ____________ -i tp -f /dhbrand/My_Data -lmm True
+12. Here are all the options:
+  - "-u", "--username", "Username used for Agave services."
+  - "--password", "Password used for Agave services."
+  - "-i", "--InFormat", "Input format:\n"
+    - "\tp for PED/MAP\n"
+    - "\tb for BIM/BED/FAM\n"
+    - "\tt for TPED/TFAM")
+  - "-f", "--Folder", "Folder to be pipelined. This folder should"
+                          "contain all input data as well as the known-truth"
+                          "file for the given data set and be a path"
+                          "relative to the \"/iplant/home\" directory."
+  - "-lmm", "--fastlmm", "\"True\" if FaST-LMM is to be run."
+  - "-rdg", "--ridge", "\"True\" if Ridge is to be run."
+  - "-bay", "--bayes", "\"True\" if BayesR is to be run."
+  - "-plk", "--plink", "\"True\" if PLINK is to be run."
+  - "-qxp", "--qxpak", "\"True\" if QxPak is to be run."
+  - "-gma", "--gemma", "\"True\" if Gemma is to be run."
+  - "-pma", "--puma", "\"True\" if Puma is to be run."
