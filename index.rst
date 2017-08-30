@@ -4,7 +4,7 @@
 **Validation is an evolving process and the documentation should reflect the experiences of users as they discover new and useful bits of information.**
 :ref:`updating` is easy, and you can share comments and questions `at this forum <https://github.com/cyverse-validate/docs/issues>`_.
 
-Validate 1.0
+Validate 1.2
 ============
 
 Validation is the positive control for your experimental data
@@ -34,6 +34,11 @@ computational demand for your simulations will scale up as your needs
 increase. All of your necessary files may be uploaded and accessed
 from the CyVerse Data Store.
 
+Version 1.2 Features
+--------------------
+
+- Added python scripts to streamline common tasks and open new options for scaling and automation.
+
 Version 1.0 Features
 ---------------------
 
@@ -57,4 +62,5 @@ Documentation
     Quickstart Guide <quickstart.rst>
     Citations & Resources <citations.rst>
     Further Development & Getting help <develop.rst>
-    Updating the Docs <updating.rst>
+    Setting up the Validate Pipeineline <pipeline.rst>
+    Comments & Discussion <notes.rst>
