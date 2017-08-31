@@ -51,6 +51,7 @@ Using the Validate Pipeline
 
 .. _navigate: http://www.westwind.com/reference/os-x/commandline/navigation.html
 
+
 + the command to initialize the pipeline requires several parameters. In addition to your Agave account infomation, you must specify if you want to run a simulation, what type of GWAS or GenSel tools to use, whether you need Winnow for further analysis, the type of data being used (PED, BED, TFAM), and where the data is located on the Discovery Environment.
 
 + A sample command line looks like this:
@@ -60,3 +61,25 @@ Using the Validate Pipeline
 
 This would instruct the script to run the TPED/TFAM files in the specified datastore directory through FaSt-LMM.
 
+Full Parameters
+---------------
+
+.. csv-table:: Full Parameters
+  :heaer: "Command", "Verbose," "Description"
+  :widths: 15, 10, 30
+  
+  "-u", "--username *username*", "Username for Agave services"
+  "-i", "--InFormat *\inputformat*", "Defines data input format. \tp for PED/MAP, \tb for BIM/BED/FAM, \tt for TPED/TFAM"
+  "-f", "--folder *working_directory*", "Folder to be pipelined. This folder should contain all inputs as well as the known-truth file for the given dataset."
+  "-l", "--fastlmm", "Run Fast-LMM"
+  "-r", "--ridge", "Run Ridge"
+  "-b", "--bayes", "Run BayesR"
+  "-p", "--plink", "Run Plink"
+  "-q", "--qxpak", "Run QxPak"
+  "-g", "--gemma", "Run Gemma"
+
+Modifying the wrapper
+---------------------
+
+Modifying pipeline.py
+---------------------
