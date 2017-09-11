@@ -1,0 +1,120 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Documentation Notes &amp; Discussion &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Running the pipeline" href="pipeline.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="documentation-notes-discussion">
+<h1>Documentation Notes &amp; Discussion<a class="headerlink" href="#documentation-notes-discussion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="some-suggestions-for-the-documentation">
+<h2>Some suggestions for the documentation:<a class="headerlink" href="#some-suggestions-for-the-documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Some overview of the workflow is needed. E.g. where the jobs are run, where the output is put, and then why you need to download it, and then upload it again to run winnow.</li>
+</ul>
+<p><em>With the pipeline this will no longer be a problem. Users will give their Cyverse login info at the beginning and the pipeline will automatically access the users Discovery Environment. Jobs are run on Stampede2 using Agave. The output from the job is stored on the users DE. There will be an option to run Winnow in the initial command. Winnow output will be created and placed in a different directory in the user’s DE.</em></p>
+<ul class="simple">
+<li>Under “Configure Job Submission” it would be useful to have some general background, for example what the job is going to do. What is FastLMM and what kinds of inputs does it need? It isn’t clear from the json how to direct the results from a job to a particular place or folder. Some details on where the output is going would be informative. In the past I’ve only written submission scripts with command line arguments - could you add an example of a command line argument and how it would look in the json?</li>
+<li>Under “Submit Job” is there a way to access your current or previous job ids?</li>
+</ul>
+<p><em>All of the jobs that are submitted are tied to the user’s Agave login (i.e. Cyverse login) information. The default JSON’s from Validation 1.0 were using the directory “archive” on the DE to store all the job and it was listed by Job ID. Michael is working on each job going into a directory based on the type of analysis submitted (i.e. all simulations in one directory, all GWAS in another directory, GenSel another, Winnow another, etc.) and then each of those jobs will have a dated name. So if a user needed to go looked at a job they could access the information through the DE. An alternative would be to use the Agave ToGo website as it also</em></p>
+<ul class="simple">
+<li>“Run more GWAS / Prediction Apps for comparision” (note “comparision” is spelled wrong). It would be good to have some json examples that work for each of these programs. It would also be good to have links to the publications and webpages to each of the programs.</li>
+<li>“Send Output Files to Winnow” Some background is needed on Winnow and what it does. The link is also not very helpful. What format should the “known truth” file be in? What are the fit statistics that it calculates and how are they calculated? What does Results.txt look like? Some people, like me, probably won’t use Winnow because we have some other stats and analysis that we’d like to run. It might be worth stating that this is optional.</li>
+<li>“Demonstrate” section - It seems like this package requires a very specific type of input directory. It would be good to have some more information/examples on the inputs, and some examples of the outputs. How are multiple programs visualized and compared?</li>
+</ul>
+<p>[8:55] (Note that answers to some of my questions are found in other places in the docs, but links and more info just need to be added to the quickstart guide)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Comments &amp; Discussion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#some-suggestions-for-the-documentation">Some suggestions for the documentation:</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/notes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/notes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

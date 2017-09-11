@@ -1,0 +1,315 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Running Validate on Syngenta data set &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generating Simulation Data with Alphasim" href="alphasim.html" />
+    <link rel="prev" title="Account Setup Guide" href="accounts.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="running-validate-on-syngenta-data-set">
+<h1>Running Validate on Syngenta data set<a class="headerlink" href="#running-validate-on-syngenta-data-set" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-cyverse-cli-tools">
+<h2>Install Cyverse CLI tools<a class="headerlink" href="#install-cyverse-cli-tools" title="Permalink to this headline">¶</a></h2>
+<p>Accessing Validate through the Agave API hugely streamlines the task
+of managing your data and accessing applications through the Cyverse
+Data Store with a variety of command-line tools. For a comprehensive
+overview please see the <a class="reference external" href="https://github.com/iPlantCollaborativeOpenSource/cyverse-sdk">full documentation</a>.</p>
+<p>Download Agave API:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">iPlantCollaborativeOpenSource</span><span class="o">/</span><span class="n">cyverse</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Change directory into the downloaded repository and unpack the cli tools:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">cyverse</span><span class="o">-</span><span class="n">sdk</span>
+<span class="n">tar</span> <span class="n">xf</span> <span class="n">cyverse</span><span class="o">-</span><span class="n">cli</span><span class="o">.</span><span class="n">tgz</span>
+</pre></div>
+</div>
+<p>Add the cli tools to your home directory and bash profile:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>mv cyverse-cli $HOME
+echo &quot;PATH=\$PATH:\$HOME/cyverse-cli/bin&quot; &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</pre></div>
+</div>
+<p>(note that on a Macintosh system your default profile may be .bash_profile)</p>
+<p>Initialise the CLI tools:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tenants</span><span class="o">-</span><span class="n">init</span> <span class="o">-</span><span class="n">t</span> <span class="n">iplantc</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
+<p>Create an OAAuth client application with API keys:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">clients</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">S</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">N</span> <span class="n">my_client</span> <span class="o">-</span><span class="n">D</span> <span class="s2">&quot;Client used for app development&quot;</span>
+</pre></div>
+</div>
+<p>Where -S saves the keys for future use, -D provides a brief
+description, and -N is your application name.</p>
+<p>You will be asked to enter your CyVerse account information:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">auth</span><span class="o">-</span><span class="n">tokens</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">S</span>
+</pre></div>
+</div>
+<p>The above code is the authorization of a token. Tokens are a form of short-lived (4 hours), temporary authenticiation and authorization used in place of your username and password. To continue interacting with Agave and other Cyverse APIs after the token has expired, you will simply type in the command ‘auth-tokens-create’ to refresh your token.</p>
+<p>At this point:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apps</span><span class="o">-</span><span class="nb">list</span>
+</pre></div>
+</div>
+<p>should return a list of all publicly-available apps.</p>
+</div>
+<div class="section" id="configure-job-submission">
+<span id="jobs"></span><h2>Configure Job Submission<a class="headerlink" href="#configure-job-submission" title="Permalink to this headline">¶</a></h2>
+<p>A template .JSON file is available to get started. The basic parameters define a few basic settings for your job– this example, “FLMMDongWangFull,” requests two hours of runtime to process the publically-available Dong Wang simulation data, which is referenced in the parameter file using an agave url. While the parameters should be fairly self-explainatory, full details can be found in the <a class="reference external" href="http://developer.agaveapi.co/#job-submission">documentation for the Agave API</a>.</p>
+<p>download fastLMM job skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>(you may need to install wget if using a mac)</p>
+<p>You can open fastlmm-job.json in your text editor of choice to go over your options &amp; make any needed changes (depending on your needs and TACC system status, you may want to request more or less time for your job):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;FLMMDongWangFull&quot;</span><span class="p">,</span>
+<span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;FaST-LMM-hpc-2.07u1&quot;</span><span class="p">,</span>
+<span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;02:00:00&quot;</span><span class="p">,</span>
+<span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
+            <span class="s2">&quot;inputPED&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;inputPHENO&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt&quot;</span>
+         <span class="p">},</span>
+<span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;full_results&quot;</span>
+                <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Inputs must be specified based on the app you’re running– ensure the
+file format is correct! Refer to individual app’s documentation for
+more information. In this tutorial we are accessing PED, MAP and
+phenotype files from the public syngenta_sim dataset.</p>
+<p>To access your own data from the Data Store, change the url
+to replace “/shared/” with the path to your user account; ie:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;agave://data.iplantcollaborative.org/yourusername/results/yourdata.ped&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="submit-job">
+<h2>Submit Job<a class="headerlink" href="#submit-job" title="Permalink to this headline">¶</a></h2>
+<p>from the working directory where the .json file is located, type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">submit</span> <span class="o">-</span><span class="n">F</span> <span class="n">fastlmm</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>If successful you should soon see:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Job</span> <span class="p">[</span><span class="n">job_id</span><span class="p">]</span> <span class="n">successfully</span> <span class="n">submitted</span>
+</pre></div>
+</div>
+<p>Copy down the job_id. You’ll use it to check the status of your job with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">status</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>Once your job is complete, you can view the outputs with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>And download selected outputs with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jobs</span><span class="o">-</span><span class="n">output</span> <span class="o">--</span><span class="n">download</span> <span class="o">--</span><span class="n">path</span> <span class="o">*</span><span class="n">filename</span><span class="o">*</span> <span class="o">*</span><span class="n">jobid</span><span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-more-gwas-prediction-apps-for-comparision">
+<h2>Run more GWAS / Prediction Apps for comparision<a class="headerlink" href="#run-more-gwas-prediction-apps-for-comparision" title="Permalink to this headline">¶</a></h2>
+<p>Validate helps you find the tools best-suited for working with your
+data sets. Depending on your experience &amp; the nature of your project,
+you may wish to process the syngenta data set with a variety of GWAS /
+Prediction tools, including:</p>
+<ul class="simple">
+<li>Ridge Regression</li>
+<li>Plink</li>
+<li>Gemma</li>
+<li>GenSel</li>
+</ul>
+<p>The job submission process for any app on Stampede is fairly similar–
+configure a JSON wrapper containing your input / output parameters,
+submit the task with jobs-submit, and move the output files into your
+data store.</p>
+</div>
+<div class="section" id="send-output-files-to-winnow">
+<h2>Send Output Files to Winnow<a class="headerlink" href="#send-output-files-to-winnow" title="Permalink to this headline">¶</a></h2>
+<p>For full inputs &amp; outputs see <a class="reference external" href="https://github.com/gpcarpen/Quickstart-guide/blob/master/docs/Winnow.md">here</a></p>
+<p>The required files for winnow are the Known Truth file and the output
+from a GWAS tool (FastLMM in our case)</p>
+<p>Once you download the fastlmm output, upload it to a new location in your DE:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">files</span><span class="o">-</span><span class="n">upload</span> <span class="o">-</span><span class="n">S</span> <span class="n">data</span><span class="o">.</span><span class="n">iplantcollaborative</span><span class="o">.</span><span class="n">org</span> <span class="o">-</span><span class="n">F</span> <span class="o">*</span><span class="n">fastlmm</span> <span class="n">output</span>
+<span class="n">which</span> <span class="n">should</span> <span class="n">now</span> <span class="n">be</span> <span class="n">local</span><span class="o">*</span> <span class="n">yourusername</span><span class="o">/</span><span class="n">yourdatafolder</span>
+</pre></div>
+</div>
+<p>Download the winnow example skeleton:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">CyVerse</span><span class="o">-</span><span class="n">Validate</span><span class="o">/</span><span class="n">Stampede</span><span class="o">-</span><span class="n">Files</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">json</span><span class="o">/</span><span class="n">winnow</span><span class="o">-</span><span class="n">job</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>You can edit and submit this file using the same process described above.</p>
+</div>
+<div class="section" id="visualize-results-with-demonstrate">
+<h2>Visualize Results with Demonstrate<a class="headerlink" href="#visualize-results-with-demonstrate" title="Permalink to this headline">¶</a></h2>
+<p><strong>Currently it is easier to work with R on your own system than on Stampede.</strong></p>
+<p>The final step of Validation will be comparing the results using a
+visualization method of your choice.</p>
+<p>Refer to <a class="reference internal" href="datastore.html#datastore"><span class="std std-ref">Uploading data to the Data Store and viewing in the  Discovery Environment</span></a> to download results from Stampede to your own disk or the data store.</p>
+<p>Demonstrate is the final step in the Validate known-truth
+pipeline. Using output from Winnow, it produces a set of graphics
+showing differences in a GWAS/QTL applications performance under
+varying heritability and population structure. Demonstrate also
+functions without the need for heritability or population structure,
+but different graphics will be produced in that case.</p>
+<p>The function you will want to use depends on what type of data you have:</p>
+<div class="section" id="data-with-heritability-and-population-structure-specified">
+<h3>Data with Heritability and Population Structure Specified<a class="headerlink" href="#data-with-heritability-and-population-structure-specified" title="Permalink to this headline">¶</a></h3>
+<p>If you want to visualize differences in your data based on
+heritability or population structure, you’ll want to use the original
+function Demonstrate. To run Demonstrate, type R on your terminal or
+command line to open the R console. From there use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="n">Demonstrate</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If nothing happens, then you did it correctly! Now the Demonstrate
+package is loaded. Here are the options to run the function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean AUC By</span>
+<span class="n">Population</span> <span class="n">Structure</span> <span class="ow">and</span> <span class="n">Heritability</span><span class="s2">&quot;, make.MAE.plot=TRUE,</span>
+<span class="n">MAE</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mean MAE By Population Structure and</span>
+<span class="n">Heritability</span><span class="s2">&quot;,herit.strings=list(&quot;</span><span class="n">_03_</span><span class="s2">&quot;,&quot;</span><span class="n">_04_</span><span class="s2">&quot;,&quot;</span><span class="n">_06_</span><span class="s2">&quot;)</span>
+<span class="p">,</span><span class="n">herit</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">strings</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;PheHasStruct&quot;</span><span class="p">,</span><span class="s2">&quot;PheNPStruct&quot;</span><span class="p">),</span><span class="n">struct</span><span class="o">.</span><span class="n">values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">TRUE</span><span class="p">,</span><span class="n">FALSE</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this function, dir represents the directory where all Winnow output
+is stored. These default values are based on the sample data found
+within this repository. Once run, the function will create two graphs
+on the mean absolute error (MAE) and area under the receiver operator
+curve (AUC) across varying levels of heritability and/or population
+structure. The graphs are in pdf format.</p>
+</div>
+<div class="section" id="other-data-from-winnow">
+<h3>Other data from Winnow<a class="headerlink" href="#other-data-from-winnow" title="Permalink to this headline">¶</a></h3>
+<p>For other types of data, or if you’re more interested in comparing
+GWAS tools than comparing data, you will want to use the Demonstrate2
+function. Before running it though, you will need to include the
+function in your global environment:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span><span class="p">(</span><span class="s2">&quot;&lt;path to&gt;/Demonstrate2.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then run the function:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Demonstrate2</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;True Positives by False Positives&quot;</span><span class="p">,</span> <span class="n">make</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of AUC by MAE&quot;</span><span class="p">,</span> <span class="n">extra</span><span class="o">.</span><span class="n">plots</span><span class="o">=</span><span class="n">TRUE</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">AUC</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">MAE</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">max</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assuming all outputs are kept, Demonstrate2 will output five files in
+total. First, two frequency histograms illustrating the distribution
+of both true and false positives (if multiple Winnow files were in the
+original directory, the pdf files will have multiple pages). Second, a
+.csv file detailing the average sensitivity, specificity, and
+precision of each file.</p>
+<p>Finally, two plots based on true vs. false positives and mean absolute
+error vs. area under the curve will be produced. Demonstrate2 will
+color the points based on the file they came from, so you can compare
+multiple GWAS analysis results on the same plot.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tutorial for running Validate with sample data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-job-submission">Configure Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submit-job">Submit Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-more-gwas-prediction-apps-for-comparision">Run more GWAS / Prediction Apps for comparision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/syngenta_tut.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/syngenta_tut.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
