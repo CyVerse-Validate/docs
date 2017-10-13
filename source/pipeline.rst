@@ -65,10 +65,10 @@ Install Validate 1.2
 
 You now should be setup to run the pipeline.
 
-+ Move to PipeDevel directory. Use the standard tools cd, pwd, and ls to navigate_ on Stampede from the command line. If you've just completed the previous steps, simply use:
++ Move to PipelineDevel directory. Use the standard tools cd, pwd, and ls to navigate_ on Stampede from the command line. If you've just completed the previous steps, simply use:
   ::
 
-  >$ cd PipeDevel
+  >$ cd PipelineDevel
 
 .. _navigate: http://www.westwind.com/reference/os-x/commandline/navigation.html
 
