@@ -1,0 +1,261 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Running the pipeline &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation Notes &amp; Discussion" href="notes.html" />
+    <link rel="prev" title="Getting Help" href="develop.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="running-the-pipeline">
+<h1>Running the pipeline<a class="headerlink" href="#running-the-pipeline" title="Permalink to this headline">¶</a></h1>
+<p>The Validate Pipeline represents our latest efforts to to simplify high-speed GWAS computing in the XSEDE cloud. While advanced users may wish to refer to the workflow overview for running custom applications, the pipeline includes scripts and wrappers for several common tools you can get started with right away.</p>
+<p>A typical remote session on Stampede consists of several steps:
+-Set up Agave CLI tools on Stampede (once only?)
+-create JSON files for job submission
+-submit jobs
+-retrieve results
+-repeat to analyze outputs in other GWAS tools, validation, or visualization</p>
+<p>The Validate Pipeline handles job submission and data management for you, automatically submitting jobs, monitoring their progress, and moving the results into your datastore. Automation of these steps makes it feasible to run multiple iterations of your analysis through multi-step workflows with considerably less user input. Researchers will enjoy fewer hours spent watching job queues, and users with extensive data requirements may be able to run customized workflows that would be unfeasible for a single user to submit and manage “by hand.”</p>
+<p>What you’ll need:
+-Accounts w/ XESEDE, Cyverse, TACC
+-Stampede allocation
+-Command-line access
+-Data to be tested uploaded to the Data Store
+-Validate Pipeline directory available on github</p>
+<div class="section" id="setup-stampede2-and-run-pipelineagavepy">
+<h2>Setup Stampede2 and run PipelineAgavePy<a class="headerlink" href="#setup-stampede2-and-run-pipelineagavepy" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial assumes that you have set up accounts with TACC and Cyverse and be assigned to a project allocation.</p>
+<div class="section" id="install-validate-1-2">
+<h3>Install Validate 1.2<a class="headerlink" href="#install-validate-1-2" title="Permalink to this headline">¶</a></h3>
+<p><strong>(initial step: SSH into Stampede2 with your client of choice)</strong></p>
+<ul>
+<li><p class="first">Your Stampede2 home directory supports up to 10GB of data, while your work directory allows for up to 1TB. Use the alias command “cdw” and “cdh” to switch been your work and home directories, respctively:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ cdw
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create a virtual environment to install the agavepy package with pip. See <a class="reference external" href="http://docs.python-guide.org/en/latest/dev/virtualenvs/">virtualenv</a> for more information. <strong>is this necessary or just good practice?</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ virtualenv Validate1.2
+</pre></div>
+</div>
+</li>
+</ul>
+<ul>
+<li><p class="first">Change to new environment directory.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ cd Validate1.2
+</pre></div>
+</div>
+</li>
+<li><p class="first">We need to use our new environment.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ source bin/activate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Next we need to install the packages required to run the Pipeline.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ pip install agavepy numpy pandas statsmodels scipy
+</pre></div>
+</div>
+</li>
+<li><p class="first">Finally we need to clone the repo from Github that contains the Pipeline.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ git clone https://github.com/CyVerse-Validate/Validate.git
+</pre></div>
+</div>
+</li>
+</ul>
+<p>You now should be setup to run the pipeline.</p>
+<ul>
+<li><p class="first">Move to PipeDevel directory. Use the standard tools cd, pwd, and ls to <a class="reference external" href="http://www.westwind.com/reference/os-x/commandline/navigation.html">navigate</a> on Stampede from the command line. If you’ve just completed the previous steps, simply use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>&gt;$ cd PipeDevel
+</pre></div>
+</div>
+</li>
+</ul>
+<ul>
+<li><p class="first">the command to initialize the pipeline requires several parameters. In addition to your Agave account infomation, you must specify if you want to run a simulation, what type of GWAS or GenSel tools to use, whether you need Winnow for further analysis, the type of data being used (PED, BED, TFAM), and where the data is located on the Discovery Environment.</p>
+</li>
+<li><p class="first">A sample command line looks like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>- &gt;$ -u *username* --password *password* -i \tp -f /dhbrand/My_Data -lmm True
+</pre></div>
+</div>
+</li>
+</ul>
+<p>This would instruct the script to run the TPED/TFAM files in the specified datastore directory through FaSt-LMM.</p>
+</div>
+<div class="section" id="full-parameters">
+<h3>Full Parameters<a class="headerlink" href="#full-parameters" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="colwidths-given docutils" id="id1">
+<caption><span class="caption-text">Full Parameters</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Verbose, “Description”</th>
+<th class="head">&#160;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-u</td>
+<td>–username <em>username</em></td>
+<td>Username for Agave services.</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>–password</td>
+<td>Password used for Agave services.</td>
+</tr>
+<tr class="row-even"><td>-i</td>
+<td>–InFormat <em>inputformat</em></td>
+<td>Defines data input format. p for PED/MAP, b for BIM/BED/FAM, t for TPED/TFAM.</td>
+</tr>
+<tr class="row-odd"><td>-f</td>
+<td>–Folder <em>working_directory</em></td>
+<td>Folder to be pipelined. This folder should contain all inputs as well as the known-truth file for the given dataset.</td>
+</tr>
+<tr class="row-even"><td>-pno</td>
+<td>–pheno <em>filename</em></td>
+<td>Name (including extension) for the covariate file for the given dataset.</td>
+</tr>
+<tr class="row-odd"><td>-lmm</td>
+<td>–fastlmm</td>
+<td>Run Fast-LMM</td>
+</tr>
+<tr class="row-even"><td>-rdg</td>
+<td>–ridge</td>
+<td>Run Ridge.</td>
+</tr>
+<tr class="row-odd"><td>-bay</td>
+<td>–bayes</td>
+<td>Run BayesR.</td>
+</tr>
+<tr class="row-even"><td>-plk</td>
+<td>–plink</td>
+<td>Run Plink.</td>
+</tr>
+<tr class="row-odd"><td>-qxp</td>
+<td>–qxpak</td>
+<td>Run QxPak.</td>
+</tr>
+<tr class="row-even"><td>-gma</td>
+<td>–gemma</td>
+<td>Run Gemma.</td>
+</tr>
+<tr class="row-odd"><td>-pma</td>
+<td>–puma</td>
+<td>Run Puma.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modifying-the-wrapper">
+<h3>Modifying the wrapper<a class="headerlink" href="#modifying-the-wrapper" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="modifying-pipeline-py">
+<h3>Modifying pipeline.py<a class="headerlink" href="#modifying-pipeline-py" title="Permalink to this headline">¶</a></h3>
+<p>While the default settings should be adequate for most tasks, you may need to edit the python script with custom JSON settings if your jobs require additional processing or are timing out. This is handled in Validate/JsonBuilder.py. By editing this text file, you can easily alter the requested time for each app in the workflow. Simply change the value for “requestedTime” to a value that meets your needs.</p>
+</div>
+<div class="section" id="data-management">
+<h3>Data Management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Setting up the Validate Pipeineline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup-stampede2-and-run-pipelineagavepy">Setup Stampede2 and run PipelineAgavePy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-validate-1-2">Install Validate 1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#full-parameters">Full Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-the-wrapper">Modifying the wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-pipeline-py">Modifying pipeline.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-management">Data Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/pipeline.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/pipeline.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

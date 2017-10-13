@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>GWAS Tools &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Prediction Tools" href="prediction.html" />
+    <link rel="prev" title="Uploading data to the Data Store and viewing in the Discovery Environment" href="datastore.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="gwas-tools">
+<h1>GWAS Tools<a class="headerlink" href="#gwas-tools" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fastlmm">
+<h2>FastLMM<a class="headerlink" href="#fastlmm" title="Permalink to this headline">¶</a></h2>
+<p>The main genome wide association studies tool that we have used, FaST-LMM stands for Factored Spectrally Transformed Linear Mixed Models. It is a tool from Microsoft Research designed for analyses of very large data sets, and has been tested on data sets with over 120,000 individuals.</p>
+<p><strong>Running the Program</strong></p>
+<p>The easiest way to run fastlmm is through Agave, as it will interpret your json job file and compile the command for you. However, if you are interested in running fastlmm directly through SLURM, we provide documentation for that as well.</p>
+<p><strong>Run through Agave</strong></p>
+<p>To run fastlmm, you will need a phenotype file as well as a set of EITHER ped/map or bed/bim/fam data files. The example json below includes ped/map files from the syngenta data, and can be run as-is if you would like to test it before using your own data.</p>
+<p>Here are all of the possible inputs that may be used in your job submission:</p>
+<blockquote>
+<div><ul class="simple">
+<li>inputPHENO : (required) phenotype file corresponding to PLINK fileset</li>
+<li>inputCOVAR : (optional) covariate file</li>
+</ul>
+</div></blockquote>
+<p>Choose one group of data inputs:</p>
+<p>Transposed PLINK:</p>
+<blockquote>
+<div><ul class="simple">
+<li>inputTPED : TPED file for transposed PLINK set</li>
+<li>inputTFAM : TFAM file for transposed PLINK set</li>
+</ul>
+</div></blockquote>
+<p>Main PLINK:</p>
+<blockquote>
+<div><ul class="simple">
+<li>inputPED : PED file for main PLINK set</li>
+<li>inputMAP : MAP file for main PLINK set</li>
+</ul>
+</div></blockquote>
+<p>Binary PLINK:</p>
+<blockquote>
+<div><ul class="simple">
+<li>inputBED : BED file for PLINK binary set</li>
+<li>inputBIM : BIM file for PLINK binary set</li>
+<li>inputFAM : FAM file for PLINK binary set</li>
+</ul>
+</div></blockquote>
+<p>Parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>output : (required) The name of the output file (without extension)</li>
+<li>verboseOutput : (optional) Trigger for verbose mode, 1 if true, 0 if false</li>
+</ul>
+</div></blockquote>
+<p>Optional advanced parameters:</p>
+<blockquote>
+<div><ul class="simple">
+<li>C : Trigger for whether covariate file is included (1 if true, 0 if false)</li>
+<li>B : Set the binary PLINK fileset as the primary input (1 if true, 0 if false)</li>
+<li>SimFileset : Specify the PLINK grouop used to calculate the genetic similarity matrix (PEDMAP, BEDBIMFAM, or TPEDTFAM)</li>
+<li>mpheno : Proper column number for phenotype file (if multiple phenotypes are used)</li>
+<li>T : Transposed PLINK fileset is the primary input (1 if true, 0 if false)</li>
+</ul>
+</div></blockquote>
+<p>You can save this example json and modify it for your needs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+      <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;FLMMDongWangFull&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;FaST-LMM-hpc-2.07u1&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;02:00:00&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+              <span class="s2">&quot;inputs&quot;</span><span class="p">:{</span>
+                      <span class="s2">&quot;inputPED&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;inputMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.map&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;inputPHENO&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwangpheno.txt&quot;</span>
+              <span class="p">},</span>
+              <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+                      <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;full_results&quot;</span>
+              <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Run directly through SLURM</strong></p>
+<p>The program requires a minimum of three files to function: 1) A PEDMAP set of files, 2) a phenotype file corresponding to the PEDMAP set, and 3) a set of PLink formatted files to compute the genetic similarity matrix decomposition (does not need to be different from number 1).</p>
+<p>The input flags you would use are as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>-file : Denotes the file name for the PLINK .ped/.map files</li>
+<li>-bfile : Denotes the name for PLINK .bed/.bim/.fam files</li>
+<li>-tfile : Denotes the name for PLINK .tped/.tfam files</li>
+<li>-pheno : Denotes the name of the phenotype file (including extension)</li>
+<li>-covar : Denotes the name of the covariate file (including file extension)</li>
+<li>-out : The name of your final output file, which is placed into the same directory as your program and data unless otherwise specified</li>
+</ul>
+</div></blockquote>
+<p>These are the bare minimum options needed to run FaST-LMM; however, some other options for considerations are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>-verboseOutput : use this flag to show more complex and detailed output; does not require a file to be named</li>
+<li>-fileSim : The name of the PLINK set used for computing the genetic similarity matrix and its decomposition</li>
+<li>-pValuePrintThreshold : Restricts the output file to only include SNPs with a p-value less than or equal to the specified threshold</li>
+</ul>
+</div></blockquote>
+<p>An example of executing the FaST-LMM program might look like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">fastlmmc</span> <span class="o">-</span><span class="n">verboseOutput</span> <span class="o">-</span><span class="n">bfile</span> <span class="n">toydata</span> <span class="o">-</span><span class="n">pheno</span> <span class="n">toydata</span><span class="o">.</span><span class="n">phe</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">covar</span> <span class="n">toydata</span><span class="o">.</span><span class="n">covar</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">out</span> <span class="n">MyResults</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="puma">
+<h2>Puma<a class="headerlink" href="#puma" title="Permalink to this headline">¶</a></h2>
+<p>Puma (Penalized Unified Multiple-locus Association) “comprises a family of statistical methods designed to identify weak associations in genome-wide association studies that are not detectable by conventional analytical methods.” Puma was developed by Jason Mezey at Cornell University, and we have installed it on Agave so that it is available for use.</p>
+<p>Puma download (if you would like to install the software yourself rather than run through Agave) is available here: <a class="reference external" href="http://mezeylab.cb.bscb.cornell.edu/Software.aspx">http://mezeylab.cb.bscb.cornell.edu/Software.aspx</a></p>
+<p>Example data can be found here and uploaded to your data store for testing use with Agave:
+<a class="reference external" href="https://github.com/CyVerse-Validate/Stampede-Files/tree/master/Puma/data">https://github.com/CyVerse-Validate/Stampede-Files/tree/master/Puma/data</a></p>
+<p>Here is an example JSON job file which you can save and modify for your own use:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;jobName&quot;</span><span class="p">:</span> <span class="s2">&quot;puma-test-1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;softwareName&quot;</span><span class="p">:</span> <span class="s2">&quot;Puma-1.0u1&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;processorsPerNode&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+  <span class="s2">&quot;requestedTime&quot;</span><span class="p">:</span> <span class="s2">&quot;01:00:00&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;memoryPerNode&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+  <span class="s2">&quot;nodeCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&quot;batchQueue&quot;</span><span class="p">:</span> <span class="s2">&quot;serial&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;archive&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+  <span class="s2">&quot;archivePath&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">&quot;tped&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/PATHTODATA/DATA.tped&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;tfam&quot;</span><span class="p">:</span> <span class="s2">&quot;agave://data.iplantcollaborative.org/PATHTODATA/DATA.tfam&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;parameters&quot;</span><span class="p">:{</span>
+      <span class="s2">&quot;regression&quot;</span><span class="p">:</span> <span class="s2">&quot;LINEAR&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;penalty&quot;</span><span class="p">:</span><span class="s2">&quot;LASSO&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;try1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These are all of the possible inputs you can specify for your job:</p>
+<dl class="docutils">
+<dt>Inputs:</dt>
+<dd><ul class="first last simple">
+<li>tped (required)          [genotype data in plink TPED format]</li>
+<li>tfam  (required)         [phenotype (and sex) data in plink TFAM format]</li>
+<li>sex                          [if tfam is used, this includes sex as a covariate]</li>
+<li>covariates                   [file storing matrix with each column being a covariate]</li>
+<li>regression (required)    [specify regression model as either LINEAR or LOGISTIC]</li>
+<li>sma                          [if set, performs only standard single marker analysis]</li>
+<li><dl class="first docutils">
+<dt>penalty (required)       [space delimited list of methods to run, select from:</dt>
+<dd>LASSO ALASSO LOG NEG MCP VBAY]</dd>
+</dl>
+</li>
+<li>name (required)              [name to be appended to results files]</li>
+</ul>
+</dd>
+<dt>Advanced inputs:</dt>
+<dd><ul class="first last simple">
+<li><dl class="first docutils">
+<dt>screen_p_value [marginal p-values below which markers are passed to method]</dt>
+<dd>(default = 0.01)</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>pML_restarts   [number of posterior modes explored]</dt>
+<dd>(default = 100)</dd>
+</dl>
+</li>
+<li>results        [specify folder where results are saved. Defaults to local folder]</li>
+<li><dl class="first docutils">
+<dt>nthreads       [number of threads used to run in parallel]</dt>
+<dd>(default = machine default)</dd>
+</dl>
+</li>
+<li>restrictedPathSearch [1 dimensional path search for non-convex penalties]</li>
+</ul>
+</dd>
+</dl>
+<p>When you run the job, it will return a file of pvalues as well as an R results file. The best way to read this data is to use an R extraction program which will summarize the results for you:</p>
+<ul>
+<li><p class="first">Download extract_puma_results.R and place a copy in the directory with your results file: <a class="reference external" href="https://github.com/CyVerse-Validate/Stampede-Files/blob/master/Puma/extract_puma_results.R">https://github.com/CyVerse-Validate/Stampede-Files/blob/master/Puma/extract_puma_results.R</a>)</p>
+</li>
+<li><p class="first">Modify the file with your results file name (example: “results_testjob_LASSO.R”) in line 9:
+::
+result = dget(“FILENAME.R”)</p>
+</li>
+<li><p class="first">Save extract_puma_results.R</p>
+</li>
+<li><p class="first">Start R and run these lines (where OUTPUTFILENAME is what you want your summarized results file to be called):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sink</span><span class="p">(</span><span class="s1">&#39;OUTPUTFILENAME.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">source</span><span class="p">(</span><span class="s1">&#39;extract_puma_results.R&#39;</span><span class="p">))</span>
+<span class="n">sink</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>This will place the summarized results file in your working directory.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GWAS Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fastlmm">FastLMM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#puma">Puma</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/gwas.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/gwas.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

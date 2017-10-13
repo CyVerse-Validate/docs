@@ -1,0 +1,214 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Account Setup Guide &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running Validate on Syngenta data set" href="syngenta_tut.html" />
+    <link rel="prev" title="Getting Started with Validate" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="account-setup-guide">
+<h1>Account Setup Guide<a class="headerlink" href="#account-setup-guide" title="Permalink to this headline">¶</a></h1>
+<p>While it is possible to Validate using your own hardware, you’ll
+benefit from greatly enhanced speed and reliability using high-speed
+compute resources freely-available from the open-source science
+community. You’ll need to set up accounts with <a class="reference external" href="http://www.cyverse.org/">Cyverse</a>, the Texas
+Advanced Computing Center (<a class="reference external" href="https://www.tacc.utexas.edu/">TACC</a>), and Extreme Science &amp; Engineering
+Discovery Environment (<a class="reference external" href="https://www.xsede.org/">XSEDE</a>) to gain the most benefit from these
+tutorials. If you’re working in an academic laboratory, you should
+have little trouble registering for accounts and allocations available
+to users with a .edu email address. Bear in mind that large
+allocations may require approval for a specific research need.</p>
+<div class="section" id="id1">
+<h2>Cyverse<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Register at <a class="reference external" href="https://user.cyverse.org/">https://user.cyverse.org/</a>. This portal will be your
+central access point for Atmosphere and the Discovery Environment, and
+provides some forums for community and support.</p>
+<ul class="simple">
+<li>Your default Data Store allocation is 100GB, which can be upgraded
+upon request to up to 1TB. For more information see
+<a class="reference external" href="http://www.cyverse.org/data-store">http://www.cyverse.org/data-store</a>.</li>
+<li>To gain access to Atmosphere images, which can be a convenient way
+to quickly get started in a linux environment pre-configured for
+GWAS analysis, you’ll need to request <a class="reference external" href="http://www.cyverse.org/learning-center/manage-account#AddAppsServices">access</a> through your cyverse
+dashboard.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>TACC<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>These guides refer to running the Validate workflow on the Stampede
+supercomputer at the TACC. You’ll need to make an account at
+<a class="reference external" href="https://portal.tacc.utexas.edu/">https://portal.tacc.utexas.edu/</a> to get started. Unless you are a
+professor or in charge of a collaborative project at your
+company/institution, simply list the PI option near the end of the
+application as <em>Ineligible</em>. After you’ve created your account, you’ll need to configure two-factor authentication back at the user portal before you can log on to TACC machines.</p>
+</div>
+<div class="section" id="id3">
+<h2>XSEDE<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Extreme Science &amp; Engineering Discover Environment represents a
+collection of advanced digital services for scientific
+collaboration. Your account with them grants you access to the Agave
+API for job submission and data management, and allows you to run jobs
+on Stampede using “iPlant-collabs” project allocation.</p>
+<ul class="simple">
+<li>Register for an account following the steps at
+<a class="reference external" href="https://www.xsede.org/using-xsede">https://www.xsede.org/using-xsede</a></li>
+<li>To use Agave, request an allocation following the instructions at
+<a class="reference external" href="https://portal.xsede.org/allocation-request-steps">https://portal.xsede.org/allocation-request-steps</a></li>
+</ul>
+<p>If you are a staff member at the iPlant Collaborative, send a message
+to <a class="reference external" href="mailto:support&#37;&#52;&#48;iplantcollaborative&#46;org">support<span>&#64;</span>iplantcollaborative<span>&#46;</span>org</a> to request access to the
+“iPlant-Collabs” allocation. Getting access may take a day or two, but
+you will know for sure upon trying out Stampede for yourself. <strong>Note
+that you will not immediately receive a notification upon getting
+access. The only way to know for sure is to try it out!</strong></p>
+</div>
+</div>
+<div class="section" id="accessing-stampede">
+<h1>Accessing Stampede<a class="headerlink" href="#accessing-stampede" title="Permalink to this headline">¶</a></h1>
+<p>To access Stampede, you may use a number of different SSH clients,
+depending on your operating system:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>localhost$ ssh taccuserid@stampede.tacc.utexas.edu
+</pre></div>
+</div>
+<div class="section" id="for-windows">
+<h2>For Windows:<a class="headerlink" href="#for-windows" title="Permalink to this headline">¶</a></h2>
+<p>SSH support is built into PowerShell for Windows 10.</p>
+<p>For the technically curious or advanced, <a class="reference external" href="https://www.cygwin.com/">Cygwin</a> is an open-source project to bring a
+Unix-like environment to windows. While the initial installation
+options may be overwhelming, all you need are the ssh tools to use the
+shell to access Stampede. You may also quickly get an Ubuntu image up
+and running through Atmosphere once you’ve set up your Cyverse
+account.</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.putty.org/">PuTTY</a>: a no-frills Unix-esque SSH client</li>
+<li><a class="reference external" href="http://winscp.net/eng/index.php">WinSCP</a>: A more user-friendly
+interface similar to Windows Explorer. Allows integration with PuTTY
+and drag-and-drop transfer of files from local drive to remote
+computer.</li>
+</ul>
+</div>
+<div class="section" id="for-mac">
+<h2>For Mac:<a class="headerlink" href="#for-mac" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Terminal: ssh is built into Mac OS. For extensive use many prefer
+<a class="reference external" href="https://www.iterm2.com/">iTerm2</a>.</li>
+<li><a class="reference external" href="https://cyberduck.io/">Cyberduck</a></li>
+</ul>
+</div>
+<div class="section" id="for-unix-linux">
+<h2>For Unix/Linux:<a class="headerlink" href="#for-unix-linux" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Terminal: The standard Unix terminal may be used to access Stampede
+through the <em>ssh</em> command.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Account Setup Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Cyverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">TACC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">XSEDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-stampede">Accessing Stampede</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-windows">For Windows:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-mac">For Mac:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-unix-linux">For Unix/Linux:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/accounts.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/accounts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

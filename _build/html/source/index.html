@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Validate 1.2 &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Useful Terms" href="terms.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><strong>Validation is an evolving process and the documentation should reflect the experiences of users as they discover new and useful bits of information.</strong>
+<a class="reference internal" href="updating.html#updating"><span class="std std-ref">Updating the docs</span></a> is easy, and you can share comments and questions <a class="reference external" href="https://github.com/cyverse-validate/docs/issues">at this forum</a>.</p>
+<div class="section" id="validate-1-2">
+<h1>Validate 1.2<a class="headerlink" href="#validate-1-2" title="Permalink to this headline">¶</a></h1>
+<p>Validation is the positive control for your experimental data
+analysis. You have control over how long data analysis
+takes. Completing your positive controls first allows you to be ready
+for your data when you get it. Why validate a particular data
+analysis?</p>
+<ul class="simple">
+<li>Trust but verify: check that a widely used method will work for your data.</li>
+<li>Have analysis pipeline optimized; the moment you’ve collected all
+your data you can start the analysis (saving weeks or months to
+complete afterwards)</li>
+<li>Fewer requests from reviewers for changes to your data analysis
+methods</li>
+<li>Be confident you are doing the best possible data analysis</li>
+</ul>
+<p>The CyVerse Validate workflow is versatile enough to handle you
+importing your GWAS tools, functions, or simulation methods to use in
+conjunction with the existing software. Speaking of imports, Validate
+is capable of handling a range of file formats, and each piece of
+software is very customizable. You have multiple options for adjusting
+your output each step of the way.</p>
+<p>Finally, since the analysis are run on the NSF-supported national
+XSEDE computer systems, scalability of simulations is a non-issue; the
+computational demand for your simulations will scale up as your needs
+increase. All of your necessary files may be uploaded and accessed
+from the CyVerse Data Store.</p>
+<div class="section" id="version-1-2-features">
+<h2>Version 1.2 Features<a class="headerlink" href="#version-1-2-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added python scripts to streamline common tasks and open new options for scaling and automation.</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-features">
+<h2>Version 1.0 Features<a class="headerlink" href="#version-1-0-features" title="Permalink to this headline">¶</a></h2>
+<p>Version 1.0 features include:</p>
+<ul class="simple">
+<li>The ability to test prediction</li>
+<li>Incorporate the following prediction applications: GenSel, BayesR,
+BLR/BATools, ridge regression</li>
+<li>Updated Demonstrate to handle prediction graphics</li>
+<li>Managing GWAS and prediction applications in parallel</li>
+<li>Incorporate D. Hand’s H-measure to the current performance metrics</li>
+<li>Additional documentation to onboard new developers and statisticians</li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#organizations">Organizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#biology-terms">Biology Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#statistics-terms">Statistics Terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terms.html#computer-science-terms">Computer Science Terms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id1">Cyverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id2">TACC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#id3">XSEDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-windows">For Windows:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-mac">For Mac:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="accounts.html#for-unix-linux">For Unix/Linux:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#install-cyverse-cli-tools">Install Cyverse CLI tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#configure-job-submission">Configure Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#submit-job">Submit Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#run-more-gwas-prediction-apps-for-comparision">Run more GWAS / Prediction Apps for comparision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#send-output-files-to-winnow">Send Output Files to Winnow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="syngenta_tut.html#visualize-results-with-demonstrate">Visualize Results with Demonstrate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alphasim.html#running-alphasim-through-agave">Running Alphasim through Agave</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">SLURM/JSON job submission guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="json.html#parametric-launcher">Parametric Launcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gwas.html#fastlmm">FastLMM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gwas.html#puma">Puma</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prediction.html#bayesr">BayesR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prediction.html#gensel">GenSel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prediction.html#ridgepredict">RidgePredict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#citations">Citations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="citations.html#user-manuals-project-websites">User Manuals &amp; Project Websites</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html#setup-stampede2-and-run-pipelineagavepy">Setup Stampede2 and run PipelineAgavePy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html#install-validate-1-2">Install Validate 1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html#full-parameters">Full Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html#modifying-the-wrapper">Modifying the wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html#modifying-pipeline-py">Modifying pipeline.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline.html#data-management">Data Management</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes.html#some-suggestions-for-the-documentation">Some suggestions for the documentation:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="#">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

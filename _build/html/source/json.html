@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Submitting jobs on Stampede &#8212; Validate 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Uploading data to the Data Store and viewing in the Discovery Environment" href="datastore.html" />
+    <link rel="prev" title="Generating Simulation Data with Alphasim" href="alphasim.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="submitting-jobs-on-stampede">
+<h1>Submitting jobs on Stampede<a class="headerlink" href="#submitting-jobs-on-stampede" title="Permalink to this headline">¶</a></h1>
+<p>You have two alternatives for running your tools on Stampede. The Agave API allows you to <a class="reference internal" href="syngenta_tut.html#jobs"><span class="std std-ref">Configure Job Submission</span></a> as outlined in our quickstart guide.</p>
+<p>For further reference see:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://agaveapi.co/what-is-a-job2/">http://agaveapi.co/what-is-a-job2/</a></li>
+<li><a class="reference external" href="http://agaveapi.co/documentation/tutorials/job-management-tutorial/">http://agaveapi.co/documentation/tutorials/job-management-tutorial/</a></li>
+</ul>
+<p>You can also use Stampede’s parametric launcher to distribute your work across multiple nodes. For large jobs, this has tangible speed benefits &amp; is in general a more secure &amp; efficient computing practice. The TACC guide for the parametric launcher can be found at the link below, or scroll down for our quick-start tutorial.</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.tacc.utexas.edu/research-development/tacc-software/the-launcher">https://www.tacc.utexas.edu/research-development/tacc-software/the-launcher</a></li>
+</ul>
+<div class="section" id="parametric-launcher">
+<h2>Parametric Launcher<a class="headerlink" href="#parametric-launcher" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-multiple-jobs-through-the-launcher-on-stampede">
+<h3>Running multiple jobs through the launcher on Stampede<a class="headerlink" href="#running-multiple-jobs-through-the-launcher-on-stampede" title="Permalink to this headline">¶</a></h3>
+<p><strong>Prerequisities:</strong> Agave CLI, general knowledge of executing using Agave, Access to the Cyverse data store, and Stampede allocation</p>
+<p><strong>Job Format:</strong></p>
+<p>When you start a job using the parametric launcher, it will always look for a parameter file in your current working directory titled “paramlist”. The first step is to put together this file and store it where you want to run your job from. Below is an example of a paramlist for the prediction app bayesR. You can see that it is simply a list of commands to run the bayesR application with the specified inputs and outputs.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home1</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bayesR</span> <span class="o">-</span><span class="n">bfile</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">AlphaSim_1</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">alpha_output</span><span class="o">/</span><span class="n">AlphaSim_1_out</span><span class="p">;</span>
+<span class="o">/</span><span class="n">home1</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bayesR</span> <span class="o">-</span><span class="n">bfile</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">AlphaSim_2</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">alpha_output</span><span class="o">/</span><span class="n">AlphaSim_2_out</span><span class="p">;</span>
+<span class="o">/</span><span class="n">home1</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bayesR</span> <span class="o">-</span><span class="n">bfile</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">AlphaSim_3</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">alpha_output</span><span class="o">/</span><span class="n">AlphaSim_3_out</span><span class="p">;</span>
+<span class="o">/</span><span class="n">home1</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">applications</span><span class="o">/</span><span class="n">bayesR</span><span class="o">-</span><span class="n">master</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bayesR</span> <span class="o">-</span><span class="n">bfile</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">AlphaSim_4</span> <span class="o">-</span><span class="n">out</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="mi">04109</span><span class="o">/</span><span class="n">ksierrac</span><span class="o">/</span><span class="n">bayes_speedtest</span><span class="o">/</span><span class="n">alpha_output</span><span class="o">/</span><span class="n">AlphaSim_4_out</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The advantage of using the launcher in this situation is that all you have to do is to build the paramlist file. Once you submit, the launcher will automatically submit these multiple jobs for you.</p>
+<p><strong>To run these jobs through parametric launcher</strong></p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>To run the above example, you would use this command:</dt>
+<dd>::
+sbatch -N 64 -n 128 -t 48:00:00 $TACC_LAUNCHER_DIR/launcher.slurm</dd>
+</dl>
+</li>
+<li>The submit command is “sbatch”, the same as submitting a single job to Stampede. Call the launcher by adding “$TACC_LAUNCHER_DIR/launcher.slurm” at the end of your command.</li>
+</ul>
+<p>(Note: If you have not loaded the launcher module, first run the command “module load launcher” followed by “module save”)</p>
+<ul class="simple">
+<li>-N specifies number of nodes, -n specifies number of processes running at once, and -t specifies the allowed time for the jobs to run. For a full list of possible flags, see this link: <a class="reference external" href="https://portal.tacc.utexas.edu/user-guides/stampede#tablesbatchoptions">https://portal.tacc.utexas.edu/user-guides/stampede#tablesbatchoptions</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="terms.html"> Useful Terms</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quickstart Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="accounts.html">Account Setup Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#accessing-stampede">Accessing Stampede</a></li>
+<li class="toctree-l2"><a class="reference internal" href="syngenta_tut.html">Tutorial for running Validate with sample data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alphasim.html">Generating a sample data set with Alphasim</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SLURM/JSON job submission guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parametric-launcher">Parametric Launcher</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datastore.html">Using the Data Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gwas.html">GWAS Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prediction.html">Prediction</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="citations.html"> Citations &amp; Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="develop.html"> Further Development &amp; Getting help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html"> Setting up the Validate Pipeineline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes.html"> Comments &amp; Discussion</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/source/json.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, UNCW Cyverse.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/source/json.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
