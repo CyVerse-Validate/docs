@@ -79,6 +79,7 @@ You now should be setup to run the pipeline.
   ::
 
   - >$ python PipelineAgavePy.py -u *username* --password *password* -i \tp -f /username/My_Data -lmm True
+  ##Password option is not required.  If leftoff you will be prompted for password. \t is not required. True is not required after app option.
 
 This would instruct the script to run the TPED/TFAM files in the specified datastore directory through FaSt-LMM.
 

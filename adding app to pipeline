@@ -1,0 +1,7 @@
+To add an app to pipeline
+
+First add new json under JsonBuilder
+  make sure the inputs match required for the app
+  if adding to the end of the json list modify the preceding 'return' line
+
+Next add required args based on inputs from JSON
